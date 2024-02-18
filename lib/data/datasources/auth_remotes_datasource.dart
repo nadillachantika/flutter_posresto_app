@@ -7,25 +7,25 @@ import 'dart:convert';
 
 class AuthRemoteDatasource{
 
- Future<Either<String, AuthResponseModel>> login(String email, String password) async {
+Future<Either<String, AuthResponseModel>> login(
+    String email, String password) async {
   final url = Uri.parse('${Variables.baseUrl}/api/login');
   final response = await http.post(
-    url, 
+    url,
     body: {
-      'email' :email,
-      'password' :password
-    }
+      'email': email,
+      'password': password,
+    },
   );
 
   final responseData = json.decode(response.body);
 
-  if (responseData['status'] == 200) {
-    final authResponseModel = AuthResponseModel.fromJson(responseData['data']);
-    return Right(authResponseModel);
+  if (responseData['status'] == "success") {
+    final authResponse = AuthResponseModel.fromMap(responseData);
+    return Right(authResponse);
   } else {
-    return Left(responseData['message'].toString());
+    return Left(responseData['message']);
   }
 }
-
 
 }

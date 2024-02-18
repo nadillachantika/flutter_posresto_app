@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restopos/core/components/components.dart';
-import 'package:flutter_restopos/data/models/response/auth_response_model.dart';
 import 'package:flutter_restopos/presentations/auth/login/bloc/login_bloc.dart';
 import 'package:flutter_restopos/presentations/dashboard_page.dart';
 
@@ -23,9 +22,9 @@ class _LoginPageState extends State<LoginPage> {
         padding: const EdgeInsets.symmetric(horizontal: 124.0, vertical: 20.0),
         children: [
           // const SpaceHeight(80.0)
-          Padding(
+          const Padding(
             padding:
-                const EdgeInsets.symmetric(horizontal: 130.0, vertical: 100.0),
+                 EdgeInsets.symmetric(horizontal: 130.0, vertical: 100.0),
             // child: SvgPicture.asset(
             //   Assets.icons.homeResto.path,
             //   width:100,
@@ -83,6 +82,10 @@ class _LoginPageState extends State<LoginPage> {
             backgroundColor: Colors.red,
           ),
         );
+        //  Navigator.pushReplacement(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => const DashboardPage()),
+        // );
       },
       orElse: () {}, // Menambahkan kasus orElse untuk menangani kondisi default
     );

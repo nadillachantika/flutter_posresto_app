@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class AuthResponseModel {
-    final int? status;
+    final String? status;
     final String? token;
     final String? message;
     final Data? data;
