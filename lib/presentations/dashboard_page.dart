@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_restopos/core/constants/colors.dart';
 import 'package:flutter_restopos/data/datasources/auth_local_datasource.dart';
 import 'package:flutter_restopos/data/models/response/auth_response_model.dart';
 import 'package:flutter_restopos/presentations/auth/bloc/login_page.dart';
@@ -13,9 +14,8 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-
   User? user;
-  
+
   @override
   void initState() {
     AuthLocalDataSource().getAuthData().then((value) {
@@ -25,29 +25,49 @@ class _DashboardPageState extends State<DashboardPage> {
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('welcome'),),
-      body:  Center(
+      appBar: AppBar(
+        title: const Text('welcome'),
+      ),
+      body: Center(
         child: Column(
           children: [
-             const Text('Welcome to Dashboard'),
-             Text('Name: ${user?.name?? ''}'),
-             const SizedBox(height: 100,),
-             ElevatedButton(onPressed: (){
+            const Text('Welcome to Dashboard'),
+            Text('Name: ${user?.name ?? ''}'),
+            const SizedBox(
+              height: 100,
+            ),
+            BlocListener<LogoutBloc, LogoutState>(
+              listener: (context, state) {
+                state.maybeMap(
+                  orElse: () {},
+                  error: (e) {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text(e.message)));
+                  },
+                  success: (value) {
+                    AuthLocalDataSource().removeAuthData();
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text('Logout Success'),
+                      backgroundColor: AppColors.primary,
+                    ));
 
-              context.read<LogoutBloc>().add(const LogoutEvent.logout());
-
-              AuthLocalDataSource().removeAuthData().then((value) => Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context){
-
-                return const LoginPage();
-              }), (route)=> false));
-            
-             },
-             child: const Text('Logout'))
-
-            
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginPage()));
+                  },
+                );
+              },
+              child: ElevatedButton(
+                  onPressed: () {
+                    context.read<LogoutBloc>().add(const LogoutEvent.logout());
+                  },
+                  child: const Text('Logout')),
+            )
           ],
         ),
       ),

@@ -36,7 +36,6 @@ class AuthRemoteDatasource {
       headers: {
         'Authorization' : 'Bearer ${authData.token}',
         'Accept' : 'application/json',
-        'Content-type' : 'application'
       }
     );
 
