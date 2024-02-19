@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restopos/core/components/components.dart';
-import 'package:flutter_restopos/presentations/auth/login/bloc/login_bloc.dart';
+import 'package:flutter_restopos/data/datasources/auth_local_datasource.dart';
+import 'package:flutter_restopos/presentations/auth/bloc/login/login_bloc.dart';
 import 'package:flutter_restopos/presentations/dashboard_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -70,6 +71,9 @@ class _LoginPageState extends State<LoginPage> {
   listener: (context, state) {
     state.maybeWhen(
       success: (authResponseModel) {
+
+        // save data login user
+        AuthLocalDataSource().saveAuthData(authResponseModel);
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const DashboardPage()),

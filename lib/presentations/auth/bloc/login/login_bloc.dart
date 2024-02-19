@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restopos/data/datasources/auth_remotes_datasource.dart';
 import 'package:flutter_restopos/data/models/response/auth_response_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

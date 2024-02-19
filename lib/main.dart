@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restopos/core/constants/colors.dart';
+import 'package:flutter_restopos/data/datasources/auth_local_datasource.dart';
 import 'package:flutter_restopos/data/datasources/auth_remotes_datasource.dart';
-import 'package:flutter_restopos/presentations/auth/login/bloc/login_bloc.dart';
-import 'package:flutter_restopos/presentations/auth/login/login_page.dart';
+import 'package:flutter_restopos/presentations/auth/bloc/login/login_bloc.dart';
+import 'package:flutter_restopos/presentations/auth/bloc/login_page.dart';
+import 'package:flutter_restopos/presentations/auth/bloc/logout/logout_bloc.dart';
+import 'package:flutter_restopos/presentations/dashboard_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -16,18 +19,50 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LoginBloc(AuthRemoteDatasource()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => LoginBloc(AuthRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => LogoutBloc(AuthRemoteDatasource()),
+        ),
+      ],
       child: MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
-            useMaterial3: true,
-            textTheme: GoogleFonts.quicksandTextTheme(
-              Theme.of(context).textTheme,
-            ),
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
+          useMaterial3: true,
+          textTheme: GoogleFonts.quicksandTextTheme(
+            Theme.of(context).textTheme,
           ),
-          home: const LoginPage()),
+        ),
+        home: FutureBuilder<bool>(
+          future: AuthLocalDataSource().isAuthDataExist(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
+
+            if (snapshot.hasData) {
+              if (snapshot.data!) {
+                return const DashboardPage();
+              } else {
+                return const LoginPage();
+              }
+            }
+            return const Scaffold(
+              body: Center(
+                child: Text('Error'),
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 }

@@ -4,13 +4,13 @@ class AuthResponseModel {
     final String? status;
     final String? token;
     final String? message;
-    final Data? data;
+    final User? user;
 
     AuthResponseModel({
         this.status,
         this.token,
         this.message,
-        this.data,
+        this.user,
     });
 
     factory AuthResponseModel.fromJson(String str) => AuthResponseModel.fromMap(json.decode(str));
@@ -21,18 +21,18 @@ class AuthResponseModel {
         status: json["status"],
         token: json["token"],
         message: json["message"],
-        data: json["data"] == null ? null : Data.fromMap(json["data"]),
+        user: json["user"] == null ? null : User.fromMap(json["user"]),
     );
 
     Map<String, dynamic> toMap() => {
         "status": status,
         "token": token,
         "message": message,
-        "data": data?.toMap(),
+        "user": user?.toMap(),
     };
 }
 
-class Data {
+class User {
     final int? id;
     final String? name;
     final String? email;
@@ -45,7 +45,7 @@ class Data {
     final dynamic updatedAt;
     final String? role;
 
-    Data({
+    User({
         this.id,
         this.name,
         this.email,
@@ -59,11 +59,11 @@ class Data {
         this.role,
     });
 
-    factory Data.fromJson(String str) => Data.fromMap(json.decode(str));
+    factory User.fromJson(String str) => User.fromMap(json.decode(str));
 
     String toJson() => json.encode(toMap());
 
-    factory Data.fromMap(Map<String, dynamic> json) => Data(
+    factory User.fromMap(Map<String, dynamic> json) => User(
         id: json["id"],
         name: json["name"],
         email: json["email"],
