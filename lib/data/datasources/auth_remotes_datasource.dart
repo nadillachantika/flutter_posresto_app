@@ -27,22 +27,19 @@ class AuthRemoteDatasource {
     }
   }
 
-  Future<Either<String, bool>> logout() async{
+  Future<Either<String, bool>> logout() async {
     final authData = await AuthLocalDataSource().getAuthData();
     final url = Uri.parse('${Variables.baseUrl}/api/logout');
 
-    final response = await http.post(
-      url,
-      headers: {
-        'Authorization' : 'Bearer ${authData.token}',
-        'Accept' : 'application/json',
-      }
-    );
+    final response = await http.get(url, headers: {
+      'Authorization': 'Bearer ${authData.token}',
+      'Accept': 'application/json',
+    });
 
-    if(response.statusCode == 200){
+    if (response.statusCode == 200) {
       return const Right(true);
-    }else{
-      return const Left('Failed to logout');
+    } else {
+      return  Left('Failed ${response.statusCode}');
     }
   }
 }

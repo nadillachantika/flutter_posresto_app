@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restopos/core/constants/colors.dart';
 import 'package:flutter_restopos/data/datasources/auth_local_datasource.dart';
@@ -6,14 +8,15 @@ import 'package:flutter_restopos/data/models/response/auth_response_model.dart';
 import 'package:flutter_restopos/presentations/auth/bloc/login_page.dart';
 import 'package:flutter_restopos/presentations/auth/bloc/logout/logout_bloc.dart';
 
-class DashboardPage extends StatefulWidget {
-  const DashboardPage({super.key});
+class LogoutPage extends StatefulWidget {
+  const LogoutPage({super.key});
 
   @override
-  State<DashboardPage> createState() => _DashboardPageState();
+  State<LogoutPage> createState() => _LogoutPageState();
 }
 
-class _DashboardPageState extends State<DashboardPage> {
+class _LogoutPageState extends State<LogoutPage> {
+
   User? user;
 
   @override
@@ -25,7 +28,6 @@ class _DashboardPageState extends State<DashboardPage> {
     });
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
