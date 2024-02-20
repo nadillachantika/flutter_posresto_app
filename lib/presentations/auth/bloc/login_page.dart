@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restopos/core/components/components.dart';
 import 'package:flutter_restopos/data/datasources/auth_local_datasource.dart';
 import 'package:flutter_restopos/presentations/auth/bloc/login/login_bloc.dart';
-import 'package:flutter_restopos/presentations/home/dashboard_page.dart';
+import 'package:flutter_restopos/presentations/home/pages/dashboard_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
