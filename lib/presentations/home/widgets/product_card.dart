@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restopos/core/components/spaces.dart';
 import 'package:flutter_restopos/core/constants/colors.dart';
 import 'package:flutter_restopos/core/extensions/int_ext.dart';
 import 'package:flutter_restopos/data/models/response/product_response_model.dart';
-import 'package:flutter_restopos/gen/assets.gen.dart';
 
-import '../models/product_model.dart';
 
 class ProductCard extends StatelessWidget {
   final Product data;
@@ -72,7 +69,7 @@ class ProductCard extends StatelessWidget {
                   children: [
                     Flexible(
                       child: Text(
-                        data.categoryId.toString()??'-',
+                        data.categoryId.toString(),
                         style: const TextStyle(
                           color: AppColors.grey,
                           fontSize: 12,

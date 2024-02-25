@@ -202,7 +202,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         const SizedBox(height: 24),
                         CustomTabBar(
-                          tabTitles: const [
+                          tabTitles: [
                             'Semua',
                             // 'Makanan',
                             // 'Minuman',
@@ -216,42 +216,36 @@ class _HomePageState extends State<HomePage> {
                                 builder: (context, state) {
                                   return state.maybeWhen(orElse: () {
                                     return const Center(
-                                        child: CircularProgressIndicator());
-                                  },
-                                   loading: () {
-                                    // return const Center(
-                                    //   child: CircularProgressIndicator(),
-                                    // );
-                                  }, 
-                                  loaded: (products) {
-                                    // if (products.isEmpty) {
-                                    //   return const Center(
-                                    //     child: Text('No Items'),
-                                    //   );
-                                    // }
-
-                                    // return GridView.builder(
-                                    //   shrinkWrap: true,
-                                    //   itemCount: products.length,
-                                    //   physics:
-                                    //       const NeverScrollableScrollPhysics(),
-                                    //   gridDelegate:
-                                    //       const SliverGridDelegateWithFixedCrossAxisCount(
-                                    //     childAspectRatio: 0.85,
-                                    //     crossAxisCount: 3,
-                                    //     crossAxisSpacing: 30.0,
-                                    //     mainAxisSpacing: 30.0,
-                                    //   ),
-                                    //   itemBuilder: (context, index) =>
-                                    //       ProductCard(
-                                    //     data: products[index],
-                                    //     onCartButton: () {},
-                                    //   ),
-                                    // );
-                                    
-                                  },
-                                  error:(message){
-                                    return ScaffoldMessenger(child: SnackBar(content: Text(message),));
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  }, loading: () {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  }, loaded: (products) {
+                                    if (products.isEmpty) {
+                                      return const Center(
+                                        child: Text('No Items'),
+                                      );
+                                    }
+                                    return GridView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: products.length,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                        childAspectRatio: 0.85,
+                                        crossAxisCount: 3,
+                                        crossAxisSpacing: 30.0,
+                                        mainAxisSpacing: 30.0,
+                                      ),
+                                      itemBuilder: (context, index) =>
+                                          ProductCard(
+                                        data: products[index],
+                                        onCartButton: () {},
+                                      ),
+                                    );
                                   });
                                 },
                               ),
