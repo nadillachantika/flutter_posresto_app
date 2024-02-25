@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restopos/core/components/spaces.dart';
 import 'package:flutter_restopos/core/constants/colors.dart';
+import 'package:flutter_restopos/core/constants/variables.dart';
 import 'package:flutter_restopos/core/extensions/int_ext.dart';
 import 'package:flutter_restopos/data/models/response/product_response_model.dart';
-
+import 'package:flutter_restopos/presentations/home/bloc/checkout/checkout_bloc.dart';
 
 class ProductCard extends StatelessWidget {
   final Product data;
@@ -20,6 +22,7 @@ class ProductCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // context.read<CheckoutBloc>().add(CheckoutEvent.addProduct(data));
+        context.read<CheckoutBloc>().add(CheckoutEvent.addItem(data));
       },
       child: Container(
         padding: const EdgeInsets.all(16.0),
@@ -45,7 +48,9 @@ class ProductCard extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(40.0)),
                     child: Image.network(
-                      data.image!,
+                      data.image!.contains('http')
+                          ? data.image!
+                          : '${Variables.baseUrl}/storage/products/${data.image}',
                       width: 50,
                       height: 50,
                       fit: BoxFit.cover,
@@ -54,7 +59,7 @@ class ProductCard extends StatelessWidget {
                 ),
                 const Spacer(),
                 Text(
-                  data.name??'',
+                  data.name!,
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
@@ -69,7 +74,7 @@ class ProductCard extends StatelessWidget {
                   children: [
                     Flexible(
                       child: Text(
-                        data.categoryId.toString(),
+                        data.category?.name ?? '-',
                         style: const TextStyle(
                           color: AppColors.grey,
                           fontSize: 12,

@@ -65,13 +65,14 @@ class ProductLocalDatasource {
       await db.insert(tableProduct, product.toLocalMap(),
       conflictAlgorithm: ConflictAlgorithm.replace);
 
-      print('insertd success ${product.name}');
+      print('insertd success ${product.category?.name}');
     }
   }
 
   Future<List<Product>> getProducts() async{
     final db = await instance.database;
     final List<Map<String, dynamic>> maps = await db.query(tableProduct);
+    
     return List.generate(maps.length, (index) => Product.fromLocalMap(maps[index]));
   }
 

@@ -40,6 +40,7 @@ class Product {
   final int? isAvailable;
   final DateTime? createdAt;
   final DateTime? updatedAt;
+  final Category? category;
 
   Product({
     this.id,
@@ -52,28 +53,12 @@ class Product {
     this.isAvailable,
     this.createdAt,
     this.updatedAt,
+    this.category,
   });
 
   factory Product.fromJson(String str) => Product.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
-
-  factory Product.fromLocalMap(Map<String, dynamic> json) => Product(
-        id: json["productId"],
-        categoryId: json["categoryId"],
-        name: json["name"],
-        description: json["description"],
-        image: json["image"],
-        price: json["price"] != null ? int.tryParse(json["price"]) : null,
-        stock: json["stock"],
-        isAvailable: json["isAvailable"],
-        createdAt: json["createdAt"] == null
-            ? null
-            : DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null
-            ? null
-            : DateTime.parse(json["updatedAt"]),
-      );
 
   factory Product.fromMap(Map<String, dynamic> json) => Product(
         id: json["id"],
@@ -90,21 +75,31 @@ class Product {
         updatedAt: json["updated_at"] == null
             ? null
             : DateTime.parse(json["updated_at"]),
+        category: json["category"] == null
+            ? null
+            : Category.fromMap(json["category"]),
       );
 
-  Map<String, dynamic> toLocalMap() => {
-        "productId": id,
-        "categoryId": categoryId,
-        "categoryName": '',
-        "name": name,
-        "description": description,
-        "image": image,
-        "price": price,
-        "stock": stock,
-        "isAvailable": isAvailable,
-        "createdAt": createdAt?.toIso8601String(),
-        "updatedAt": updatedAt?.toIso8601String(),
-      };
+  factory Product.fromLocalMap(Map<String, dynamic> json) => Product(
+        id: json["id"],
+        categoryId: json["categoryId"],
+        category: Category(id: json['categoryId'], name: json['categoryName']),
+        name: json["name"],
+        description: json["description"],
+        image: json["image"],
+        price: json["price"] != null ? int.tryParse(json["price"]) : null,
+        stock: json["stock"],
+        isAvailable: json["isAvailable"],
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
+        // category: json["category"] == null
+        //     ? null
+        //     : Category.fromMap(json["category"]),
+      );
 
   Map<String, dynamic> toMap() => {
         "id": id,
@@ -115,6 +110,66 @@ class Product {
         "price": price,
         "stock": stock,
         "is_available": isAvailable,
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
+        "category": category?.toMap(),
+      };
+
+  Map<String, dynamic> toLocalMap() => {
+        "id": id,
+        "categoryId": categoryId,
+        "categoryName": category?.name,
+        "name": name,
+        "description": description,
+        "image": image,
+        "price": price,
+        "stock": stock,
+        "isAvailable": isAvailable,
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
+        // "category": category?.toMap(),
+      };
+}
+
+class Category {
+  final int? id;
+  final String? name;
+  final String? description;
+  final String? image;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+
+  Category({
+    this.id,
+    this.name,
+    this.description,
+    this.image,
+    this.createdAt,
+    this.updatedAt,
+  });
+
+  factory Category.fromJson(String str) => Category.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Category.fromMap(Map<String, dynamic> json) => Category(
+        id: json["id"],
+        name: json["name"],
+        description: json["description"],
+        image: json["image"],
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null
+            ? null
+            : DateTime.parse(json["updated_at"]),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "id": id,
+        "name": name,
+        "description": description,
+        "image": image,
         "created_at": createdAt?.toIso8601String(),
         "updated_at": updatedAt?.toIso8601String(),
       };
