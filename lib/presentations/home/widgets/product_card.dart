@@ -5,6 +5,7 @@ import 'package:flutter_restopos/core/constants/colors.dart';
 import 'package:flutter_restopos/core/constants/variables.dart';
 import 'package:flutter_restopos/core/extensions/int_ext.dart';
 import 'package:flutter_restopos/data/models/response/product_response_model.dart';
+import 'package:flutter_restopos/gen/assets.gen.dart';
 import 'package:flutter_restopos/presentations/home/bloc/checkout/checkout_bloc.dart';
 
 class ProductCard extends StatelessWidget {
@@ -94,91 +95,91 @@ class ProductCard extends StatelessWidget {
                 ),
               ],
             ),
-            // BlocBuilder<CheckoutBloc, CheckoutState>(
-            //   builder: (context, state) {
-            //     return state.maybeWhen(
-            //       orElse: () => const SizedBox(),
-            //       success: (products, qty, price) {
-            //         if (qty == 0) {
-            //           return Align(
-            //             alignment: Alignment.topRight,
-            //             child: Container(
-            //               width: 36,
-            //               height: 36,
-            //               padding: const EdgeInsets.all(6),
-            //               decoration: const BoxDecoration(
-            //                 borderRadius:
-            //                     BorderRadius.all(Radius.circular(9.0)),
-            //                 color: AppColors.primary,
-            //               ),
-            //               child: Assets.icons.shoppingBasket.svg(),
-            //             ),
-            //           );
-            //         }
-            //         return products.any((element) => element.product == data)
-            //             ? products
-            //                         .firstWhere(
-            //                             (element) => element.product == data)
-            //                         .quantity >
-            //                     0
-            //                 ? Align(
-            //                     alignment: Alignment.topRight,
-            //                     child: Container(
-            //                       width: 40,
-            //                       height: 40,
-            //                       padding: const EdgeInsets.all(6),
-            //                       decoration: const BoxDecoration(
-            //                         borderRadius:
-            //                             BorderRadius.all(Radius.circular(9.0)),
-            //                         color: AppColors.primary,
-            //                       ),
-            //                       child: Center(
-            //                         child: Text(
-            //                           products
-            //                               .firstWhere((element) =>
-            //                                   element.product == data)
-            //                               .quantity
-            //                               .toString(),
-            //                           style: const TextStyle(
-            //                               color: Colors.white,
-            //                               fontSize: 20,
-            //                               fontWeight: FontWeight.bold),
-            //                         ),
-            //                       ),
-            //                     ),
-            //                   )
-            //                 : Align(
-            //                     alignment: Alignment.topRight,
-            //                     child: Container(
-            //                       width: 36,
-            //                       height: 36,
-            //                       padding: const EdgeInsets.all(6),
-            //                       decoration: const BoxDecoration(
-            //                         borderRadius:
-            //                             BorderRadius.all(Radius.circular(9.0)),
-            //                         color: AppColors.primary,
-            //                       ),
-            //                       child: Assets.icons.shoppingBasket.svg(),
-            //                     ),
-            //                   )
-            //             : Align(
-            //                 alignment: Alignment.topRight,
-            //                 child: Container(
-            //                   width: 36,
-            //                   height: 36,
-            //                   padding: const EdgeInsets.all(6),
-            //                   decoration: const BoxDecoration(
-            //                     borderRadius:
-            //                         BorderRadius.all(Radius.circular(9.0)),
-            //                     color: AppColors.primary,
-            //                   ),
-            //                   child: Assets.icons.shoppingBasket.svg(),
-            //                 ),
-            //               );
-            //       },
-            //     );
-            //   },
-            // ),
+            BlocBuilder<CheckoutBloc, CheckoutState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                  orElse: () => const SizedBox(),
+                  loaded: (products) {
+                    // if (qty == 0) {
+                    //   return Align(
+                    //     alignment: Alignment.topRight,
+                    //     child: Container(
+                    //       width: 36,
+                    //       height: 36,
+                    //       padding: const EdgeInsets.all(6),
+                    //       decoration: const BoxDecoration(
+                    //         borderRadius:
+                    //             BorderRadius.all(Radius.circular(9.0)),
+                    //         color: AppColors.primary,
+                    //       ),
+                    //       child: Assets.icons.shoppingBasket.svg(),
+                    //     ),
+                    //   );
+                    // }
+                    return products.any((element) => element.product == data)
+                        ? products
+                                    .firstWhere(
+                                        (element) => element.product == data)
+                                    .quantity >
+                                0
+                            ? Align(
+                                alignment: Alignment.topRight,
+                                child: Container(
+                                  width: 40,
+                                  height: 40,
+                                  padding: const EdgeInsets.all(6),
+                                  decoration: const BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(9.0)),
+                                    color: AppColors.primary,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      products
+                                          .firstWhere((element) =>
+                                              element.product == data)
+                                          .quantity
+                                          .toString(),
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : Align(
+                                alignment: Alignment.topRight,
+                                child: Container(
+                                  width: 36,
+                                  height: 36,
+                                  padding: const EdgeInsets.all(6),
+                                  decoration: const BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(9.0)),
+                                    color: AppColors.primary,
+                                  ),
+                                  child: Assets.icons.shoppingBasket.svg(),
+                                ),
+                              )
+                        : Align(
+                            alignment: Alignment.topRight,
+                            child: Container(
+                              width: 36,
+                              height: 36,
+                              padding: const EdgeInsets.all(6),
+                              decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(9.0)),
+                                color: AppColors.primary,
+                              ),
+                              child: Assets.icons.shoppingBasket.svg(),
+                            ),
+                          );
+                  },
+                );
+              },
+            ),
           ],
         ),
       ),

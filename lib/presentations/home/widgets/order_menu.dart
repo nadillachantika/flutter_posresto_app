@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restopos/core/constants/variables.dart';
 import 'package:flutter_restopos/core/extensions/int_ext.dart';
+import 'package:flutter_restopos/presentations/home/bloc/checkout/checkout_bloc.dart';
 import 'package:flutter_restopos/presentations/home/models/order_item.dart';
 import 'package:flutter_restopos/presentations/home/models/product_quantity.dart';
 
@@ -69,6 +70,7 @@ class OrderMenu extends StatelessWidget {
                     //   // data.quantity--;
                     //   // setState(() {});
                     // }
+                    context.read<CheckoutBloc>().add(CheckoutEvent.removeItem(data.product));
                   },
                   child: Container(
                     width: 30,
@@ -95,6 +97,8 @@ class OrderMenu extends StatelessWidget {
                     //     onDeleteTap();
                     // data.quantity++;
                     // setState(() {});
+
+                    context.read<CheckoutBloc>().add(CheckoutEvent.addItem(data.product));
                   },
                   child: Container(
                     width: 30,

@@ -1,13 +1,18 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restopos/core/components/buttons.dart';
 import 'package:flutter_restopos/core/components/spaces.dart';
 import 'package:flutter_restopos/core/constants/colors.dart';
+import 'package:flutter_restopos/core/extensions/build_context_ext.dart';
+import 'package:flutter_restopos/core/extensions/int_ext.dart';
 import 'package:flutter_restopos/gen/assets.gen.dart';
 import 'package:flutter_restopos/presentations/home/bloc/checkout/checkout_bloc.dart';
 import 'package:flutter_restopos/presentations/home/bloc/local_product/local_product_bloc.dart';
 import 'package:flutter_restopos/presentations/home/models/product_category.dart';
 import 'package:flutter_restopos/presentations/home/models/product_model.dart';
+import 'package:flutter_restopos/presentations/home/pages/confirm_payment_page.dart';
 import 'package:flutter_restopos/presentations/home/widgets/column_button.dart';
 import 'package:flutter_restopos/presentations/home/widgets/custom_tab_bar.dart';
 import 'package:flutter_restopos/presentations/home/widgets/home_title.dart';
@@ -204,12 +209,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         const SizedBox(height: 24),
                         CustomTabBar(
-                          tabTitles: [
-                            'Semua',
-                            'Makanan',
-                            'Minuman',
-                            'Dessert'
-                          ],
+                          tabTitles: ['Semua', 'Makanan', 'Minuman', 'Dessert'],
                           initialTabIndex: 0,
                           tabViews: [
                             SizedBox(
@@ -265,7 +265,7 @@ class _HomePageState extends State<HomePage> {
                                       child: CircularProgressIndicator(),
                                     );
                                   }, loaded: (products) {
-                                     if (products.isEmpty) {
+                                    if (products.isEmpty) {
                                       return const Center(
                                         child: Text('No Items'),
                                       );
@@ -273,7 +273,11 @@ class _HomePageState extends State<HomePage> {
 
                                     return GridView.builder(
                                       shrinkWrap: true,
-                                      itemCount: products.where((element) => element.category!.id! == 1).toList().length,
+                                      itemCount: products
+                                          .where((element) =>
+                                              element.category!.id! == 1)
+                                          .toList()
+                                          .length,
                                       physics:
                                           const NeverScrollableScrollPhysics(),
                                       gridDelegate:
@@ -285,7 +289,10 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       itemBuilder: (context, index) =>
                                           ProductCard(
-                                        data: products.where((element) => element.category!.id! == 1).toList()[index],
+                                        data: products
+                                            .where((element) =>
+                                                element.category!.id! == 1)
+                                            .toList()[index],
                                         onCartButton: () {},
                                       ),
                                     );
@@ -293,8 +300,7 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                             ),
-
-                               SizedBox(
+                            SizedBox(
                               child: BlocBuilder<LocalProductBloc,
                                   LocalProductState>(
                                 builder: (context, state) {
@@ -307,7 +313,7 @@ class _HomePageState extends State<HomePage> {
                                       child: CircularProgressIndicator(),
                                     );
                                   }, loaded: (products) {
-                                     if (products.isEmpty) {
+                                    if (products.isEmpty) {
                                       return const Center(
                                         child: Text('No Items'),
                                       );
@@ -315,7 +321,11 @@ class _HomePageState extends State<HomePage> {
 
                                     return GridView.builder(
                                       shrinkWrap: true,
-                                      itemCount: products.where((element) => element.category!.id! == 2).toList().length,
+                                      itemCount: products
+                                          .where((element) =>
+                                              element.category!.id! == 2)
+                                          .toList()
+                                          .length,
                                       physics:
                                           const NeverScrollableScrollPhysics(),
                                       gridDelegate:
@@ -327,7 +337,10 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       itemBuilder: (context, index) =>
                                           ProductCard(
-                                        data: products.where((element) => element.category!.id! == 2).toList()[index],
+                                        data: products
+                                            .where((element) =>
+                                                element.category!.id! == 2)
+                                            .toList()[index],
                                         onCartButton: () {},
                                       ),
                                     );
@@ -335,7 +348,7 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                             ),
-                               SizedBox(
+                            SizedBox(
                               child: BlocBuilder<LocalProductBloc,
                                   LocalProductState>(
                                 builder: (context, state) {
@@ -348,7 +361,7 @@ class _HomePageState extends State<HomePage> {
                                       child: CircularProgressIndicator(),
                                     );
                                   }, loaded: (products) {
-                                     if (products.isEmpty) {
+                                    if (products.isEmpty) {
                                       return const Center(
                                         child: Text('No Items'),
                                       );
@@ -356,7 +369,11 @@ class _HomePageState extends State<HomePage> {
 
                                     return GridView.builder(
                                       shrinkWrap: true,
-                                      itemCount: products.where((element) => element.category!.id! == 3).toList().length,
+                                      itemCount: products
+                                          .where((element) =>
+                                              element.category!.id! == 3)
+                                          .toList()
+                                          .length,
                                       physics:
                                           const NeverScrollableScrollPhysics(),
                                       gridDelegate:
@@ -368,7 +385,10 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       itemBuilder: (context, index) =>
                                           ProductCard(
-                                        data: products.where((element) => element.category!.id! == 3).toList()[index],
+                                        data: products
+                                            .where((element) =>
+                                                element.category!.id! == 3)
+                                            .toList()[index],
                                         onCartButton: () {},
                                       ),
                                     );
@@ -553,21 +573,31 @@ class _HomePageState extends State<HomePage> {
                                 'Sub total',
                                 style: TextStyle(color: AppColors.grey),
                               ),
-                              // BlocBuilder<CheckoutBloc, CheckoutState>(
-                              //   builder: (context, state) {
-                              //     final price = state.maybeWhen(
-                              //       orElse: () => 0,
-                              //       success: (products, qty, price) => price,
-                              //     );
-                              //     return Text(
-                              //       price.currencyFormatRp,
-                              //       style: const TextStyle(
-                              //         color: AppColors.primary,
-                              //         fontWeight: FontWeight.w600,
-                              //       ),
-                              //     );
-                              //   },
-                              // ),
+                              BlocBuilder<CheckoutBloc, CheckoutState>(
+                                builder: (context, state) {
+                                  final price = state.maybeWhen(
+                                    orElse: () => 0,
+                                    loaded: (products) {
+                                      if (products.isNotEmpty) {
+                                        return products
+                                            .map((e) =>
+                                                e.product.price! * e.quantity)
+                                            .reduce((value, element) =>
+                                                value + element);
+                                      } else {
+                                        return 0;
+                                      }
+                                    },
+                                  );
+
+                                  return Text(price!.currencyFormatRp,
+                                      style: const TextStyle(
+                                        color: AppColors.primary,
+                                        fontWeight: FontWeight.w600,
+                                      ));
+                                },
+                              )
+                           
                             ],
                           ),
                           const SpaceHeight(100.0),
@@ -583,7 +613,7 @@ class _HomePageState extends State<HomePage> {
                               horizontal: 24.0, vertical: 16.0),
                           child: Button.filled(
                             onPressed: () {
-                              // context.push(const ConfirmPaymentPage());
+                              context.push(const ConfirmPaymentPage());
                             },
                             label: 'Lanjutkan Pembayaran',
                           ),
