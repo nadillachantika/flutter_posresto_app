@@ -46,7 +46,8 @@ class ProductLocalDatasource {
 
     await db.execute(''' 
     CREATE TABLE $tableOrder(
-      id INTEGER PRIMARY KEY AUTOINCREMET,
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      payment_amount INTEGER,
       sub_total INTEGER,
       tax INTEGER,
       discount INTEGER,
@@ -95,17 +96,24 @@ class ProductLocalDatasource {
     }
   }
 
+// insert data product
+  Future<void> insertProduct(Product product) async {
+    final db = await instance.database;
+    await db.insert(tableProduct, product.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
   // get data order
   Future<List<OrderModel>> getOrderByIsNotSync() async {
     final db = await instance.database;
     final List<Map<String, dynamic>> maps =
         await db.query(tableOrder, where: 'is_sync = ?', whereArgs: [0]);
-    return List.generate(maps.length, (index) {
-      return OrderModel.fromMap(maps[index]);
+    return List.generate(maps.length, (i) {
+      return OrderModel.fromMap(maps[i]);
     });
   }
 
-  // get order item by order id
+//   // get order item by order id
   Future<List<ProductQuantity>> getOrderItemByOrderId(int orderId) async {
     final db = await instance.database;
     final List<Map<String, dynamic>> maps = await db
@@ -122,13 +130,6 @@ class ProductLocalDatasource {
         where: 'id = ?', whereArgs: [orderId]);
   }
 
-// insert data product
-  Future<void> insertProduct(Product product) async {
-    final db = await instance.database;
-    await db.insert(tableProduct, product.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace);
-  }
-
   Future<void> insertProducts(List<Product> products) async {
     final db = await instance.database;
     for (var product in products) {
@@ -142,6 +143,8 @@ class ProductLocalDatasource {
   Future<List<Product>> getProducts() async {
     final db = await instance.database;
     final List<Map<String, dynamic>> maps = await db.query(tableProduct);
+
+    print('insertd success ${maps.length}');
 
     return List.generate(
         maps.length, (index) => Product.fromLocalMap(maps[index]));

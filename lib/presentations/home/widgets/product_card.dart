@@ -40,8 +40,8 @@ class ProductCard extends StatelessWidget {
               children: [
                 Container(
                   alignment: Alignment.center,
-                  padding: const EdgeInsets.all(12.0),
-                  margin: const EdgeInsets.only(top: 20.0),
+                  padding: const EdgeInsets.all(5.0),
+                  margin: const EdgeInsets.only(top: 10.0),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: AppColors.disabled.withOpacity(0.4),
@@ -62,14 +62,12 @@ class ProductCard extends StatelessWidget {
                 Text(
                   data.name!,
                   style: const TextStyle(
-                    fontSize: 12,
+                    fontSize: 10,
                     fontWeight: FontWeight.w700,
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const SpaceHeight(8.0),
-                const SpaceHeight(8.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -78,7 +76,7 @@ class ProductCard extends StatelessWidget {
                         data.category?.name ?? '-',
                         style: const TextStyle(
                           color: AppColors.grey,
-                          fontSize: 12,
+                          fontSize: 10,
                         ),
                       ),
                     ),
@@ -125,8 +123,8 @@ class ProductCard extends StatelessWidget {
                             ? Align(
                                 alignment: Alignment.topRight,
                                 child: Container(
-                                  width: 40,
-                                  height: 40,
+                                  width: 30,
+                                  height: 30,
                                   padding: const EdgeInsets.all(6),
                                   decoration: const BoxDecoration(
                                     borderRadius:
@@ -142,7 +140,7 @@ class ProductCard extends StatelessWidget {
                                           .toString(),
                                       style: const TextStyle(
                                           color: Colors.white,
-                                          fontSize: 20,
+                                          fontSize: 16,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
@@ -151,8 +149,8 @@ class ProductCard extends StatelessWidget {
                             : Align(
                                 alignment: Alignment.topRight,
                                 child: Container(
-                                  width: 36,
-                                  height: 36,
+                                  width: 30,
+                                  height: 30,
                                   padding: const EdgeInsets.all(6),
                                   decoration: const BoxDecoration(
                                     borderRadius:
@@ -165,8 +163,8 @@ class ProductCard extends StatelessWidget {
                         : Align(
                             alignment: Alignment.topRight,
                             child: Container(
-                              width: 36,
-                              height: 36,
+                              width: 30,
+                              height: 30,
                               padding: const EdgeInsets.all(6),
                               decoration: const BoxDecoration(
                                 borderRadius:

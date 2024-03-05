@@ -5,6 +5,7 @@ import 'package:flutter_restopos/presentations/home/models/product_quantity.dart
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class OrderModel {
   final int? id;
+  final int paymentAmount;
   final int subTotal;
   final int tax;
   final int discount;
@@ -21,6 +22,7 @@ class OrderModel {
   
   OrderModel({
     this.id,
+    required this.paymentAmount,
     required this.subTotal,
     required this.tax,
     required this.discount,
@@ -38,6 +40,7 @@ class OrderModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
+      'payment_amount': paymentAmount,
       'sub_total': subTotal,
       'tax': tax,
       'discount': discount,
@@ -45,7 +48,7 @@ class OrderModel {
       'total': total,
       'payment_method': paymentMethod,
       'totalItem': totalItem,
-      'idKasir': idKasir,
+      'id_kasir': idKasir,
       'nama_kasir': namaKasir,
       'transaction_time': transactionTime,
       'is_sync': isSync,
@@ -56,6 +59,7 @@ class OrderModel {
   factory OrderModel.fromMap(Map<String, dynamic> map) {
     return OrderModel(
       id: map['id'] != null ? map['id'] as int : null,
+      paymentAmount: map['payment_amount'] as int,
       subTotal: map['sub_total'] as int,
       tax: map['tax'] as int,
       discount: map['discount'] as int,

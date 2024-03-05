@@ -9,16 +9,13 @@ part 'sync_product_state.dart';
 part 'sync_product_bloc.freezed.dart';
 
 class SyncProductBloc extends Bloc<SyncProductEvent, SyncProductState> {
-
   final ProductRemoteDatasource productRemoteDatasource;
 
   SyncProductBloc(this.productRemoteDatasource) : super(_Initial()) {
-    on<SyncProductEvent>((event, emit) async {
-      
+    on<_SyncProduct>((event, emit) async {
       emit(const _Loading());
       final result = await productRemoteDatasource.getProducts();
       result.fold((l) => emit(_Error(l)), (r) => emit(_Loaded(r)));
-
     });
   }
 }

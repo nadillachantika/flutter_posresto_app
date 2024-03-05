@@ -83,7 +83,11 @@ class Product {
   factory Product.fromLocalMap(Map<String, dynamic> json) => Product(
         id: json["id"],
         categoryId: json["categoryId"],
-        category: Category(id: json['categoryId'], name: json['categoryName']),
+        // category: Category(id: json['categoryId'], name: json['categoryName']),
+        category: Category(
+          id: json["categoryId"],
+          name: json["categoryName"],
+        ),
         name: json["name"],
         description: json["description"],
         image: json["image"],
@@ -96,9 +100,6 @@ class Product {
         updatedAt: json["updatedAt"] == null
             ? null
             : DateTime.parse(json["updatedAt"]),
-        // category: json["category"] == null
-        //     ? null
-        //     : Category.fromMap(json["category"]),
       );
 
   Map<String, dynamic> toMap() => {
@@ -127,8 +128,41 @@ class Product {
         "isAvailable": isAvailable,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
-        // "category": category?.toMap(),
       };
+
+
+        @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Product &&
+        other.id == id &&
+        other.categoryId == categoryId &&
+        other.name == name &&
+        other.description == description &&
+        other.image == image &&
+        other.price == price &&
+        other.stock == stock &&
+        other.isAvailable == isAvailable &&
+        other.createdAt == createdAt &&
+        other.updatedAt == updatedAt &&
+        other.category == category;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        categoryId.hashCode ^
+        name.hashCode ^
+        description.hashCode ^
+        image.hashCode ^
+        price.hashCode ^
+        stock.hashCode ^
+        isAvailable.hashCode ^
+        createdAt.hashCode ^
+        updatedAt.hashCode ^
+        category.hashCode;
+  }
 }
 
 class Category {

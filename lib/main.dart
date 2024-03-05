@@ -10,6 +10,7 @@ import 'package:flutter_restopos/presentations/auth/bloc/login_page.dart';
 import 'package:flutter_restopos/presentations/auth/bloc/logout/logout_bloc.dart';
 import 'package:flutter_restopos/presentations/home/bloc/checkout/checkout_bloc.dart';
 import 'package:flutter_restopos/presentations/home/bloc/local_product/local_product_bloc.dart';
+import 'package:flutter_restopos/presentations/home/bloc/order/order_bloc.dart';
 import 'package:flutter_restopos/presentations/home/pages/dashboard_page.dart';
 import 'package:flutter_restopos/presentations/setting/bloc/sync_product/sync_product_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,12 +36,16 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => SyncProductBloc(ProductRemoteDatasource()),
         ),
-         BlocProvider(
-          create: (context) => LocalProductBloc(ProductLocalDatasource.instance),
+        BlocProvider(
+          create: (context) =>
+              LocalProductBloc(ProductLocalDatasource.instance),
         ),
-          BlocProvider(
+        BlocProvider(
           create: (context) => CheckoutBloc(),
         ),
+        BlocProvider(
+          create: (context) => OrderBloc(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

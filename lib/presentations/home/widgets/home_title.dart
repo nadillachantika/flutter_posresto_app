@@ -40,7 +40,8 @@ class HomeTitle extends StatelessWidget {
           ],
         ),
         SizedBox(
-          width: 300.0,
+          width: 200.0,
+          height: 100.0,
           child: SearchInput(
             controller: controller,
             onChanged: onChanged,

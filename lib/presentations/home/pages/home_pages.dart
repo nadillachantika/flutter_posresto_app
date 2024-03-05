@@ -156,9 +156,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     // searchResults = products;
-    // context
-    //     .read<LocalProductBloc>()
-    //     .add(const LocalProductEvent.getLocalProduct());
+    context
+        .read<LocalProductBloc>()
+        .add(const LocalProductEvent.getLocalProduct());
 
     super.initState();
   }
@@ -216,15 +216,22 @@ class _HomePageState extends State<HomePage> {
                               child: BlocBuilder<LocalProductBloc,
                                   LocalProductState>(
                                 builder: (context, state) {
+                                  print('Current State: $state');
                                   return state.maybeWhen(orElse: () {
+                                    print('State: orElse');
+
                                     return const Center(
                                       child: CircularProgressIndicator(),
                                     );
                                   }, loading: () {
+                                    print('State: Loading');
+
                                     return const Center(
                                       child: CircularProgressIndicator(),
                                     );
                                   }, loaded: (products) {
+                                    print('State: loaded');
+
                                     if (products.isEmpty) {
                                       return const Center(
                                         child: Text('No Items'),
@@ -597,7 +604,6 @@ class _HomePageState extends State<HomePage> {
                                       ));
                                 },
                               )
-                           
                             ],
                           ),
                           const SpaceHeight(100.0),
