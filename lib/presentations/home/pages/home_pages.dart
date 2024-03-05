@@ -156,9 +156,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     // searchResults = products;
-    context
-        .read<LocalProductBloc>()
-        .add(const LocalProductEvent.getLocalProduct());
+    // context
+    //     .read<LocalProductBloc>()
+    //     .add(const LocalProductEvent.getLocalProduct());
 
     super.initState();
   }
