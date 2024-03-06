@@ -55,6 +55,7 @@ class ProductLocalDatasource {
       total INTEGER,
       payment_method TEXT,
       total_item INTEGER,
+      id_kasir INTEGER,
       nama_kasir TEXT,
       transaction_time TEXT,
       is_sync INTEGER DEFAULT 0

@@ -63,8 +63,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
       await ProductLocalDatasource.instance.saveOrder(dataInput);
 
-      emit(_Loaded(event.items, event.discount, event.tax, event.serviceCharge,
-          event.paymemtAmount));
+      emit(_Loaded(dataInput));
     });
   }
 }

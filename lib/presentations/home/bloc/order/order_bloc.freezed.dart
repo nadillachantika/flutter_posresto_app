@@ -396,9 +396,7 @@ mixin _$OrderState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ProductQuantity> items, int discount,
-            int tax, int serviceCharge, int paymemtAmount)
-        loaded,
+    required TResult Function(OrderModel orderModel) loaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -406,9 +404,7 @@ mixin _$OrderState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ProductQuantity> items, int discount, int tax,
-            int serviceCharge, int paymemtAmount)?
-        loaded,
+    TResult? Function(OrderModel orderModel)? loaded,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -416,9 +412,7 @@ mixin _$OrderState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ProductQuantity> items, int discount, int tax,
-            int serviceCharge, int paymemtAmount)?
-        loaded,
+    TResult Function(OrderModel orderModel)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -508,9 +502,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ProductQuantity> items, int discount,
-            int tax, int serviceCharge, int paymemtAmount)
-        loaded,
+    required TResult Function(OrderModel orderModel) loaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -521,9 +513,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ProductQuantity> items, int discount, int tax,
-            int serviceCharge, int paymemtAmount)?
-        loaded,
+    TResult? Function(OrderModel orderModel)? loaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -534,9 +524,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ProductQuantity> items, int discount, int tax,
-            int serviceCharge, int paymemtAmount)?
-        loaded,
+    TResult Function(OrderModel orderModel)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -628,9 +616,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ProductQuantity> items, int discount,
-            int tax, int serviceCharge, int paymemtAmount)
-        loaded,
+    required TResult Function(OrderModel orderModel) loaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -641,9 +627,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ProductQuantity> items, int discount, int tax,
-            int serviceCharge, int paymemtAmount)?
-        loaded,
+    TResult? Function(OrderModel orderModel)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -654,9 +638,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ProductQuantity> items, int discount, int tax,
-            int serviceCharge, int paymemtAmount)?
-        loaded,
+    TResult Function(OrderModel orderModel)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -714,12 +696,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {List<ProductQuantity> items,
-      int discount,
-      int tax,
-      int serviceCharge,
-      int paymemtAmount});
+  $Res call({OrderModel orderModel});
 }
 
 /// @nodoc
@@ -733,33 +710,13 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? items = null,
-    Object? discount = null,
-    Object? tax = null,
-    Object? serviceCharge = null,
-    Object? paymemtAmount = null,
+    Object? orderModel = null,
   }) {
     return _then(_$LoadedImpl(
-      null == items
-          ? _value._items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<ProductQuantity>,
-      null == discount
-          ? _value.discount
-          : discount // ignore: cast_nullable_to_non_nullable
-              as int,
-      null == tax
-          ? _value.tax
-          : tax // ignore: cast_nullable_to_non_nullable
-              as int,
-      null == serviceCharge
-          ? _value.serviceCharge
-          : serviceCharge // ignore: cast_nullable_to_non_nullable
-              as int,
-      null == paymemtAmount
-          ? _value.paymemtAmount
-          : paymemtAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+      null == orderModel
+          ? _value.orderModel
+          : orderModel // ignore: cast_nullable_to_non_nullable
+              as OrderModel,
     ));
   }
 }
@@ -767,30 +724,14 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(final List<ProductQuantity> items, this.discount, this.tax,
-      this.serviceCharge, this.paymemtAmount)
-      : _items = items;
-
-  final List<ProductQuantity> _items;
-  @override
-  List<ProductQuantity> get items {
-    if (_items is EqualUnmodifiableListView) return _items;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_items);
-  }
+  const _$LoadedImpl(this.orderModel);
 
   @override
-  final int discount;
-  @override
-  final int tax;
-  @override
-  final int serviceCharge;
-  @override
-  final int paymemtAmount;
+  final OrderModel orderModel;
 
   @override
   String toString() {
-    return 'OrderState.loaded(items: $items, discount: $discount, tax: $tax, serviceCharge: $serviceCharge, paymemtAmount: $paymemtAmount)';
+    return 'OrderState.loaded(orderModel: $orderModel)';
   }
 
   @override
@@ -798,24 +739,12 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            const DeepCollectionEquality().equals(other._items, _items) &&
-            (identical(other.discount, discount) ||
-                other.discount == discount) &&
-            (identical(other.tax, tax) || other.tax == tax) &&
-            (identical(other.serviceCharge, serviceCharge) ||
-                other.serviceCharge == serviceCharge) &&
-            (identical(other.paymemtAmount, paymemtAmount) ||
-                other.paymemtAmount == paymemtAmount));
+            (identical(other.orderModel, orderModel) ||
+                other.orderModel == orderModel));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_items),
-      discount,
-      tax,
-      serviceCharge,
-      paymemtAmount);
+  int get hashCode => Object.hash(runtimeType, orderModel);
 
   @JsonKey(ignore: true)
   @override
@@ -828,12 +757,10 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ProductQuantity> items, int discount,
-            int tax, int serviceCharge, int paymemtAmount)
-        loaded,
+    required TResult Function(OrderModel orderModel) loaded,
     required TResult Function(String message) error,
   }) {
-    return loaded(items, discount, tax, serviceCharge, paymemtAmount);
+    return loaded(orderModel);
   }
 
   @override
@@ -841,12 +768,10 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ProductQuantity> items, int discount, int tax,
-            int serviceCharge, int paymemtAmount)?
-        loaded,
+    TResult? Function(OrderModel orderModel)? loaded,
     TResult? Function(String message)? error,
   }) {
-    return loaded?.call(items, discount, tax, serviceCharge, paymemtAmount);
+    return loaded?.call(orderModel);
   }
 
   @override
@@ -854,14 +779,12 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ProductQuantity> items, int discount, int tax,
-            int serviceCharge, int paymemtAmount)?
-        loaded,
+    TResult Function(OrderModel orderModel)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(items, discount, tax, serviceCharge, paymemtAmount);
+      return loaded(orderModel);
     }
     return orElse();
   }
@@ -905,18 +828,9 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements OrderState {
-  const factory _Loaded(
-      final List<ProductQuantity> items,
-      final int discount,
-      final int tax,
-      final int serviceCharge,
-      final int paymemtAmount) = _$LoadedImpl;
+  const factory _Loaded(final OrderModel orderModel) = _$LoadedImpl;
 
-  List<ProductQuantity> get items;
-  int get discount;
-  int get tax;
-  int get serviceCharge;
-  int get paymemtAmount;
+  OrderModel get orderModel;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -988,9 +902,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ProductQuantity> items, int discount,
-            int tax, int serviceCharge, int paymemtAmount)
-        loaded,
+    required TResult Function(OrderModel orderModel) loaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -1001,9 +913,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ProductQuantity> items, int discount, int tax,
-            int serviceCharge, int paymemtAmount)?
-        loaded,
+    TResult? Function(OrderModel orderModel)? loaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -1014,9 +924,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ProductQuantity> items, int discount, int tax,
-            int serviceCharge, int paymemtAmount)?
-        loaded,
+    TResult Function(OrderModel orderModel)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

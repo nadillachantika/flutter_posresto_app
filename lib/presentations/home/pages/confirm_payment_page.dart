@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restopos/core/components/buttons.dart';
@@ -40,6 +42,10 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
         price: 1200000,
         stock: 10),
   ];
+  void updateTotalPriceControllerText(double total) {
+    totalPriceController.text = total.ceil().toString();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -288,22 +294,23 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                             BlocBuilder<CheckoutBloc, CheckoutState>(
                               builder: (context, state) {
                                 final price = state.maybeWhen(
-                                    orElse: () => 0,
-                                    loaded: (products) {
-                                      if (products.isNotEmpty) {
-                                        return products
-                                            .map((e) =>
-                                                e.product.price! * e.quantity)
-                                            .reduce((value, element) =>
-                                                value + element);
-                                      } else {
-                                        return 0;
-                                      }
-                                    });
+                                  orElse: () => 0,
+                                  loaded: (products) => products.fold<int>(
+                                    0,
+                                    (previousValue, element) =>
+                                        previousValue +
+                                        (element.product.price! *
+                                            element.quantity),
+                                  ),
+                                );
                                 final tax = price * 0.11;
                                 final total = price + tax;
-                                totalPriceController.text =
-                                    total.ceil().toString();
+
+                                // Set nilai controller di luar builder untuk menghindari pembaruan widget saat pembangunan
+                                Future.microtask(() {
+                                  updateTotalPriceControllerText(total);
+                                });
+
                                 return Text(
                                   total.ceil().currencyFormatRp,
                                   style: const TextStyle(
@@ -313,7 +320,7 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                   ),
                                 );
                               },
-                            ),
+                            )
                           ],
                         ),
                         // const SpaceHeight(20.0),
@@ -450,9 +457,13 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                 const SpaceWidth(8.0),
                                 BlocBuilder<CheckoutBloc, CheckoutState>(
                                   builder: (context, state) {
-                                    List<ProductQuantity> items = state.maybeWhen(
-                                        orElse: () => [],
-                                        loaded: (products) => products);
+                                    List<ProductQuantity> items =
+                                        state.maybeWhen(
+                                            orElse: () => [],
+                                            loaded: (products) => products);
+
+                                                final totalPrice = totalPriceController.text.toIntegerFromText;
+
                                     return Flexible(
                                       child: Button.filled(
                                         onPressed: () async {
@@ -462,8 +473,7 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                                   0,
                                                   0,
                                                   0,
-                                                  totalPriceController
-                                                      .text.toIntegerFromText));
+                                                   totalPrice));
 
                                           await showDialog(
                                             context: context,

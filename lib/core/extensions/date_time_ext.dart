@@ -1,11 +1,11 @@
 const List<String> _dayNames = [
-  'Minggu',
   'Senin',
   'Selasa',
   'Rabu',
   'Kamis',
   'Jumat',
-  'Sabtu'
+  'Sabtu',
+  'Minggu',
 ];
 
 const List<String> _monthNames = [
@@ -32,9 +32,9 @@ extension DateTimeExt on DateTime {
   }
 
   String toFormattedDate() {
-    String dayName = _dayNames[weekday - 1];
+    String dayName = _dayNames[this.weekday - 1]; // Mengindeks array dari 0
     String day = this.day.toString();
-    String month = _monthNames[this.month - 1];
+    String month = _monthNames[this.month - 1]; // Mengindeks array dari 0
     String year = this.year.toString();
 
     return '$dayName, $day $month $year';

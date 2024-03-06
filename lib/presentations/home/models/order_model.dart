@@ -47,7 +47,7 @@ class OrderModel {
       'service_charge': serviceCharge,
       'total': total,
       'payment_method': paymentMethod,
-      'totalItem': totalItem,
+      'total_item': totalItem,
       'id_kasir': idKasir,
       'nama_kasir': namaKasir,
       'transaction_time': transactionTime,
