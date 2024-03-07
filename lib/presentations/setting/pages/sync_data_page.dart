@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restopos/data/datasources/product_local_datasource.dart';
+import 'package:flutter_restopos/presentations/setting/bloc/sync_order/sync_order_bloc.dart';
 import 'package:flutter_restopos/presentations/setting/bloc/sync_product/sync_product_bloc.dart';
 
 class SyncDataPage extends StatefulWidget {
@@ -20,25 +21,23 @@ class _SyncDataPageState extends State<SyncDataPage> {
       body: Column(children: [
         BlocConsumer<SyncProductBloc, SyncProductState>(
           listener: (context, state) {
+            state.maybeWhen(
+                orElse: () {},
+                error: (message) =>
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(message),
+                      backgroundColor: Colors.red,
+                    )),
+                loaded: (productResponseModel) {
+                  ProductLocalDatasource.instance.deleteAllProducts();
+                  ProductLocalDatasource.instance
+                      .insertProducts(productResponseModel.data!);
 
-                      state.maybeWhen(
-              orElse: () {},
-              error: (message) =>
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(message),
-                backgroundColor: Colors.red,
-              )),
-              loaded: (productResponseModel){
-
-                ProductLocalDatasource.instance.deleteAllProducts();
-                ProductLocalDatasource.instance.insertProducts(productResponseModel.data!);
-              
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content:  Text('Sync Product Success'),
-                backgroundColor: Colors.green,
-              ));
-              }
-            );
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text('Sync Product Success'),
+                    backgroundColor: Colors.green,
+                  ));
+                });
           },
           builder: (context, state) {
             return state.maybeWhen(orElse: () {
@@ -54,6 +53,39 @@ class _SyncDataPageState extends State<SyncDataPage> {
                 child: CircularProgressIndicator(),
               );
             });
+          },
+        ),
+        BlocConsumer<SyncOrderBloc, SyncOrderState>(
+          listener: (context, state) {
+           
+            state.maybeWhen(
+              orElse: () {},
+              error: (message) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(message),
+                  backgroundColor: Colors.red,
+                ));
+              }
+            );
+          },
+          builder: (context, state) {
+            return state.maybeWhen(
+              orElse: () {
+                return ElevatedButton(
+                  onPressed: () {
+                    context
+                        .read<SyncOrderBloc>()
+                        .add(const SyncOrderEvent.syncOrder());
+                  },
+                  child: const Text('Sync Order'),
+                );
+              },
+              loading: () {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            );
           },
         )
       ]),

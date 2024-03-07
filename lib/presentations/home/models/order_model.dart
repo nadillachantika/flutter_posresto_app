@@ -17,9 +17,8 @@ class OrderModel {
   final String namaKasir;
   final String transactionTime;
   final int isSync;
-  final List<ProductQuantity>  orderItems;
-  
-  
+  final List<ProductQuantity> orderItems;
+
   OrderModel({
     this.id,
     required this.paymentAmount,
@@ -37,6 +36,39 @@ class OrderModel {
     required this.orderItems,
   });
 
+//  $request->validate([
+//             'payment_amount' => 'required|numeric',
+//             'subtotal' => 'required|numeric',
+//             'tax' => 'required|numeric',
+//             'discount' => 'required|numeric',
+//             'service_charge' => 'required|numeric',
+//             'total' => 'required|numeric',
+//             'payment_method' => 'required',
+//             'total_item' => 'required|numeric',
+//             'kasir_id' => 'required|numeric',
+//             'kasir_name' => 'required',
+//             'transaction_time' => 'required',
+//            'order_items' => 'required'
+
+//         ]);
+
+  Map<String, dynamic> toServerMap() {
+    return <String, dynamic>{
+      'payment_amount': paymentAmount,
+      'sub_total': subTotal,
+      'tax': tax,
+      'discount': discount,
+      'service_charge': serviceCharge,
+      'total': total,
+      'payment_method': paymentMethod,
+      'total_item': totalItem,
+      'id_kasir': idKasir,
+      'nama_kasir': namaKasir,
+      'transaction_time': transactionTime,
+      'order_items': orderItems.map((e) => e.toLocalMap(id!)).toList()
+    };
+  }
+
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
@@ -52,7 +84,6 @@ class OrderModel {
       'nama_kasir': namaKasir,
       'transaction_time': transactionTime,
       'is_sync': isSync,
-      
     };
   }
 
@@ -70,12 +101,47 @@ class OrderModel {
       idKasir: map['id_kasir'] as int,
       namaKasir: map['nama_kasir'] as String,
       transactionTime: map['transaction_time'] as String,
-      isSync: map['is_sync'] as int, 
+      isSync: map['is_sync'] as int,
       orderItems: [],
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(toServerMap());
 
-  factory OrderModel.fromJson(String source) => OrderModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory OrderModel.fromJson(String source) =>
+      OrderModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  OrderModel copyWith({
+    int? id,
+    int? paymentAmount,
+    int? subTotal,
+    int? tax,
+    int? discount,
+    int? serviceCharge,
+    int? total,
+    String? paymentMethod,
+    int? totalItem,
+    int? idKasir,
+    String? namaKasir,
+    String? transactionTime,
+    int? isSync,
+    List<ProductQuantity>? orderItems,
+  }) {
+    return OrderModel(
+      id: id ?? this.id,
+      paymentAmount: paymentAmount ?? this.paymentAmount,
+      subTotal: subTotal ?? this.subTotal,
+      tax: tax ?? this.tax,
+      discount: discount ?? this.discount,
+      serviceCharge: serviceCharge ?? this.serviceCharge,
+      total: total ?? this.total,
+      paymentMethod: paymentMethod ?? this.paymentMethod,
+      totalItem: totalItem ?? this.totalItem,
+      idKasir: idKasir ?? this.idKasir,
+      namaKasir: namaKasir ?? this.namaKasir,
+      transactionTime: transactionTime ?? this.transactionTime,
+      isSync: isSync ?? this.isSync,
+      orderItems: orderItems ?? this.orderItems,
+    );
+  }
 }
