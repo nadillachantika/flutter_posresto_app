@@ -12,7 +12,7 @@ class OrderRemoteDatasource {
         body: orderModel.toJson(),
         headers: {
           'Authorization': 'Bearer ${authData.token}',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
         });
 
     if (response.statusCode == 200) {

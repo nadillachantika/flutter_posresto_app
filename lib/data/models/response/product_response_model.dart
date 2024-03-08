@@ -91,7 +91,7 @@ class Product {
         name: json["name"],
         description: json["description"],
         image: json["image"],
-        price: json["price"] != null ? int.tryParse(json["price"]) : null,
+        price: json["price"],
         stock: json["stock"],
         isAvailable: json["isAvailable"],
         createdAt: json["createdAt"] == null
@@ -130,8 +130,7 @@ class Product {
         "updatedAt": updatedAt?.toIso8601String(),
       };
 
-
-        @override
+  @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 

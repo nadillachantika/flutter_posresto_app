@@ -35,7 +35,7 @@ class ProductLocalDatasource {
       categoryName TEXT,
       description TEXT,
       image TEXT,
-      price TEXT,
+      price INTEGER,
       stock INTEGER,
       status INTEGER,
       isAvailable INTEGER,
@@ -81,7 +81,7 @@ class ProductLocalDatasource {
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDB('dbresto14.db');
+    _database = await _initDB('dbresto.db');
     return _database!;
   }
 
