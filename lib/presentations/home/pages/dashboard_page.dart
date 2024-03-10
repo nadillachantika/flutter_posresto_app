@@ -8,6 +8,7 @@ import 'package:flutter_restopos/presentations/auth/bloc/login_page.dart';
 import 'package:flutter_restopos/presentations/auth/bloc/logout/logout_bloc.dart';
 import 'package:flutter_restopos/presentations/home/pages/home_pages.dart';
 import 'package:flutter_restopos/presentations/home/widgets/nav_item.dart';
+import 'package:flutter_restopos/presentations/setting/pages/settings_page.dart';
 import 'package:flutter_restopos/presentations/setting/pages/sync_data_page.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -26,7 +27,7 @@ class _DashboardPageState extends State<DashboardPage> {
     const Center(child: Text('This is page 2')),
     const Center(child: Text('This is page 3')),
     // const Center(child: Text('This is page 4')),
-    const SyncDataPage(),
+    const SettingsPage(),
   ];
 
   void _onItemTapped(int index) {

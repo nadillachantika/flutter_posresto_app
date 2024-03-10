@@ -11,7 +11,7 @@ class AppColors {
   static const Color light = Color(0xffF8F5FF);
 
   /// blueLight = #C7D0EB
-  static const Color blueLight = Color(0xffC7D0EB);
+  static const Color blueLight = Color.fromARGB(255, 245, 220, 220);
 
   /// black = #000000
   static const Color black = Color(0xff000000);
