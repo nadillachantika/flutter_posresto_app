@@ -11,9 +11,7 @@ class CustomTextField extends StatelessWidget {
   final bool showLabel;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
-  final bool? readOnly;
-  final Widget? prefixIcon;
-  final bool? readOnly;
+  final bool readOnly;
 
   const CustomTextField({
     super.key,
@@ -25,8 +23,7 @@ class CustomTextField extends StatelessWidget {
     this.showLabel = true,
     this.suffixIcon,
     this.prefixIcon,
-    this.readOnly,
-    this.suffixIcon, this.prefixIcon, this.readOnly,
+    this.readOnly = false,
   });
 
   @override
