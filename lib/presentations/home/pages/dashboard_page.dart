@@ -28,6 +28,7 @@ class _DashboardPageState extends State<DashboardPage> {
     const Center(child: Text('This is page 3')),
     // const Center(child: Text('This is page 4')),
     const SettingsPage(),
+    const SettingsPage(),
   ];
 
   void _onItemTapped(int index) {
