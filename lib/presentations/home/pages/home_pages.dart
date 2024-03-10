@@ -10,6 +10,9 @@ import 'package:flutter_restopos/core/extensions/int_ext.dart';
 import 'package:flutter_restopos/gen/assets.gen.dart';
 import 'package:flutter_restopos/presentations/home/bloc/checkout/checkout_bloc.dart';
 import 'package:flutter_restopos/presentations/home/bloc/local_product/local_product_bloc.dart';
+import 'package:flutter_restopos/presentations/home/dialog/discount_dialog.dart';
+import 'package:flutter_restopos/presentations/home/dialog/service_dialog.dart';
+import 'package:flutter_restopos/presentations/home/dialog/tax_dialog.dart';
 import 'package:flutter_restopos/presentations/home/models/product_category.dart';
 import 'package:flutter_restopos/presentations/home/models/product_model.dart';
 import 'package:flutter_restopos/presentations/home/pages/confirm_payment_page.dart';
@@ -522,17 +525,23 @@ class _HomePageState extends State<HomePage> {
                               ColumnButton(
                                 label: 'Diskon',
                                 svgGenImage: Assets.icons.diskon,
-                                onPressed: () {},
+                                onPressed: () {
+                                  showDialog(context: context, builder: (context)=> const DiscountDialog());
+                                },
                               ),
                               ColumnButton(
                                 label: 'Pajak',
                                 svgGenImage: Assets.icons.pajak,
-                                onPressed: () {},
+                                onPressed: () {
+                                  showDialog(context: context, builder: (context)=> const TaxDialog());
+                                },
                               ),
                               ColumnButton(
                                 label: 'Layanan',
                                 svgGenImage: Assets.icons.layanan,
-                                onPressed: () {},
+                                onPressed: () {
+                                  showDialog(context: context, builder: (context)=> const ServiceDialog());
+                                },
                               ),
                             ],
                           ),
