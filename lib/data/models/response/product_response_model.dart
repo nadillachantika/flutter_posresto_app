@@ -80,6 +80,9 @@ class Product {
             : Category.fromMap(json["category"]),
       );
 
+  factory Product.fromOrderMap(Map<String, dynamic> json) =>
+      Product(id: json["id_product"], price: json['price']);
+
   factory Product.fromLocalMap(Map<String, dynamic> json) => Product(
         id: json["id"],
         categoryId: json["categoryId"],

@@ -65,7 +65,13 @@ class _SyncDataPageState extends State<SyncDataPage> {
                   content: Text(message),
                   backgroundColor: Colors.red,
                 ));
-              }
+              },
+              loaded: () => ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Sync Order Success'),
+                  backgroundColor: Colors.green,
+                ),
+              ),
             );
           },
           builder: (context, state) {

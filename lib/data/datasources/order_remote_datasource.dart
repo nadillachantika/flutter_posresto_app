@@ -13,6 +13,7 @@ class OrderRemoteDatasource {
         headers: {
           'Authorization': 'Bearer ${authData.token}',
           'Accept': 'application/json',
+          'Content-Type': 'application/json',
         });
 
     if (response.statusCode == 200) {

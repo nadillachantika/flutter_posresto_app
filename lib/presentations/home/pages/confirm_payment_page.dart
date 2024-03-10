@@ -27,22 +27,22 @@ class ConfirmPaymentPage extends StatefulWidget {
 }
 
 class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
-  final totalPriceController = TextEditingController();
-  final products = [
-    ProductModel(
-        image: Assets.images.product1.path,
-        name: 'Vanila Late Vanila itu',
-        category: ProductCategory.drink,
-        price: 200000,
-        stock: 10),
-    ProductModel(
-        image: Assets.images.product2.path,
-        name: 'V60',
-        category: ProductCategory.drink,
-        price: 1200000,
-        stock: 10),
-  ];
-  void updateTotalPriceControllerText(double total) {
+  final TextEditingController totalPriceController = TextEditingController();
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final state = context.read<CheckoutBloc>().state;
+    final price = state.maybeWhen(
+      orElse: () => 0,
+      loaded: (products) => products.fold<int>(
+        0,
+        (previousValue, element) =>
+            previousValue + (element.product.price! * element.quantity),
+      ),
+    );
+    final tax = price * 0.11;
+    final total = price + tax;
     totalPriceController.text = total.ceil().toString();
   }
 
@@ -305,11 +305,8 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                 );
                                 final tax = price * 0.11;
                                 final total = price + tax;
-
-                                // Set nilai controller di luar builder untuk menghindari pembaruan widget saat pembangunan
-                                Future.microtask(() {
-                                  updateTotalPriceControllerText(total);
-                                });
+                                totalPriceController.text =
+                                    total.ceil().toString();
 
                                 return Text(
                                   total.ceil().currencyFormatRp,
@@ -455,37 +452,55 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                   ),
                                 ),
                                 const SpaceWidth(8.0),
-                                BlocBuilder<CheckoutBloc, CheckoutState>(
-                                  builder: (context, state) {
-                                    List<ProductQuantity> items =
-                                        state.maybeWhen(
-                                            orElse: () => [],
-                                            loaded: (products) => products);
-
-                                                final totalPrice = totalPriceController.text.toIntegerFromText;
-
-                                    return Flexible(
-                                      child: Button.filled(
-                                        onPressed: () async {
-                                          context.read<OrderBloc>().add(
-                                              OrderEvent.order(
-                                                  items,
-                                                  0,
-                                                  0,
-                                                  0,
-                                                   totalPrice));
-
-                                          await showDialog(
-                                            context: context,
-                                            barrierDismissible: false,
-                                            builder: (context) =>
-                                                const SuccessPaymentDialog(),
-                                          );
-                                        },
-                                        label: 'Bayar',
+                                BlocListener<CheckoutBloc, CheckoutState>(
+                                  listener: (context, state) {
+                                    final price = state.maybeWhen(
+                                      orElse: () => 0,
+                                      loaded: (products) => products.fold<int>(
+                                        0,
+                                        (previousValue, element) =>
+                                            previousValue +
+                                            (element.product.price! *
+                                                element.quantity),
                                       ),
                                     );
+                                    final tax = price * 0.11;
+                                    final total = price + tax;
+                                    totalPriceController.text =
+                                        total.ceil().toString();
                                   },
+                                  child:
+                                      BlocBuilder<CheckoutBloc, CheckoutState>(
+                                    builder: (context, state) {
+                                      List<ProductQuantity> items =
+                                          state.maybeWhen(
+                                              orElse: () => [],
+                                              loaded: (products) => products);
+
+                                      return Flexible(
+                                        child: Button.filled(
+                                          onPressed: () async {
+                                            context.read<OrderBloc>().add(
+                                                OrderEvent.order(
+                                                    items,
+                                                    0,
+                                                    0,
+                                                    0,
+                                                    totalPriceController.text
+                                                        .toIntegerFromText));
+
+                                            await showDialog(
+                                              context: context,
+                                              barrierDismissible: false,
+                                              builder: (context) =>
+                                                  const SuccessPaymentDialog(),
+                                            );
+                                          },
+                                          label: 'Bayar',
+                                        ),
+                                      );
+                                    },
+                                  ),
                                 ),
                               ],
                             ),
