@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restopos/core/extensions/build_context_ext.dart';
+import 'package:flutter_restopos/presentations/home/bloc/checkout/checkout_bloc.dart';
 
 import '../../../core/constants/colors.dart';
 import '../../setting/bloc/discount/discount_bloc.dart';
@@ -73,11 +74,11 @@ class _DiscountDialogState extends State<DiscountDialog> {
                           onChanged: (value) {
                             setState(() {
                               discountIdSelected = discount.id!;
-                              // context.read<CheckoutBloc>().add(
-                              //       CheckoutEvent.addDiscount(
-                              //         discount,
-                              //       ),
-                              //     );
+                              context.read<CheckoutBloc>().add(
+                                    CheckoutEvent.addDiscount(
+                                      discount,
+                                    ),
+                                  );
                             });
                           },
                         ),

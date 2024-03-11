@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_restopos/gen/assets.gen.dart';
 import 'package:flutter_restopos/presentations/setting/pages/discount_page.dart';
+import 'package:flutter_restopos/presentations/setting/pages/sync_data_page.dart';
 import 'package:flutter_restopos/presentations/setting/pages/tax_page.dart';
 import '../../../core/components/spaces.dart';
 import '../../../core/constants/colors.dart';
@@ -98,7 +99,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   children: const [
                     DiscountPage(),
                     // SyncDataPage(),
-                    Text('printer'),
+                    SyncDataPage(),
                     TaxPage(),
                     // ManageDiscount(),
                     // ManagePrinterPage(),
