@@ -17,19 +17,20 @@ class HomeTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'INNODEV POS',
+              'Nadilla\'s Resto POS',
               style: TextStyle(
                 color: AppColors.primary,
                 fontSize: 22,
                 fontWeight: FontWeight.w600,
               ),
             ),
-            const SizedBox(height: 4.0),
+            // const SizedBox(height: 4.0),
             Text(
               DateTime.now().toFormattedDate(),
               style: const TextStyle(
@@ -41,7 +42,7 @@ class HomeTitle extends StatelessWidget {
         ),
         SizedBox(
           width: 200.0,
-          height: 100.0,
+          height: 80.0,
           child: SearchInput(
             controller: controller,
             onChanged: onChanged,

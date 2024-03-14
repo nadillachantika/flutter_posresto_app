@@ -558,8 +558,23 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                                 element.quantity),
                                       ),
                                     );
-                                    final tax = price * 0.11;
-                                    final total = price + tax;
+                                    final discount = state.maybeWhen(
+                                        orElse: () => 0,
+                                        loaded: (products, discount, tax,
+                                            serviceCharge) {
+                                          if (discount == null) {
+                                            return 0;
+                                          }
+                                          return discount.value!
+                                              .replaceAll('.00', '')
+                                              .toIntegerFromText;
+                                        });
+
+                                    final subTotal =
+                                        price - (discount / 100 * price);
+
+                                    final tax = subTotal * 0.11;
+                                    final total = subTotal + tax;
                                     totalPriceController.text =
                                         total.ceil().toString();
                                   },
@@ -593,14 +608,29 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
 
                                       final subTotal =
                                           price - (discount / 100 * price);
+                                      final totalDiscount =
+                                          discount / 100 * price;
 
-                                      final finalTax = subTotal * 0.11;
+                                      final tax = subTotal * 0.11;
+                                      final total = subTotal + tax;
+                                      totalPriceController.text =
+                                          total.ceil().toString();
+
                                       List<ProductQuantity> items =
                                           state.maybeWhen(
-                                              orElse: () => [],
-                                              loaded: (products, discount, tax,
-                                                      serviceCharge) =>
-                                                  products);
+                                        orElse: () => [],
+                                        loaded: (products, discount, tax,
+                                                service) =>
+                                            products,
+                                      );
+
+                                      final totalQty = items.fold(
+                                        0,
+                                        (previousValue, element) =>
+                                            previousValue + element.quantity,
+                                      );
+
+                                      final totalPrice = subTotal + tax;
 
                                       return Flexible(
                                         child: Button.filled(
@@ -609,7 +639,7 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                                 OrderEvent.order(
                                                     items,
                                                     discount,
-                                                    finalTax.toInt(),
+                                                    tax.toInt(),
                                                     0,
                                                     totalPriceController.text
                                                         .toIntegerFromText));
@@ -618,7 +648,16 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                               context: context,
                                               barrierDismissible: false,
                                               builder: (context) =>
-                                                  const SuccessPaymentDialog(),
+                                                  SuccessPaymentDialog(
+                                                data: items,
+                                                totalQty: totalQty,
+                                                totalPrice: totalPrice.toInt(),
+                                                totalTax: tax.toInt(),
+                                                totalDiscount:
+                                                    totalDiscount.toInt(),
+                                                subTotal: subTotal.toInt(),
+                                                normalPrice: price,
+                                              ),
                                             );
                                           },
                                           label: 'Bayar',

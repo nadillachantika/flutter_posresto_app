@@ -28,14 +28,14 @@ class _LoginPageState extends State<LoginPage> {
           // const SpaceHeight(80.0)
           Padding(
             padding:
-                const EdgeInsets.symmetric(horizontal: 130.0, vertical: 100.0),
+                const EdgeInsets.fromLTRB(130.0, 80.0, 130.0, 10.0),
             child: SvgPicture.asset(Assets.icons.homeResto.path,
                 width: 100, height: 100, color: AppColors.primary),
           ),
           // const SpaceHeight(24.0),
           const Center(
             child: Text(
-              'POS by INNODEV',
+              'INNODEV POS',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
           //  const SpaceHeight(8.0),
           const Center(
             child: Text(
-              'Akses Login Kasir',
+              'Support By Code With Bahri #FIC14',
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w400,

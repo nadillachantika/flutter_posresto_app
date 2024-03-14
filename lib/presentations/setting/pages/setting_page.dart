@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_restopos/gen/assets.gen.dart';
 import 'package:flutter_restopos/presentations/setting/pages/discount_page.dart';
+import 'package:flutter_restopos/presentations/setting/pages/manage_printer_page.dart';
 import 'package:flutter_restopos/presentations/setting/pages/sync_data_page.dart';
 import 'package:flutter_restopos/presentations/setting/pages/tax_page.dart';
 import '../../../core/components/spaces.dart';
@@ -62,9 +63,9 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   ListTile(
                     contentPadding: const EdgeInsets.all(12.0),
-                    leading: Assets.icons.kelolaPrinter.svg(),
-                    title: const Text('Kelola Printer'),
-                    subtitle: const Text('Tambah atau hapus printer'),
+                    leading: Assets.icons.kelolaProduk.svg(),
+                    title: const Text('Sync Data'),
+                    subtitle: const Text('Siknkronisasi data'),
                     textColor: AppColors.primary,
                     tileColor: currentIndex == 1
                         ? AppColors.blueLight
@@ -81,6 +82,17 @@ class _SettingsPageState extends State<SettingsPage> {
                         ? AppColors.blueLight
                         : Colors.transparent,
                     onTap: () => indexValue(2),
+                  ),
+                   ListTile(
+                    contentPadding: const EdgeInsets.all(12.0),
+                    leading: Assets.icons.kelolaPrinter.svg(),
+                    title: const Text('Kelola Printer'),
+                    subtitle: const Text('Tambah atau hapus printer'),
+                    textColor: AppColors.primary,
+                    tileColor: currentIndex == 3
+                        ? AppColors.blueLight
+                        : Colors.transparent,
+                    onTap: () => indexValue(3),
                   ),
                 ],
               ),
@@ -101,6 +113,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     // SyncDataPage(),
                     SyncDataPage(),
                     TaxPage(),
+                    ManagePrinterPage(),
                     // ManageDiscount(),
                     // ManagePrinterPage(),
                     // ManageTax(),

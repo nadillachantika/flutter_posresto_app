@@ -211,7 +211,6 @@ class _HomePageState extends State<HomePage> {
                             // setState(() {});
                           },
                         ),
-                        const SizedBox(height: 24),
                         CustomTabBar(
                           tabTitles: ['Semua', 'Makanan', 'Minuman', 'Dessert'],
                           initialTabIndex: 0,

@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restopos/core/components/custom_text_field.dart';
 import 'package:flutter_restopos/core/extensions/build_context_ext.dart';
-
+import 'package:flutter_restopos/presentations/setting/bloc/bloc/add_discount_bloc.dart';
+import 'package:flutter_restopos/presentations/setting/bloc/discount/discount_bloc.dart';
 
 import '../../../core/components/buttons.dart';
 import '../../../core/components/spaces.dart';
-import '../../home/models/product_category.dart';
 import '../models/discount_model.dart';
 
-class FormDiscountDialog extends StatelessWidget {
+class FormDiscountDialog extends StatefulWidget {
   final DiscountModel? data;
   const FormDiscountDialog({super.key, this.data});
 
   @override
+  State<FormDiscountDialog> createState() => _FormDiscountDialogState();
+}
+
+class _FormDiscountDialogState extends State<FormDiscountDialog> {
+  @override
   Widget build(BuildContext context) {
-    final nameController = TextEditingController(text: data?.name ?? '');
-    final codeController = TextEditingController(text: data?.code ?? '');
+    final nameController = TextEditingController(text: widget.data?.name ?? '');
     final descriptionController =
-        TextEditingController(text: data?.description ?? '');
+        TextEditingController(text: widget.data?.description ?? '');
     final discountController =
-        TextEditingController(text: data?.discount.toString() ?? '');
-    final categoryController =
-        ValueNotifier<ProductCategory>(data?.category ?? ProductCategory.food);
+        TextEditingController(text: widget.data?.discount.toString() ?? '');
     return AlertDialog(
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,7 +33,7 @@ class FormDiscountDialog extends StatelessWidget {
             onPressed: () => context.pop(),
             icon: const Icon(Icons.close),
           ),
-          Text(data == null ? 'Tambah Diskon' : 'Edit Diskon'),
+          Text(widget.data == null ? 'Tambah Diskon' : 'Edit Diskon'),
           const Spacer(),
         ],
       ),
@@ -80,14 +83,21 @@ class FormDiscountDialog extends StatelessWidget {
               const SpaceHeight(24.0),
               Button.filled(
                 onPressed: () {
-                  if (data == null) {
-                    // TODO: do add discount
-                  } else {
-                    // TODO: do edit discount
-                  }
+                  context.read<AddDiscountBloc>().add(
+                        AddDiscountEvent.addDiscount(
+                          name: nameController.text,
+                          description: descriptionController.text,
+                          value: int.parse(discountController.text),
+                        ),
+                      );
+                  context
+                      .read<DiscountBloc>()
+                      .add(const DiscountEvent.getDiscounts());
+
                   context.pop();
                 },
-                label: data == null ? 'Simpan Diskon' : 'Perbarui Diskon',
+                label:
+                    widget.data == null ? 'Simpan Diskon' : 'Perbarui Diskon',
               )
             ],
           ),

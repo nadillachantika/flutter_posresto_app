@@ -4,23 +4,42 @@ import 'package:flutter_restopos/core/components/buttons.dart';
 import 'package:flutter_restopos/core/components/spaces.dart';
 import 'package:flutter_restopos/core/extensions/build_context_ext.dart';
 import 'package:flutter_restopos/core/extensions/int_ext.dart';
+import 'package:flutter_restopos/data/dataoutputs/print_dataoutputs.dart';
 import 'package:flutter_restopos/gen/assets.gen.dart';
 import 'package:flutter_restopos/presentations/home/bloc/checkout/checkout_bloc.dart';
 import 'package:flutter_restopos/presentations/home/bloc/order/order_bloc.dart';
+import 'package:flutter_restopos/presentations/home/models/product_quantity.dart';
 import 'package:intl/intl.dart';
+import 'package:print_bluetooth_thermal/print_bluetooth_thermal.dart';
 import '../models/order_item.dart';
 
 class SuccessPaymentDialog extends StatefulWidget {
-  const SuccessPaymentDialog({super.key});
+  const SuccessPaymentDialog(
+      {super.key,
+      required this.data,
+      required this.totalQty,
+      required this.totalPrice,
+      required this.totalTax,
+      required this.totalDiscount,
+      required this.subTotal,
+      required this.normalPrice});
+
+  final List<ProductQuantity> data;
+  final int totalQty;
+  final int totalPrice;
+  final int totalTax;
+  final int totalDiscount;
+  final int subTotal;
+  final int normalPrice;
 
   @override
   State<SuccessPaymentDialog> createState() => _SuccessPaymentDialogState();
 }
 
 class _SuccessPaymentDialogState extends State<SuccessPaymentDialog> {
-  List<OrderItem> data = [];
-  int totalQty = 0;
-  int totalPrice = 0;
+  // List<ProductQuantity> data = [];
+  // int totalQty = 0;
+  // int totalPrice = 0;
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -64,7 +83,7 @@ class _SuccessPaymentDialogState extends State<SuccessPaymentDialog> {
             BlocBuilder<OrderBloc, OrderState>(
               builder: (context, state) {
                 final total = state.maybeWhen(
-                    orElse: () => 0, loaded: (model) => model.total);
+                    orElse: () => 0, loaded: (model) => model.total - model.discount);
                 // final tax = state.maybeWhen(
                 //     orElse: () => 0, loaded: (model) => model.tax);
                 // final totalTagihan = total + tax;
@@ -141,16 +160,19 @@ class _SuccessPaymentDialogState extends State<SuccessPaymentDialog> {
                 Flexible(
                   child: Button.filled(
                     onPressed: () async {
-                      // final printValue =
-                      //           await CwbPrint.instance.printOrder(
-                      //         data,
-                      //         totalQty,
-                      //         totalPrice,
-                      //         'Tunai',
-                      //         totalPrice,
-                      //         'Bahri',
-                      //       );
-                      //       await PrintBluetoothThermal.writeBytes(printValue);
+                      final printValue = await PrintDataoutputs.instance
+                          .printOrder(
+                              widget.data,
+                              widget.totalQty,
+                              widget.totalPrice,
+                              'Tunai',
+                              widget.totalPrice,
+                              'Bahri',
+                              widget.totalDiscount,
+                              widget.totalTax,
+                              widget.subTotal,
+                              widget.normalPrice);
+                      await PrintBluetoothThermal.writeBytes(printValue);
                     },
                     label: 'Print',
                   ),

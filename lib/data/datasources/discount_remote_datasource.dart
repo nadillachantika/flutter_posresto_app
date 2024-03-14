@@ -22,5 +22,26 @@ class DiscountRemoteDatasource {
     }
   }
 
- 
+  // add discount
+
+  Future<Either<String, bool>> addDiscount(
+      String name, String description, int value) async {
+    final url = Uri.parse('${Variables.baseUrl}/api/saveDiscount');
+    final authData = await AuthLocalDataSource().getAuthData();
+    final response = await http.post(url, headers: {
+      'Authorization': 'Bearer ${authData.token}',
+      'Accept': 'application/json',
+    }, body: {
+      'name': name,
+      'description': description,
+      'value': value.toString(),
+      'type': 'percentage',
+    });
+
+    if (response.statusCode == 200) {
+      return const Right(true);
+    } else {
+      return const Left('Failed to add discount');
+    }
+  }
 }
