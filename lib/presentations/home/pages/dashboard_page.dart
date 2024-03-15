@@ -9,6 +9,7 @@ import 'package:flutter_restopos/presentations/auth/bloc/logout/logout_bloc.dart
 import 'package:flutter_restopos/presentations/home/pages/home_pages.dart';
 import 'package:flutter_restopos/presentations/home/widgets/nav_item.dart';
 import 'package:flutter_restopos/presentations/report/pages/report_page.dart';
+import 'package:flutter_restopos/presentations/reservation/pages/reservation_page.dart';
 import 'package:flutter_restopos/presentations/setting/pages/setting_page.dart';
 import 'package:flutter_restopos/presentations/setting/pages/sync_data_page.dart';
 
@@ -26,11 +27,10 @@ class _DashboardPageState extends State<DashboardPage> {
     const HomePage(),
     // const Center(child: Text('This is page 2')),
     const ReportPage(),
-    const Center(child: Text('This is page 3')),
+    const ReservationPage(),
     // const Center(child: Text('This is page 4')),
     const SettingsPage(),
-        const Center(child: Text('This is page 3')),
-
+    const Center(child: Text('This is page 3')),
   ];
 
   void _onItemTapped(int index) {
@@ -65,7 +65,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           onTap: () => _onItemTapped(1),
                         ),
                         NavItem(
-                          iconPath: Assets.icons.dashboard.path,
+                          iconPath: Assets.icons.calendar.path,
                           isActive: _selectedIndex == 2,
                           onTap: () => _onItemTapped(2),
                         ),

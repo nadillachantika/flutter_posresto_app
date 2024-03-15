@@ -29,7 +29,7 @@ class AppColors {
   static const Color card = Color(0xffE5E5E5);
 
   /// disabled = #C8D1E1
-  static const Color disabled = Color(0xffC8D1E1);
+  static const Color disabled = Color.fromARGB(255, 225, 200, 200);
 
   /// subtitle = #7890CD
   static const Color subtitle = Color.fromARGB(255, 205, 120, 120);
