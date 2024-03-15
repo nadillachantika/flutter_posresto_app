@@ -82,14 +82,25 @@ class _SuccessPaymentDialogState extends State<SuccessPaymentDialog> {
             const SpaceHeight(5.0),
             BlocBuilder<OrderBloc, OrderState>(
               builder: (context, state) {
-                final total = state.maybeWhen(
-                    orElse: () => 0, loaded: (model) => model.total - model.discount);
-                // final tax = state.maybeWhen(
-                //     orElse: () => 0, loaded: (model) => model.tax);
-                // final totalTagihan = total + tax;
+               
+                final discount = state.maybeWhen(
+                    orElse: () => 0, loaded: (model) => model.discount);
+                final price = state.maybeWhen(
+                    orElse: () => 0, loaded: (model) => model.subTotal);
+
+                final totalDiscount = discount / 100 * price;
+              
+
+             
+
+                var subTotal= price - totalDiscount;
+
+                final tax = subTotal *0.11;
+                final totalTagihan = subTotal + tax;
+
 
                 return Text(
-                  total.ceil().currencyFormatRp,
+                  totalTagihan.ceil().currencyFormatRp,
                   style: const TextStyle(
                     fontWeight: FontWeight.w700,
                   ),
@@ -123,11 +134,21 @@ class _SuccessPaymentDialogState extends State<SuccessPaymentDialog> {
                   orElse: () => 0,
                   loaded: (model) => model.paymentAmount,
                 );
-                final total = state.maybeWhen(
-                  orElse: () => 0,
-                  loaded: (model) => model.total,
-                );
-                final diff = paymentAmount - total;
+            
+
+                 final discount = state.maybeWhen(
+                    orElse: () => 0, loaded: (model) => model.discount);
+                final price = state.maybeWhen(
+                    orElse: () => 0, loaded: (model) => model.subTotal);
+
+                final totalDiscount = discount / 100 * price;
+              
+                var subTotal= price - totalDiscount;
+
+                final tax = subTotal *0.11;
+                final totalTagihan = subTotal + tax;
+
+                final diff = paymentAmount - totalTagihan;
                 return Text(
                   diff.ceil().currencyFormatRp,
                   style: const TextStyle(

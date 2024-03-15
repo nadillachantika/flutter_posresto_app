@@ -33,4 +33,7 @@ class AppColors {
 
   /// subtitle = #7890CD
   static const Color subtitle = Color.fromARGB(255, 205, 120, 120);
+
+  /// stroke = #EFF0F6
+  static const Color stroke = Color(0xffEFF0F6);
 }

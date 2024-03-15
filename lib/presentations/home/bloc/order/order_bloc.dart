@@ -44,6 +44,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       final totalItem = event.items.fold<int>(
           0, ((previousValue, element) => previousValue + element.quantity));
 
+          // final totalDiscount = event.discount / 100 * subTotal;
+
       final userData = await AuthLocalDataSource().getAuthData();
       final dataInput = OrderModel(
         subTotal: subTotal,
