@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_restopos/core/components/custom_date_picker.dart';
 import 'package:flutter_restopos/core/components/dashed_line.dart';
 import 'package:flutter_restopos/core/components/spaces.dart';
+import 'package:flutter_restopos/core/constants/colors.dart';
 import 'package:flutter_restopos/core/extensions/date_time_ext.dart';
+import 'package:flutter_restopos/gen/assets.gen.dart';
 import 'package:flutter_restopos/presentations/report/widgets/report_menu.dart';
 import 'package:flutter_restopos/presentations/report/widgets/report_title.dart';
 import 'package:flutter_restopos/presentations/reservation/widgets/reservation_title.dart';
@@ -18,204 +20,73 @@ class ReservationPage extends StatefulWidget {
 }
 
 class _ReservationPageState extends State<ReservationPage> {
-  int selectedMenu = 0;
-  String title = 'Summary Sales Report';
-  DateTime fromDate = DateTime.now().subtract(const Duration(days: 30));
-  DateTime toDate = DateTime.now();
+   int currentIndex = 0;
+
+  void indexValue(int index) {
+    currentIndex = index;
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     
-    String searchDateFormatted =
-        '${fromDate.toFormattedDate2()} to ${toDate.toFormattedDate2()}';
+   
 
     return Scaffold(
-      body: Row(
+      body:  Row(
         children: [
           // LEFT CONTENT
           Expanded(
-            flex: 3,
+            flex: 2,
             child: Align(
-              alignment: Alignment.topLeft,
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const ReservationTitle(),
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Flexible(
-                            child: CustomDatePicker(
-                              prefix: const Text('From: '),
-                              initialDate: fromDate,
-                              onDateSelected: (selectedDate) {
-                                fromDate = selectedDate;
-                                setState(() {});
-                              },
-                            ),
-                          ),
-                          const SpaceWidth(100.0),
-                          Flexible(
-                            child: CustomDatePicker(
-                              prefix: const Text('To: '),
-                              initialDate: toDate,
-                              onDateSelected: (selectedDate) {
-                                toDate = selectedDate;
-                                setState(() {});
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
+              alignment: Alignment.topCenter,
+              child: ListView(
+                padding: const EdgeInsets.all(16.0),
+                children: [
+                  const Text(
+                    'Settings',
+                    style: TextStyle(
+                      color: AppColors.primary,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w600,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Wrap(
-                        children: [
-                          ReportMenu(
-                            label: 'Transaction Report',
-                            onPressed: () {
-                              selectedMenu = 1;
-                              title = 'Transaction Report';
-                              setState(() {});
-                            },
-                            isActive: selectedMenu == 1,
-                          ),
-                          ReportMenu(
-                            label: 'Item Sales Report',
-                            onPressed: () {
-                              selectedMenu = 4;
-                              title = 'Item Sales Report';
-                              setState(() {});
-                            },
-                            isActive: selectedMenu == 4,
-                          ),
-                          ReportMenu(
-                            label: 'Daily Sales Report',
-                            onPressed: () {
-                              selectedMenu = 5;
-                              title = 'Daily Sales Report';
-                              setState(() {});
-                            },
-                            isActive: selectedMenu == 5,
-                          ),
-                          ReportMenu(
-                            label: 'Summary Sales Report',
-                            onPressed: () {
-                              selectedMenu = 0;
-                              title = 'Summary Sales Report';
-                              setState(() {});
-                            },
-                            isActive: selectedMenu == 0,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                  const SpaceHeight(16.0),
+                
+                 
+                   ListTile(
+                    contentPadding: const EdgeInsets.all(12.0),
+                    leading: Assets.icons.calendar.svg(),
+                    title: const Text('Kelola Reservasi'),
+                    subtitle: const Text('Tambah atau hapus printer'),
+                    textColor: AppColors.primary,
+                    tileColor: currentIndex == 3
+                        ? AppColors.blueLight
+                        : Colors.transparent,
+                    onTap: () => indexValue(3),
+                  ),
+                ],
               ),
             ),
           ),
 
           // RIGHT CONTENT
           Expanded(
-            flex: 2,
+            flex: 4,
             child: Align(
-              alignment: Alignment.topCenter,
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: Text(
-                        title,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 16.0),
-                      ),
-                    ),
-                    Center(
-                      child: Text(
-                        searchDateFormatted,
-                        style: const TextStyle(fontSize: 16.0),
-                      ),
-                    ),
-                    const SpaceHeight(16.0),
-
-                    // REVENUE INFO
-                    ...[
-                      const Text('REVENUE'),
-                      const SpaceHeight(8.0),
-                      const DashedLine(),
-                      const DashedLine(),
-                      const SpaceHeight(8.0),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Subtotal'),
-                          Text('0'),
-                        ],
-                      ),
-                      const SpaceHeight(4.0),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Discount'),
-                          Text('0'),
-                        ],
-                      ),
-                      const SpaceHeight(4.0),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Tax'),
-                          Text('0'),
-                        ],
-                      ),
-                      const SpaceHeight(8.0),
-                      const DashedLine(),
-                      const DashedLine(),
-                      const SpaceHeight(8.0),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('TOTAL'),
-                          Text('0'),
-                        ],
-                      ),
-                    ],
-                    const SpaceHeight(32.0),
-
-                    // PAYMENT INFO
-                    ...[
-                      const Text('PAYMENT'),
-                      const SpaceHeight(8.0),
-                      const DashedLine(),
-                      const DashedLine(),
-                      const SpaceHeight(8.0),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Cash'),
-                          Text('0'),
-                        ],
-                      ),
-                      const SpaceHeight(8.0),
-                      const DashedLine(),
-                      const DashedLine(),
-                      const SpaceHeight(8.0),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('TOTAL'),
-                          Text('0'),
-                        ],
-                      ),
-                    ],
+              alignment: AlignmentDirectional.topStart,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: IndexedStack(
+                  index: currentIndex,
+                  children: const [
+                    Text('List Reservasi')
+                 
                   ],
                 ),
               ),

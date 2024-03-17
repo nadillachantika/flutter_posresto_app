@@ -1,0 +1,26 @@
+import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_restopos/data/datasources/reservation_remote_datasource.dart';
+import 'package:flutter_restopos/presentations/reservation/models/reservation_response_model.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'reservation_event.dart';
+part 'reservation_state.dart';
+part 'reservation_bloc.freezed.dart';
+
+class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
+
+  final ReservationRemoteDatasource reservationRemoteDatasource;
+
+
+  ReservationBloc(this.reservationRemoteDatasource) : super(_Initial()) {
+    on<_GetReservations>((event, emit)async {
+      // TODO: implement event handler
+
+      emit(const _Loading());
+      final result = await reservationRemoteDatasource.getReservations();
+
+      result.fold((l) => emit(_Error(l)), (r) => emit(_Loaded(r)));
+    });
+  }
+}
