@@ -50,8 +50,10 @@ class _ReportPageState extends State<ReportPage> {
                               prefix: const Text('From: '),
                               initialDate: fromDate,
                               onDateSelected: (selectedDate) {
-                                fromDate = selectedDate;
-                                setState(() {});
+                                // fromDate = selectedDate;
+                                setState(() {
+                                  fromDate = selectedDate;
+                                });
                               },
                             ),
                           ),
@@ -61,8 +63,10 @@ class _ReportPageState extends State<ReportPage> {
                               prefix: const Text('To: '),
                               initialDate: toDate,
                               onDateSelected: (selectedDate) {
-                                toDate = selectedDate;
-                                setState(() {});
+                                // toDate = selectedDate;
+                                setState(() {
+                                  toDate = selectedDate;
+                                });
                               },
                             ),
                           ),
@@ -78,14 +82,17 @@ class _ReportPageState extends State<ReportPage> {
                             onPressed: () {
                               selectedMenu = 1;
                               title = 'Transaction Report';
+
+                              fromDate = DateTime.now()
+                                  .subtract(const Duration(days: 30));
+                              toDate = DateTime.now();
+
                               setState(() {});
 
                               // enddate 1 month before start date
                               context.read<TransactionReportBloc>().add(
                                   TransactionReportEvent.getReport(
-                                      startDate: DateTime.now(),
-                                      endDate: DateTime.now()
-                                          .subtract(const Duration(days: 30))));
+                                      startDate: fromDate, endDate: toDate));
                             },
                             isActive: selectedMenu == 1,
                           ),
@@ -103,7 +110,21 @@ class _ReportPageState extends State<ReportPage> {
                             onPressed: () {
                               selectedMenu = 5;
                               title = 'Daily Sales Report';
-                              setState(() {});
+                              DateTime now = DateTime.now();
+                              String todayFormatted =
+                                  'Today, ${now.toFormattedDate2()}';
+
+                              fromDate = now;
+                              toDate = now;
+
+                              setState(() {
+                                searchDateFormatted = todayFormatted;
+                                context.read<TransactionReportBloc>().add(
+                                    TransactionReportEvent.getReport(
+                                        startDate: DateTime(
+                                            now.year, now.month, now.day),
+                                        endDate: now));
+                              });
                             },
                             isActive: selectedMenu == 5,
                           ),
@@ -183,13 +204,11 @@ class _ReportPageState extends State<ReportPage> {
                       return const Center(
                         child: Text('No Data'),
                       );
-                    }, 
-                    loading: (){
+                    }, loading: () {
                       return const Center(
                         child: CircularProgressIndicator(),
                       );
-                    },
-                    loaded: (transactionReport) {
+                    }, loaded: (transactionReport) {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -207,7 +226,6 @@ class _ReportPageState extends State<ReportPage> {
                             ),
                           ),
                           const SpaceHeight(16.0),
-
                           // REVENUE INFO
                           ...[
                             Text('REVENUE : $totalRevenue'),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restopos/core/components/custom_text_field.dart';
 import 'package:flutter_restopos/core/extensions/build_context_ext.dart';
+import 'package:flutter_restopos/data/models/response/discount_response_model.dart';
 import 'package:flutter_restopos/presentations/setting/bloc/bloc/add_discount_bloc.dart';
 import 'package:flutter_restopos/presentations/setting/bloc/discount/discount_bloc.dart';
 
@@ -10,7 +11,7 @@ import '../../../core/components/spaces.dart';
 import '../models/discount_model.dart';
 
 class FormDiscountDialog extends StatefulWidget {
-  final DiscountModel? data;
+  final Discount? data;
   const FormDiscountDialog({super.key, this.data});
 
   @override
@@ -24,7 +25,7 @@ class _FormDiscountDialogState extends State<FormDiscountDialog> {
     final descriptionController =
         TextEditingController(text: widget.data?.description ?? '');
     final discountController =
-        TextEditingController(text: widget.data?.discount.toString() ?? '');
+        TextEditingController(text: widget.data?.value??'');
     return AlertDialog(
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

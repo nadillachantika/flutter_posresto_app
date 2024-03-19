@@ -299,8 +299,7 @@ mixin _$ReservationState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ReservationResponseModel reservationResponseModel)
-        loaded,
+    required TResult Function(List<Reservation> reservations) loaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -308,8 +307,7 @@ mixin _$ReservationState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ReservationResponseModel reservationResponseModel)?
-        loaded,
+    TResult? Function(List<Reservation> reservations)? loaded,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -317,7 +315,7 @@ mixin _$ReservationState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ReservationResponseModel reservationResponseModel)? loaded,
+    TResult Function(List<Reservation> reservations)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -413,8 +411,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ReservationResponseModel reservationResponseModel)
-        loaded,
+    required TResult Function(List<Reservation> reservations) loaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -425,8 +422,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ReservationResponseModel reservationResponseModel)?
-        loaded,
+    TResult? Function(List<Reservation> reservations)? loaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -437,7 +433,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ReservationResponseModel reservationResponseModel)? loaded,
+    TResult Function(List<Reservation> reservations)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -535,8 +531,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ReservationResponseModel reservationResponseModel)
-        loaded,
+    required TResult Function(List<Reservation> reservations) loaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -547,8 +542,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ReservationResponseModel reservationResponseModel)?
-        loaded,
+    TResult? Function(List<Reservation> reservations)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -559,7 +553,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ReservationResponseModel reservationResponseModel)? loaded,
+    TResult Function(List<Reservation> reservations)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -617,7 +611,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ReservationResponseModel reservationResponseModel});
+  $Res call({List<Reservation> reservations});
 }
 
 /// @nodoc
@@ -631,13 +625,13 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? reservationResponseModel = null,
+    Object? reservations = null,
   }) {
     return _then(_$LoadedImpl(
-      null == reservationResponseModel
-          ? _value.reservationResponseModel
-          : reservationResponseModel // ignore: cast_nullable_to_non_nullable
-              as ReservationResponseModel,
+      null == reservations
+          ? _value._reservations
+          : reservations // ignore: cast_nullable_to_non_nullable
+              as List<Reservation>,
     ));
   }
 }
@@ -645,14 +639,20 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
-  const _$LoadedImpl(this.reservationResponseModel);
+  const _$LoadedImpl(final List<Reservation> reservations)
+      : _reservations = reservations;
 
+  final List<Reservation> _reservations;
   @override
-  final ReservationResponseModel reservationResponseModel;
+  List<Reservation> get reservations {
+    if (_reservations is EqualUnmodifiableListView) return _reservations;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_reservations);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ReservationState.loaded(reservationResponseModel: $reservationResponseModel)';
+    return 'ReservationState.loaded(reservations: $reservations)';
   }
 
   @override
@@ -660,8 +660,7 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ReservationState.loaded'))
-      ..add(DiagnosticsProperty(
-          'reservationResponseModel', reservationResponseModel));
+      ..add(DiagnosticsProperty('reservations', reservations));
   }
 
   @override
@@ -669,13 +668,13 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            (identical(
-                    other.reservationResponseModel, reservationResponseModel) ||
-                other.reservationResponseModel == reservationResponseModel));
+            const DeepCollectionEquality()
+                .equals(other._reservations, _reservations));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, reservationResponseModel);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_reservations));
 
   @JsonKey(ignore: true)
   @override
@@ -688,11 +687,10 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ReservationResponseModel reservationResponseModel)
-        loaded,
+    required TResult Function(List<Reservation> reservations) loaded,
     required TResult Function(String message) error,
   }) {
-    return loaded(reservationResponseModel);
+    return loaded(reservations);
   }
 
   @override
@@ -700,11 +698,10 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ReservationResponseModel reservationResponseModel)?
-        loaded,
+    TResult? Function(List<Reservation> reservations)? loaded,
     TResult? Function(String message)? error,
   }) {
-    return loaded?.call(reservationResponseModel);
+    return loaded?.call(reservations);
   }
 
   @override
@@ -712,12 +709,12 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ReservationResponseModel reservationResponseModel)? loaded,
+    TResult Function(List<Reservation> reservations)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(reservationResponseModel);
+      return loaded(reservations);
     }
     return orElse();
   }
@@ -761,10 +758,9 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
 }
 
 abstract class _Loaded implements ReservationState {
-  const factory _Loaded(
-      final ReservationResponseModel reservationResponseModel) = _$LoadedImpl;
+  const factory _Loaded(final List<Reservation> reservations) = _$LoadedImpl;
 
-  ReservationResponseModel get reservationResponseModel;
+  List<Reservation> get reservations;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -844,8 +840,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ReservationResponseModel reservationResponseModel)
-        loaded,
+    required TResult Function(List<Reservation> reservations) loaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -856,8 +851,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ReservationResponseModel reservationResponseModel)?
-        loaded,
+    TResult? Function(List<Reservation> reservations)? loaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -868,7 +862,7 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ReservationResponseModel reservationResponseModel)? loaded,
+    TResult Function(List<Reservation> reservations)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

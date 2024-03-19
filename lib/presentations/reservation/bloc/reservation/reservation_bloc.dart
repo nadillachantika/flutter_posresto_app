@@ -13,14 +13,13 @@ class ReservationBloc extends Bloc<ReservationEvent, ReservationState> {
   final ReservationRemoteDatasource reservationRemoteDatasource;
 
 
-  ReservationBloc(this.reservationRemoteDatasource) : super(_Initial()) {
+  ReservationBloc(this.reservationRemoteDatasource) : super(const _Initial()) {
     on<_GetReservations>((event, emit)async {
-      // TODO: implement event handler
 
       emit(const _Loading());
       final result = await reservationRemoteDatasource.getReservations();
 
-      result.fold((l) => emit(_Error(l)), (r) => emit(_Loaded(r)));
+      result.fold((l) => emit(_Error(l)), (r) => emit(_Loaded(r.data!)));
     });
   }
 }

@@ -7,6 +7,7 @@ import 'package:flutter_restopos/data/datasources/discount_remote_datasource.dar
 import 'package:flutter_restopos/data/datasources/order_remote_datasource.dart';
 import 'package:flutter_restopos/data/datasources/product_local_datasource.dart';
 import 'package:flutter_restopos/data/datasources/product_remotes_datasource.dart';
+import 'package:flutter_restopos/data/datasources/reservation_remote_datasource.dart';
 import 'package:flutter_restopos/presentations/auth/bloc/login/login_bloc.dart';
 import 'package:flutter_restopos/presentations/auth/bloc/login_page.dart';
 import 'package:flutter_restopos/presentations/auth/bloc/logout/logout_bloc.dart';
@@ -15,6 +16,7 @@ import 'package:flutter_restopos/presentations/home/bloc/local_product/local_pro
 import 'package:flutter_restopos/presentations/home/bloc/order/order_bloc.dart';
 import 'package:flutter_restopos/presentations/home/pages/dashboard_page.dart';
 import 'package:flutter_restopos/presentations/report/bloc/bloc/transaction_report_bloc.dart';
+import 'package:flutter_restopos/presentations/reservation/bloc/reservation/reservation_bloc.dart';
 import 'package:flutter_restopos/presentations/setting/bloc/bloc/add_discount_bloc.dart';
 import 'package:flutter_restopos/presentations/setting/bloc/discount/discount_bloc.dart';
 import 'package:flutter_restopos/presentations/setting/bloc/sync_order/sync_order_bloc.dart';
@@ -63,6 +65,8 @@ class MyApp extends StatelessWidget {
         ),
          BlocProvider(
           create: (context) => TransactionReportBloc(ProductLocalDatasource.instance),
+        ),
+        BlocProvider(create: (context) => ReservationBloc(ReservationRemoteDatasource())
         )
       ],
       child: MaterialApp(

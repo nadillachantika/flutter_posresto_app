@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_restopos/data/models/response/discount_response_model.dart';
 import 'package:flutter_restopos/presentations/home/widgets/custom_tab_bar.dart';
 import 'package:flutter_restopos/presentations/setting/bloc/discount/discount_bloc.dart';
 import 'package:flutter_restopos/presentations/setting/dialogs/form_discount_dialog.dart';
@@ -26,7 +27,7 @@ class _DiscountPageState extends State<DiscountPage> {
   //   ),
   // ];
 
-  void onEditTap(DiscountModel item) {
+  void onEditTap(Discount item) {
     showDialog(
       context: context,
       builder: (context) => FormDiscountDialog(data: item),
@@ -63,8 +64,7 @@ class _DiscountPageState extends State<DiscountPage> {
               SizedBox(
                 child: BlocBuilder<DiscountBloc, DiscountState>(
                   builder: (context, state) {
-                    print(state);
-                    return state.maybeWhen(
+                  return state.maybeWhen(
                       orElse: () {
                         return const Center(
                           child: CircularProgressIndicator(),
@@ -92,7 +92,9 @@ class _DiscountPageState extends State<DiscountPage> {
                             final item = discounts[index - 1];
                             return ManageDiscountCard(
                               data: item,
-                              onEditTap: () {},
+                              onEditTap: () {
+                                onEditTap(item);
+                              },
                             );
                           },
                         );

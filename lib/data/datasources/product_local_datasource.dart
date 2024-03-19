@@ -161,17 +161,21 @@ class ProductLocalDatasource {
     DateTime start,
     DateTime end,
   ) async {
+     print('Start Date: $start'); // Menampilkan nilai start date
+  print('End Date: $end'); 
     final db = await instance.database;
+
     final List<Map<String, dynamic>> maps = await db.query(
       tableOrder,
-      // where: 'transaction_time BETWEEN ? AND ?',
-      // whereArgs: [
-      //   DateFormat.yMd().format(start),
-      //   DateFormat.yMd().format(end)
-      // ],
+      where: 'transaction_time BETWEEN ? AND ?',
+      whereArgs: [
+      DateFormat('yyyy-MM-ddTHH:mm:ss.SSSSSS').format(start),
+        DateFormat('yyyy-MM-ddTHH:mm:ss').format(end),
+      ],
     );
     return List.generate(maps.length, (i) {
       return OrderModel.fromMap(maps[i]);
+      
     });
   }
 }
