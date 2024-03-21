@@ -6,7 +6,6 @@ import 'package:flutter_restopos/presentations/home/bloc/checkout/checkout_bloc.
 import 'package:flutter_restopos/presentations/home/models/order_item.dart';
 import 'package:flutter_restopos/presentations/home/models/product_quantity.dart';
 
-
 import '../../../core/components/spaces.dart';
 import '../../../core/constants/colors.dart';
 import '../models/product_model.dart';
@@ -29,7 +28,9 @@ class OrderMenu extends StatelessWidget {
                 leading: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(50.0)),
                   child: Image.network(
-                    data.product.image!.contains('http')? data.product.image!:'${Variables.baseUrl}/storage/products/${data.product.image}',
+                    data.product.image!.contains('http')
+                        ? data.product.image!
+                        : '${Variables.baseUrl}/storage/products/${data.product.image}',
                     width: 40.0,
                     height: 40.0,
                     fit: BoxFit.cover,
@@ -45,37 +46,18 @@ class OrderMenu extends StatelessWidget {
                 subtitle: Text(data.product.price!.currencyFormatRp),
               ),
             ),
-            // SizedBox(
-            //   width: 50.0,
-            //   child: TextFormField(
-            //     controller: qtyController,
-            //     keyboardType: TextInputType.number,
-            //     textAlign: TextAlign.center,
-            //     decoration: InputDecoration(
-            //       border: OutlineInputBorder(
-            //         borderRadius: BorderRadius.circular(8.0),
-            //       ),
-            //     ),
-            //   ),
-            // ),
             Row(
               children: [
                 GestureDetector(
                   onTap: () {
-                    // if (data.quantity > 1) {
-                    // context
-                    //     .read<CheckoutBloc>()
-                    //     .add(CheckoutEvent.removeProduct(data.product));
-                    //       onDeleteTap();
-                    //   // data.quantity--;
-                    //   // setState(() {});
-                    // }
-                    context.read<CheckoutBloc>().add(CheckoutEvent.removeItem(data.product));
+                    context
+                        .read<CheckoutBloc>()
+                        .add(CheckoutEvent.removeItem(data.product));
                   },
                   child: Container(
                     width: 30,
                     height: 30,
-                    color: AppColors.white,
+                    color: Colors.transparent,
                     child: const Icon(
                       Icons.remove_circle,
                       color: AppColors.primary,
@@ -91,19 +73,14 @@ class OrderMenu extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    // context
-                    //     .read<CheckoutBloc>()
-                    //     .add(CheckoutEvent.addProduct(data.product));
-                    //     onDeleteTap();
-                    // data.quantity++;
-                    // setState(() {});
-
-                    context.read<CheckoutBloc>().add(CheckoutEvent.addItem(data.product));
+                    context
+                        .read<CheckoutBloc>()
+                        .add(CheckoutEvent.addItem(data.product));
                   },
                   child: Container(
                     width: 30,
                     height: 30,
-                    color: AppColors.white,
+                    color: Colors.transparent,
                     child: const Icon(
                       Icons.add_circle,
                       color: AppColors.primary,
@@ -127,38 +104,6 @@ class OrderMenu extends StatelessWidget {
           ],
         ),
         const SpaceHeight(16),
-        // Row(
-        //   children: [
-        //     Flexible(
-        //       child: TextFormField(
-        //         controller: noteController,
-        //         decoration: InputDecoration(
-        //           border: OutlineInputBorder(
-        //             borderRadius: BorderRadius.circular(8.0),
-        //           ),
-        //           hintText: 'Catatan pesanan',
-        //         ),
-        //       ),
-        //     ),
-        //     const SpaceWidth(12),
-        //     GestureDetector(
-        //       onTap: () {},
-        //       child: Container(
-        //         padding: const EdgeInsets.all(16.0),
-        //         height: 60.0,
-        //         width: 60.0,
-        //         decoration: const BoxDecoration(
-        //           color: AppColors.primary,
-        //           borderRadius: BorderRadius.all(Radius.circular(8.0)),
-        //         ),
-        //         child: Assets.icons.delete.svg(
-        //           colorFilter:
-        //               const ColorFilter.mode(AppColors.white, BlendMode.srcIn),
-        //         ),
-        //       ),
-        //     ),
-        //   ],
-        // ),
       ],
     );
   }

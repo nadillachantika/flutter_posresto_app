@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   /// primary = #3949AB
-  static const Color primary = Color(0xffA3080B);
+  static const Color primary = Color(0xffFF6A49);
 
   /// grey = #B7B7B7
   static const Color grey = Color(0xffB7B7B7);
@@ -32,8 +32,20 @@ class AppColors {
   static const Color disabled = Color.fromARGB(255, 225, 200, 200);
 
   /// subtitle = #7890CD
-  static const Color subtitle = Color.fromARGB(255, 205, 120, 120);
+  static const Color subtitle = Color.fromARGB(255, 219, 117, 80);
 
   /// stroke = #EFF0F6
   static const Color stroke = Color(0xffEFF0F6);
+
+  /// charchoal = #575F79
+  static const Color charchoal = Color(0xff575F79);
+
+  /// background = #FAFAFA
+  static const Color background = Color(0xffFAFAFA);
+
+  /// shadow = #575F79
+  static const Color nonactive = Color(0xff575F79);
+
+  /// shadow = #FFC9BA
+  static const Color shadow= Color.fromARGB(255, 250, 167, 144);
 }

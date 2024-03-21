@@ -51,7 +51,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 child: SizedBox(
                   height: context.deviceHeight - 20.0,
                   child: ColoredBox(
-                    color: AppColors.primary,
+                    color: AppColors.white,
                     child: Column(
                       children: [
                         NavItem(

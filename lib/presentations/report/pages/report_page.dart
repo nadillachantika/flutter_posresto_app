@@ -5,6 +5,7 @@ import 'package:flutter_restopos/core/components/dashed_line.dart';
 import 'package:flutter_restopos/core/components/spaces.dart';
 import 'package:flutter_restopos/core/extensions/date_time_ext.dart';
 import 'package:flutter_restopos/presentations/report/bloc/bloc/transaction_report_bloc.dart';
+import 'package:flutter_restopos/presentations/report/widgets/item_sales_report.dart';
 import 'package:sqflite/sqflite.dart';
 import '../widgets/report_menu.dart';
 import '../widgets/report_title.dart';
@@ -149,7 +150,7 @@ class _ReportPageState extends State<ReportPage> {
           // RIGHT CONTENT
           Expanded(
             flex: 2,
-            child: Align(
+            child: selectedMenu == 1 || selectedMenu == 5 ? Align(
               alignment: Alignment.topCenter,
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(24.0),
@@ -302,7 +303,7 @@ class _ReportPageState extends State<ReportPage> {
                   },
                 ),
               ),
-            ),
+            ):selectedMenu == 4 ? const ItemSalesReport(): SizedBox(),
           ),
         ],
       ),

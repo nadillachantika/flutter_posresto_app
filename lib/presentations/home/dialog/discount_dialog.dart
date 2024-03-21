@@ -56,7 +56,9 @@ class _DiscountDialogState extends State<DiscountDialog> {
           return state.maybeWhen(
             orElse: () => const SizedBox.shrink(),
             loading: () => const Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: AppColors.primary,
+              ),
             ),
             loaded: (discounts) {
               return SingleChildScrollView(
@@ -71,6 +73,7 @@ class _DiscountDialogState extends State<DiscountDialog> {
                           contentPadding: EdgeInsets.zero,
                           textColor: AppColors.primary,
                           trailing: Checkbox(
+                            activeColor: AppColors.primary,
                             value: discount.id == discountIdSelected,
                             onChanged: (value) {
                               setState(() {

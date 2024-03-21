@@ -188,6 +188,7 @@ class _HomePageState extends State<HomePage> {
     return Hero(
       tag: 'confirmation_screen',
       child: Scaffold(
+        backgroundColor: AppColors.background,
         body: Row(
           children: [
             Expanded(
@@ -510,7 +511,25 @@ class _HomePageState extends State<HomePage> {
                                     physics:
                                         const NeverScrollableScrollPhysics(),
                                     itemBuilder: (context, index) =>
-                                        OrderMenu(data: products[index]),
+                                        Dismissible(
+                                            key: UniqueKey(),
+                                            direction: DismissDirection
+                                                .endToStart, // Geser ke kanan untuk menghapus
+                                            onDismissed: (direction) {
+                                              // Aksi yang dilakukan saat item digeser
+                                              // context.read<CheckoutBloc>().add(
+                                              //     CheckoutEvent.removeItem(
+                                              //         products[index]));
+                                            },
+                                            background: Container(
+                                              alignment: Alignment.centerRight,
+                                              color: Colors
+                                                  .red, // Warna latar belakang saat digeser
+                                              child: Icon(Icons.delete,
+                                                  color: Colors.white),
+                                            ),
+                                            child: OrderMenu(
+                                                data: products[index])),
                                     separatorBuilder: (context, index) =>
                                         const SpaceHeight(1.0),
                                     itemCount: products.length,
@@ -605,8 +624,9 @@ class _HomePageState extends State<HomePage> {
                                         if (discount == null) {
                                           return 0;
                                         }
-                                        return discount
-                                            .value!.replaceAll('.00', '').toIntegerFromText;
+                                        return discount.value!
+                                            .replaceAll('.00', '')
+                                            .toIntegerFromText;
                                       });
                                   return Text(
                                     '$discount %',
@@ -661,7 +681,7 @@ class _HomePageState extends State<HomePage> {
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: ColoredBox(
-                        color: AppColors.white,
+                        color: Colors.transparent,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 24.0, vertical: 16.0),

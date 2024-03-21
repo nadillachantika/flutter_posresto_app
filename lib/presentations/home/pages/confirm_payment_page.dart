@@ -531,7 +531,7 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: ColoredBox(
-                          color: AppColors.white,
+                          color: Colors.transparent,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 24.0, vertical: 16.0),

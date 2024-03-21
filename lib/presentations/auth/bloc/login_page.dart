@@ -111,7 +111,9 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   loading: () {
                     return const Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(
+                        color: AppColors.primary,
+                      ),
                     );
                   },
                   // Tidak ada kasus yang lain

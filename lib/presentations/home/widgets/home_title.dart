@@ -42,8 +42,9 @@ class HomeTitle extends StatelessWidget {
         ),
         SizedBox(
           width: 200.0,
-          height: 80.0,
+          // height: 80.0,
           child: SearchInput(
+  
             controller: controller,
             onChanged: onChanged,
             hintText: 'Search for food, coffe, etc..',

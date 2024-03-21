@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_restopos/core/constants/colors.dart';
 
 import 'spaces.dart';
 
@@ -48,6 +49,7 @@ class CustomTextField extends StatelessWidget {
           keyboardType: keyboardType,
           decoration: InputDecoration(
             suffixIcon: suffixIcon,
+          
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16.0),
               borderSide: const BorderSide(color: Colors.grey),
@@ -56,7 +58,14 @@ class CustomTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(16.0),
               borderSide: const BorderSide(color: Colors.grey),
             ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.0),
+              borderSide: const BorderSide(
+                  color: AppColors.primary),
+                   // Ubah warna border saat aktif
+            ),
             hintText: label,
+            
           ),
         ),
       ],

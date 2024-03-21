@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
 
-
-
 class SearchInput extends StatelessWidget {
   final TextEditingController controller;
   final Function(String value)? onChanged;
@@ -45,7 +43,12 @@ class SearchInput extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.0),
             borderSide: const BorderSide(color: Colors.grey),
           ),
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.primary),
+          
+          ),
         ),
+        cursorColor: AppColors.primary,
       ),
     );
   }
