@@ -37,7 +37,7 @@ class ColumnButton extends StatelessWidget {
           Text(
             label,
             style: const TextStyle(
-              color: AppColors.primary,
+              color: AppColors.charchoal,
               fontSize: 12,
               fontWeight: FontWeight.w500,
             ),

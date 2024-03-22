@@ -57,7 +57,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
                 child: Text(
                   widget.tabTitles[index],
                   style: const TextStyle(
-                    color: AppColors.primary,
+                    color: AppColors.charchoal,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

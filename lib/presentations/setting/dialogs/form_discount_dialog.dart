@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restopos/core/components/custom_text_field.dart';
 import 'package:flutter_restopos/core/extensions/build_context_ext.dart';
 import 'package:flutter_restopos/data/models/response/discount_response_model.dart';
-import 'package:flutter_restopos/presentations/setting/bloc/bloc/add_discount_bloc.dart';
+import 'package:flutter_restopos/presentations/setting/bloc/add_discount/add_discount_bloc.dart';
 import 'package:flutter_restopos/presentations/setting/bloc/discount/discount_bloc.dart';
+import 'package:flutter_restopos/presentations/setting/bloc/edit_discount/edit_discount_bloc.dart';
 
 import '../../../core/components/buttons.dart';
 import '../../../core/components/spaces.dart';
@@ -21,11 +22,16 @@ class FormDiscountDialog extends StatefulWidget {
 class _FormDiscountDialogState extends State<FormDiscountDialog> {
   @override
   Widget build(BuildContext context) {
+
     final nameController = TextEditingController(text: widget.data?.name ?? '');
     final descriptionController =
         TextEditingController(text: widget.data?.description ?? '');
     final discountController =
-        TextEditingController(text: widget.data?.value??'');
+        TextEditingController(text: widget.data?.value ?? '');
+
+         final idController =
+        TextEditingController(text: widget.data?.id.toString() ?? '');
+ 
     return AlertDialog(
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,13 +90,20 @@ class _FormDiscountDialogState extends State<FormDiscountDialog> {
               const SpaceHeight(24.0),
               Button.filled(
                 onPressed: () {
-                  context.read<AddDiscountBloc>().add(
-                        AddDiscountEvent.addDiscount(
-                          name: nameController.text,
-                          description: descriptionController.text,
-                          value: int.parse(discountController.text),
-                        ),
-                      );
+                  widget.data == null
+                      ? context.read<AddDiscountBloc>().add(
+                            AddDiscountEvent.addDiscount(
+                              name: nameController.text,
+                              description: descriptionController.text,
+                              value: int.parse(discountController.text),
+                            ),
+                          )
+                      : context.read<EditDiscountBloc>().add(
+                          EditDiscountEvent.editDiscount(
+                              id: int.parse(idController.text),
+                              name: nameController.text,
+                              description: descriptionController.text,
+                              value: int.parse(discountController.text)));
                   context
                       .read<DiscountBloc>()
                       .add(const DiscountEvent.getDiscounts());

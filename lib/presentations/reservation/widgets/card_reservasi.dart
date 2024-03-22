@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_restopos/core/extensions/date_time_ext.dart';
 import 'package:flutter_restopos/gen/assets.gen.dart';
 import 'package:flutter_restopos/presentations/reservation/models/reservation_response_model.dart';
 
@@ -32,8 +33,8 @@ class ManageReservationCard extends StatelessWidget {
               const Spacer(),
               Container(
                 alignment: Alignment.center,
-                padding: const EdgeInsets.all(20.0),
-                margin: const EdgeInsets.only(top: 30.0),
+                padding: const EdgeInsets.all(10.0),
+                margin: const EdgeInsets.only(top: 10.0),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: AppColors.disabled.withOpacity(0.4),
@@ -50,25 +51,36 @@ class ManageReservationCard extends StatelessWidget {
               Center(
                 child: RichText(
                   text: TextSpan(
-                    text: 'Nama Promo : ',
+                    text: 'Pelanggan : ',
+                    
                     children: [
                       TextSpan(
                         text: data.customerName,
                         style: const TextStyle(
-                          fontSize: 18,
+                          fontSize: 12,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                     ],
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 12,
                       fontWeight: FontWeight.w400,
                       color: AppColors.black,
                     ),
                   ),
                 ),
               ),
-              const Spacer(),
+              Center(
+                child: Text(
+                
+                  data.reservationDate!.toFormattedDate(),
+                   style: const TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.black,
+                    ),
+                )
+              )
             ],
           ),
           Align(

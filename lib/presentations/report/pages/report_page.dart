@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restopos/core/components/custom_date_picker.dart';
 import 'package:flutter_restopos/core/components/dashed_line.dart';
 import 'package:flutter_restopos/core/components/spaces.dart';
+import 'package:flutter_restopos/core/constants/colors.dart';
 import 'package:flutter_restopos/core/extensions/date_time_ext.dart';
 import 'package:flutter_restopos/presentations/report/bloc/bloc/transaction_report_bloc.dart';
 import 'package:flutter_restopos/presentations/report/widgets/item_sales_report.dart';
@@ -28,6 +29,7 @@ class _ReportPageState extends State<ReportPage> {
     String searchDateFormatted =
         '${fromDate.toFormattedDate2()} to ${toDate.toFormattedDate2()}';
     return Scaffold(
+      backgroundColor: AppColors.background,
       body: Row(
         children: [
           // LEFT CONTENT
@@ -36,13 +38,13 @@ class _ReportPageState extends State<ReportPage> {
             child: Align(
               alignment: Alignment.topLeft,
               child: SingleChildScrollView(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const ReportTitle(),
                     Padding(
-                      padding: const EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.symmetric(vertical:5.0 , horizontal:0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -58,7 +60,7 @@ class _ReportPageState extends State<ReportPage> {
                               },
                             ),
                           ),
-                          const SpaceWidth(100.0),
+                          const SpaceWidth(20.0),
                           Flexible(
                             child: CustomDatePicker(
                               prefix: const Text('To: '),
@@ -74,71 +76,73 @@ class _ReportPageState extends State<ReportPage> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Wrap(
-                        children: [
-                          ReportMenu(
-                            label: 'Transaction Report',
-                            onPressed: () {
-                              selectedMenu = 1;
-                              title = 'Transaction Report';
-
-                              fromDate = DateTime.now()
-                                  .subtract(const Duration(days: 30));
-                              toDate = DateTime.now();
-
-                              setState(() {});
-
-                              // enddate 1 month before start date
-                              context.read<TransactionReportBloc>().add(
-                                  TransactionReportEvent.getReport(
-                                      startDate: fromDate, endDate: toDate));
-                            },
-                            isActive: selectedMenu == 1,
-                          ),
-                          ReportMenu(
-                            label: 'Item Sales Report',
-                            onPressed: () {
-                              selectedMenu = 4;
-                              title = 'Item Sales Report';
-                              setState(() {});
-                            },
-                            isActive: selectedMenu == 4,
-                          ),
-                          ReportMenu(
-                            label: 'Daily Sales Report',
-                            onPressed: () {
-                              selectedMenu = 5;
-                              title = 'Daily Sales Report';
-                              DateTime now = DateTime.now();
-                              String todayFormatted =
-                                  'Today, ${now.toFormattedDate2()}';
-
-                              fromDate = now;
-                              toDate = now;
-
-                              setState(() {
-                                searchDateFormatted = todayFormatted;
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(0.0),
+                        child: Wrap(
+                          children: [
+                            ReportMenu(
+                              label: 'Transaction Report',
+                              onPressed: () {
+                                selectedMenu = 1;
+                                title = 'Transaction Report';
+                      
+                                fromDate = DateTime.now()
+                                    .subtract(const Duration(days: 30));
+                                toDate = DateTime.now();
+                      
+                                setState(() {});
+                      
+                                // enddate 1 month before start date
                                 context.read<TransactionReportBloc>().add(
                                     TransactionReportEvent.getReport(
-                                        startDate: DateTime(
-                                            now.year, now.month, now.day),
-                                        endDate: now));
-                              });
-                            },
-                            isActive: selectedMenu == 5,
-                          ),
-                          ReportMenu(
-                            label: 'Summary Sales Report',
-                            onPressed: () {
-                              selectedMenu = 0;
-                              title = 'Summary Sales Report';
-                              setState(() {});
-                            },
-                            isActive: selectedMenu == 0,
-                          ),
-                        ],
+                                        startDate: fromDate, endDate: toDate));
+                              },
+                              isActive: selectedMenu == 1,
+                            ),
+                            ReportMenu(
+                              label: 'Item Sales Report',
+                              onPressed: () {
+                                selectedMenu = 4;
+                                title = 'Item Sales Report';
+                                setState(() {});
+                              },
+                              isActive: selectedMenu == 4,
+                            ),
+                            ReportMenu(
+                              label: 'Daily Sales Report',
+                              onPressed: () {
+                                selectedMenu = 5;
+                                title = 'Daily Sales Report';
+                                DateTime now = DateTime.now();
+                                String todayFormatted =
+                                    'Today, ${now.toFormattedDate2()}';
+                      
+                                fromDate = now;
+                                toDate = now;
+                      
+                                setState(() {
+                                  searchDateFormatted = todayFormatted;
+                                  context.read<TransactionReportBloc>().add(
+                                      TransactionReportEvent.getReport(
+                                          startDate: DateTime(
+                                              now.year, now.month, now.day),
+                                          endDate: now));
+                                });
+                              },
+                              isActive: selectedMenu == 5,
+                            ),
+                            ReportMenu(
+                              label: 'Summary Sales Report',
+                              onPressed: () {
+                                selectedMenu = 0;
+                                title = 'Summary Sales Report';
+                                setState(() {});
+                              },
+                              isActive: selectedMenu == 0,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],

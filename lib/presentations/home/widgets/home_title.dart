@@ -25,7 +25,7 @@ class HomeTitle extends StatelessWidget {
             const Text(
               'Nadilla\'s Resto POS',
               style: TextStyle(
-                color: AppColors.primary,
+                color: AppColors.charchoal,
                 fontSize: 22,
                 fontWeight: FontWeight.w600,
               ),
@@ -34,7 +34,7 @@ class HomeTitle extends StatelessWidget {
             Text(
               DateTime.now().toFormattedDate(),
               style: const TextStyle(
-                color: AppColors.subtitle,
+                color: AppColors.charchoal,
                 fontSize: 16,
               ),
             ),

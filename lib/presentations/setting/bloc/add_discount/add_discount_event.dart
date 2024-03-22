@@ -8,4 +8,6 @@ class AddDiscountEvent with _$AddDiscountEvent {
     required String description,
     required int value,
   }) = _AddDiscount;
+
+
 }

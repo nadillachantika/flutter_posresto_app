@@ -15,8 +15,8 @@ class ReportTitle extends StatelessWidget {
         const Text(
           'Report',
           style: TextStyle(
-            color: AppColors.primary,
-            fontSize: 28,
+            color: AppColors.charchoal,
+            fontSize: 22,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -24,11 +24,11 @@ class ReportTitle extends StatelessWidget {
         Text(
           DateTime.now().toFormattedDate(),
           style: const TextStyle(
-            color: AppColors.subtitle,
+            color: AppColors.charchoal,
             fontSize: 16,
           ),
         ),
-        const SpaceHeight(20.0),
+        const SpaceHeight(10.0),
         const Divider(),
       ],
     );

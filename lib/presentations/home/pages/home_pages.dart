@@ -231,7 +231,9 @@ class _HomePageState extends State<HomePage> {
                                     print('State: Loading');
 
                                     return const Center(
-                                      child: CircularProgressIndicator(),
+                                      child: CircularProgressIndicator(
+                                        color: AppColors.primary,
+                                      ),
                                     );
                                   }, loaded: (products) {
                                     print('State: loaded');
@@ -429,7 +431,7 @@ class _HomePageState extends State<HomePage> {
                           const Text(
                             'Orders #1',
                             style: TextStyle(
-                              color: AppColors.primary,
+                              color: AppColors.charchoal,
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
                             ),
@@ -459,7 +461,7 @@ class _HomePageState extends State<HomePage> {
                               Text(
                                 'Item',
                                 style: TextStyle(
-                                  color: AppColors.primary,
+                                  color: AppColors.charchoal,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -472,7 +474,7 @@ class _HomePageState extends State<HomePage> {
                                 child: Text(
                                   'Qty',
                                   style: TextStyle(
-                                    color: AppColors.primary,
+                                    color: AppColors.charchoal,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -482,7 +484,7 @@ class _HomePageState extends State<HomePage> {
                                 child: Text(
                                   'Price',
                                   style: TextStyle(
-                                    color: AppColors.primary,
+                                    color: AppColors.charchoal,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -599,7 +601,7 @@ class _HomePageState extends State<HomePage> {
                                   return Text(
                                     '$tax %',
                                     style: const TextStyle(
-                                      color: AppColors.primary,
+                                      color: AppColors.charchoal,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   );
@@ -631,7 +633,7 @@ class _HomePageState extends State<HomePage> {
                                   return Text(
                                     '$discount %',
                                     style: const TextStyle(
-                                      color: AppColors.primary,
+                                      color: AppColors.charchoal,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   );
@@ -667,7 +669,7 @@ class _HomePageState extends State<HomePage> {
 
                                   return Text(price!.currencyFormatRp,
                                       style: const TextStyle(
-                                        color: AppColors.primary,
+                                        color: AppColors.charchoal,
                                         fontWeight: FontWeight.w600,
                                       ));
                                 },

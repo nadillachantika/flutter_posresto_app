@@ -96,7 +96,7 @@ class OrderMenu extends StatelessWidget {
                 (data.product.price! * data.quantity).currencyFormatRp,
                 textAlign: TextAlign.right,
                 style: const TextStyle(
-                  color: AppColors.primary,
+                  color: AppColors.charchoal,
                   fontWeight: FontWeight.w500,
                 ),
               ),

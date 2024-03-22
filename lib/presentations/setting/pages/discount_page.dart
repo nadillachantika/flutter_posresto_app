@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_restopos/core/constants/colors.dart';
 import 'package:flutter_restopos/data/models/response/discount_response_model.dart';
 import 'package:flutter_restopos/presentations/home/widgets/custom_tab_bar.dart';
 import 'package:flutter_restopos/presentations/setting/bloc/discount/discount_bloc.dart';
@@ -54,8 +55,9 @@ class _DiscountPageState extends State<DiscountPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          const SizedBox(height: 16.0),
           const SettingsTitle('Kelola Diskon'),
-          const SizedBox(height: 24),
+          // const SizedBox(height: 24),
           CustomTabBar(
             tabTitles: const ['Semua'],
             initialTabIndex: 0,
@@ -67,7 +69,9 @@ class _DiscountPageState extends State<DiscountPage> {
                   return state.maybeWhen(
                       orElse: () {
                         return const Center(
-                          child: CircularProgressIndicator(),
+                          child: CircularProgressIndicator(
+                            color: AppColors.primary,
+                          ),
                         );
                       },
                       loaded: (discounts) {

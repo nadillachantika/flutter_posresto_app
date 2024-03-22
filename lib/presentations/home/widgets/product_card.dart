@@ -52,8 +52,8 @@ class ProductCard extends StatelessWidget {
                       data.image!.contains('http')
                           ? data.image!
                           : '${Variables.baseUrl}/storage/products/${data.image}',
-                      width: 50,
-                      height: 50,
+                      width: 80,
+                      height: 80,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -85,7 +85,7 @@ class ProductCard extends StatelessWidget {
                         data.price!.currencyFormatRp,
                         style: const TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: 12,
+                          fontSize: 11,
                         ),
                       ),
                     ),
