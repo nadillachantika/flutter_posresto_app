@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_restopos/core/components/custom_date_picker.dart';
 import 'package:flutter_restopos/core/components/custom_text_field.dart';
 import 'package:flutter_restopos/core/extensions/build_context_ext.dart';
 import 'package:flutter_restopos/presentations/reservation/models/reservation_model.dart';
@@ -38,6 +39,8 @@ class _FormDiscountDialogState extends State<FormReservasiDialog> {
     final phoneController =
         TextEditingController(text: widget.data?.customerPhone ?? '');
 
+    DateTime date = DateTime.now().add(const Duration(days: 2));
+
     return AlertDialog(
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -56,13 +59,17 @@ class _FormDiscountDialogState extends State<FormReservasiDialog> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SpaceHeight(16.0),
-              CustomTextField(
-                controller: resCodeController,
-                label: 'Kode Reservasi',
-                readOnly: true,
-                onChanged: (value) {},
-              ),
+              widget.data == null
+                  ? const SizedBox()
+                  : Padding(
+                      padding: const EdgeInsets.only(top: 16.0),
+                      child: CustomTextField(
+                        controller: resCodeController,
+                        label: 'Kode Reservasi',
+                        readOnly: true,
+                        onChanged: (value) {},
+                      ),
+                    ),
               const SpaceHeight(16.0),
               CustomTextField(
                 controller: nameController,
@@ -76,10 +83,15 @@ class _FormDiscountDialogState extends State<FormReservasiDialog> {
                 onChanged: (value) {},
               ),
               const SpaceHeight(16.0),
-              CustomTextField(
-                controller: resDateController,
-                label: 'Tgl. Reservasi',
-                onChanged: (value) {},
+              CustomDatePicker(
+                prefix: const Text('Tanggal '),
+                initialDate: date,
+                onDateSelected: (selectedDate) {
+                  date = selectedDate;
+                  setState(() {
+                    date = selectedDate;
+                  });
+                },
               ),
               const SpaceHeight(16.0),
               CustomTextField(
@@ -102,8 +114,9 @@ class _FormDiscountDialogState extends State<FormReservasiDialog> {
               const SpaceHeight(16.0),
               Button.filled(
                 onPressed: () {},
-                label:
-                    widget.data == null ? 'Simpan Reservasi' : 'Perbarui Reservasi',
+                label: widget.data == null
+                    ? 'Simpan Reservasi'
+                    : 'Perbarui Reservasi',
               ),
               const SpaceHeight(10.0),
               widget.data != null
