@@ -21,14 +21,14 @@ class ReservationRemoteDatasource {
   }
 
   Future<Either<String, bool>> addReservation(
-      String customerName,
-      String customerPhone,
-      String reservationDate,
-      String reservationTime,
-      String notes,
-      String status,
-      String tableNumber,
-      ) async {
+    String customerName,
+    String customerPhone,
+    String reservationDate,
+    String reservationTime,
+    String notes,
+    String status,
+    String tableNumber,
+  ) async {
     final url = Uri.parse('${Variables.baseUrl}/api/saveReservation');
     final authData = await AuthLocalDataSource().getAuthData();
     final response = await http.post(url, headers: {
@@ -44,7 +44,40 @@ class ReservationRemoteDatasource {
       'table_number': tableNumber,
     });
 
-     
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      return const Right(true);
+    } else {
+      return const Left('Failed to add reservation');
+    }
+  }
+
+
+   Future<Either<String, bool>> editReservation(
+    int id,
+    String customerName,
+    String customerPhone,
+    String reservationDate,
+    String reservationTime,
+    String notes,
+    String status,
+    String tableNumber,
+  ) async {
+    final url = Uri.parse('${Variables.baseUrl}/api/updateReservation/{$id}');
+    final authData = await AuthLocalDataSource().getAuthData();
+    final response = await http.post(url, headers: {
+      'Authorization': 'Bearer ${authData.token}',
+      'Accept': 'application/json'
+    }, body: {
+      'customer_name': customerName,
+      'customer_phone': customerPhone,
+      'reservation_date': reservationDate,
+      'reservation_time': reservationTime,
+      'notes': notes,
+      'status': status,
+      'table_number': tableNumber,
+    });
 
     print(response.body);
 

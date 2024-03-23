@@ -17,6 +17,7 @@ import 'package:flutter_restopos/presentations/home/bloc/order/order_bloc.dart';
 import 'package:flutter_restopos/presentations/home/pages/dashboard_page.dart';
 import 'package:flutter_restopos/presentations/report/bloc/bloc/transaction_report_bloc.dart';
 import 'package:flutter_restopos/presentations/reservation/bloc/add_reservation/add_reservation_bloc.dart';
+import 'package:flutter_restopos/presentations/reservation/bloc/edit_reservation/edit_reservation_bloc.dart';
 import 'package:flutter_restopos/presentations/reservation/bloc/reservation/reservation_bloc.dart';
 import 'package:flutter_restopos/presentations/setting/bloc/add_discount/add_discount_bloc.dart';
 import 'package:flutter_restopos/presentations/setting/bloc/discount/discount_bloc.dart';
@@ -79,6 +80,9 @@ class MyApp extends StatelessWidget {
           create: (context) => AddReservationBloc(
             ReservationRemoteDatasource(),
           ),
+        ),
+        BlocProvider(
+          create: (context)=> EditReservationBloc(ReservationRemoteDatasource()),
         )
       ],
       child: MaterialApp(

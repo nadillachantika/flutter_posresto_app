@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'add_reservation_bloc.dart';
+part of 'edit_reservation_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,11 +15,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$AddReservationEvent {
+mixin _$EditReservationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(
+            int id,
             String customerName,
             String customerPhone,
             String reservationDate,
@@ -27,13 +28,14 @@ mixin _$AddReservationEvent {
             String notes,
             String status,
             String tableNumber)
-        addReservation,
+        editReservation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(
+            int id,
             String customerName,
             String customerPhone,
             String reservationDate,
@@ -41,13 +43,14 @@ mixin _$AddReservationEvent {
             String notes,
             String status,
             String tableNumber)?
-        addReservation,
+        editReservation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(
+            int id,
             String customerName,
             String customerPhone,
             String reservationDate,
@@ -55,42 +58,43 @@ mixin _$AddReservationEvent {
             String notes,
             String status,
             String tableNumber)?
-        addReservation,
+        editReservation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_AddReservation value) addReservation,
+    required TResult Function(_EditReservation value) editReservation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_AddReservation value)? addReservation,
+    TResult? Function(_EditReservation value)? editReservation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_AddReservation value)? addReservation,
+    TResult Function(_EditReservation value)? editReservation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AddReservationEventCopyWith<$Res> {
-  factory $AddReservationEventCopyWith(
-          AddReservationEvent value, $Res Function(AddReservationEvent) then) =
-      _$AddReservationEventCopyWithImpl<$Res, AddReservationEvent>;
+abstract class $EditReservationEventCopyWith<$Res> {
+  factory $EditReservationEventCopyWith(EditReservationEvent value,
+          $Res Function(EditReservationEvent) then) =
+      _$EditReservationEventCopyWithImpl<$Res, EditReservationEvent>;
 }
 
 /// @nodoc
-class _$AddReservationEventCopyWithImpl<$Res, $Val extends AddReservationEvent>
-    implements $AddReservationEventCopyWith<$Res> {
-  _$AddReservationEventCopyWithImpl(this._value, this._then);
+class _$EditReservationEventCopyWithImpl<$Res,
+        $Val extends EditReservationEvent>
+    implements $EditReservationEventCopyWith<$Res> {
+  _$EditReservationEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -107,7 +111,7 @@ abstract class _$$StartedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$StartedImplCopyWithImpl<$Res>
-    extends _$AddReservationEventCopyWithImpl<$Res, _$StartedImpl>
+    extends _$EditReservationEventCopyWithImpl<$Res, _$StartedImpl>
     implements _$$StartedImplCopyWith<$Res> {
   __$$StartedImplCopyWithImpl(
       _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
@@ -121,7 +125,7 @@ class _$StartedImpl implements _Started {
 
   @override
   String toString() {
-    return 'AddReservationEvent.started()';
+    return 'EditReservationEvent.started()';
   }
 
   @override
@@ -138,6 +142,7 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(
+            int id,
             String customerName,
             String customerPhone,
             String reservationDate,
@@ -145,7 +150,7 @@ class _$StartedImpl implements _Started {
             String notes,
             String status,
             String tableNumber)
-        addReservation,
+        editReservation,
   }) {
     return started();
   }
@@ -155,6 +160,7 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(
+            int id,
             String customerName,
             String customerPhone,
             String reservationDate,
@@ -162,7 +168,7 @@ class _$StartedImpl implements _Started {
             String notes,
             String status,
             String tableNumber)?
-        addReservation,
+        editReservation,
   }) {
     return started?.call();
   }
@@ -172,6 +178,7 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(
+            int id,
             String customerName,
             String customerPhone,
             String reservationDate,
@@ -179,7 +186,7 @@ class _$StartedImpl implements _Started {
             String notes,
             String status,
             String tableNumber)?
-        addReservation,
+        editReservation,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -192,7 +199,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_AddReservation value) addReservation,
+    required TResult Function(_EditReservation value) editReservation,
   }) {
     return started(this);
   }
@@ -201,7 +208,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_AddReservation value)? addReservation,
+    TResult? Function(_EditReservation value)? editReservation,
   }) {
     return started?.call(this);
   }
@@ -210,7 +217,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_AddReservation value)? addReservation,
+    TResult Function(_EditReservation value)? editReservation,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -220,18 +227,19 @@ class _$StartedImpl implements _Started {
   }
 }
 
-abstract class _Started implements AddReservationEvent {
+abstract class _Started implements EditReservationEvent {
   const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
-abstract class _$$AddReservationImplCopyWith<$Res> {
-  factory _$$AddReservationImplCopyWith(_$AddReservationImpl value,
-          $Res Function(_$AddReservationImpl) then) =
-      __$$AddReservationImplCopyWithImpl<$Res>;
+abstract class _$$EditReservationImplCopyWith<$Res> {
+  factory _$$EditReservationImplCopyWith(_$EditReservationImpl value,
+          $Res Function(_$EditReservationImpl) then) =
+      __$$EditReservationImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {String customerName,
+      {int id,
+      String customerName,
       String customerPhone,
       String reservationDate,
       String reservationTime,
@@ -241,16 +249,17 @@ abstract class _$$AddReservationImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$AddReservationImplCopyWithImpl<$Res>
-    extends _$AddReservationEventCopyWithImpl<$Res, _$AddReservationImpl>
-    implements _$$AddReservationImplCopyWith<$Res> {
-  __$$AddReservationImplCopyWithImpl(
-      _$AddReservationImpl _value, $Res Function(_$AddReservationImpl) _then)
+class __$$EditReservationImplCopyWithImpl<$Res>
+    extends _$EditReservationEventCopyWithImpl<$Res, _$EditReservationImpl>
+    implements _$$EditReservationImplCopyWith<$Res> {
+  __$$EditReservationImplCopyWithImpl(
+      _$EditReservationImpl _value, $Res Function(_$EditReservationImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? customerName = null,
     Object? customerPhone = null,
     Object? reservationDate = null,
@@ -259,7 +268,11 @@ class __$$AddReservationImplCopyWithImpl<$Res>
     Object? status = null,
     Object? tableNumber = null,
   }) {
-    return _then(_$AddReservationImpl(
+    return _then(_$EditReservationImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       customerName: null == customerName
           ? _value.customerName
           : customerName // ignore: cast_nullable_to_non_nullable
@@ -294,9 +307,10 @@ class __$$AddReservationImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AddReservationImpl implements _AddReservation {
-  const _$AddReservationImpl(
-      {required this.customerName,
+class _$EditReservationImpl implements _EditReservation {
+  const _$EditReservationImpl(
+      {required this.id,
+      required this.customerName,
       required this.customerPhone,
       required this.reservationDate,
       required this.reservationTime,
@@ -304,6 +318,8 @@ class _$AddReservationImpl implements _AddReservation {
       required this.status,
       required this.tableNumber});
 
+  @override
+  final int id;
   @override
   final String customerName;
   @override
@@ -321,14 +337,15 @@ class _$AddReservationImpl implements _AddReservation {
 
   @override
   String toString() {
-    return 'AddReservationEvent.addReservation(customerName: $customerName, customerPhone: $customerPhone, reservationDate: $reservationDate, reservationTime: $reservationTime, notes: $notes, status: $status, tableNumber: $tableNumber)';
+    return 'EditReservationEvent.editReservation(id: $id, customerName: $customerName, customerPhone: $customerPhone, reservationDate: $reservationDate, reservationTime: $reservationTime, notes: $notes, status: $status, tableNumber: $tableNumber)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AddReservationImpl &&
+            other is _$EditReservationImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.customerName, customerName) ||
                 other.customerName == customerName) &&
             (identical(other.customerPhone, customerPhone) ||
@@ -344,14 +361,14 @@ class _$AddReservationImpl implements _AddReservation {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, customerName, customerPhone,
+  int get hashCode => Object.hash(runtimeType, id, customerName, customerPhone,
       reservationDate, reservationTime, notes, status, tableNumber);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AddReservationImplCopyWith<_$AddReservationImpl> get copyWith =>
-      __$$AddReservationImplCopyWithImpl<_$AddReservationImpl>(
+  _$$EditReservationImplCopyWith<_$EditReservationImpl> get copyWith =>
+      __$$EditReservationImplCopyWithImpl<_$EditReservationImpl>(
           this, _$identity);
 
   @override
@@ -359,6 +376,7 @@ class _$AddReservationImpl implements _AddReservation {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(
+            int id,
             String customerName,
             String customerPhone,
             String reservationDate,
@@ -366,9 +384,9 @@ class _$AddReservationImpl implements _AddReservation {
             String notes,
             String status,
             String tableNumber)
-        addReservation,
+        editReservation,
   }) {
-    return addReservation(customerName, customerPhone, reservationDate,
+    return editReservation(id, customerName, customerPhone, reservationDate,
         reservationTime, notes, status, tableNumber);
   }
 
@@ -377,6 +395,7 @@ class _$AddReservationImpl implements _AddReservation {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(
+            int id,
             String customerName,
             String customerPhone,
             String reservationDate,
@@ -384,10 +403,10 @@ class _$AddReservationImpl implements _AddReservation {
             String notes,
             String status,
             String tableNumber)?
-        addReservation,
+        editReservation,
   }) {
-    return addReservation?.call(customerName, customerPhone, reservationDate,
-        reservationTime, notes, status, tableNumber);
+    return editReservation?.call(id, customerName, customerPhone,
+        reservationDate, reservationTime, notes, status, tableNumber);
   }
 
   @override
@@ -395,6 +414,7 @@ class _$AddReservationImpl implements _AddReservation {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(
+            int id,
             String customerName,
             String customerPhone,
             String reservationDate,
@@ -402,11 +422,11 @@ class _$AddReservationImpl implements _AddReservation {
             String notes,
             String status,
             String tableNumber)?
-        addReservation,
+        editReservation,
     required TResult orElse(),
   }) {
-    if (addReservation != null) {
-      return addReservation(customerName, customerPhone, reservationDate,
+    if (editReservation != null) {
+      return editReservation(id, customerName, customerPhone, reservationDate,
           reservationTime, notes, status, tableNumber);
     }
     return orElse();
@@ -416,44 +436,46 @@ class _$AddReservationImpl implements _AddReservation {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_AddReservation value) addReservation,
+    required TResult Function(_EditReservation value) editReservation,
   }) {
-    return addReservation(this);
+    return editReservation(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_AddReservation value)? addReservation,
+    TResult? Function(_EditReservation value)? editReservation,
   }) {
-    return addReservation?.call(this);
+    return editReservation?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_AddReservation value)? addReservation,
+    TResult Function(_EditReservation value)? editReservation,
     required TResult orElse(),
   }) {
-    if (addReservation != null) {
-      return addReservation(this);
+    if (editReservation != null) {
+      return editReservation(this);
     }
     return orElse();
   }
 }
 
-abstract class _AddReservation implements AddReservationEvent {
-  const factory _AddReservation(
-      {required final String customerName,
+abstract class _EditReservation implements EditReservationEvent {
+  const factory _EditReservation(
+      {required final int id,
+      required final String customerName,
       required final String customerPhone,
       required final String reservationDate,
       required final String reservationTime,
       required final String notes,
       required final String status,
-      required final String tableNumber}) = _$AddReservationImpl;
+      required final String tableNumber}) = _$EditReservationImpl;
 
+  int get id;
   String get customerName;
   String get customerPhone;
   String get reservationDate;
@@ -462,12 +484,12 @@ abstract class _AddReservation implements AddReservationEvent {
   String get status;
   String get tableNumber;
   @JsonKey(ignore: true)
-  _$$AddReservationImplCopyWith<_$AddReservationImpl> get copyWith =>
+  _$$EditReservationImplCopyWith<_$EditReservationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$AddReservationState {
+mixin _$EditReservationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -521,16 +543,17 @@ mixin _$AddReservationState {
 }
 
 /// @nodoc
-abstract class $AddReservationStateCopyWith<$Res> {
-  factory $AddReservationStateCopyWith(
-          AddReservationState value, $Res Function(AddReservationState) then) =
-      _$AddReservationStateCopyWithImpl<$Res, AddReservationState>;
+abstract class $EditReservationStateCopyWith<$Res> {
+  factory $EditReservationStateCopyWith(EditReservationState value,
+          $Res Function(EditReservationState) then) =
+      _$EditReservationStateCopyWithImpl<$Res, EditReservationState>;
 }
 
 /// @nodoc
-class _$AddReservationStateCopyWithImpl<$Res, $Val extends AddReservationState>
-    implements $AddReservationStateCopyWith<$Res> {
-  _$AddReservationStateCopyWithImpl(this._value, this._then);
+class _$EditReservationStateCopyWithImpl<$Res,
+        $Val extends EditReservationState>
+    implements $EditReservationStateCopyWith<$Res> {
+  _$EditReservationStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -547,7 +570,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$AddReservationStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$EditReservationStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -561,7 +584,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'AddReservationState.initial()';
+    return 'EditReservationState.initial()';
   }
 
   @override
@@ -648,7 +671,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements AddReservationState {
+abstract class _Initial implements EditReservationState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -661,7 +684,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$AddReservationStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$EditReservationStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -675,7 +698,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'AddReservationState.loading()';
+    return 'EditReservationState.loading()';
   }
 
   @override
@@ -762,7 +785,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements AddReservationState {
+abstract class _Loading implements EditReservationState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -777,7 +800,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$AddReservationStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$EditReservationStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
@@ -807,7 +830,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'AddReservationState.error(message: $message)';
+    return 'EditReservationState.error(message: $message)';
   }
 
   @override
@@ -902,7 +925,7 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements AddReservationState {
+abstract class _Error implements EditReservationState {
   const factory _Error(final String message) = _$ErrorImpl;
 
   String get message;
@@ -920,7 +943,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$AddReservationStateCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$EditReservationStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
@@ -934,7 +957,7 @@ class _$SuccessImpl implements _Success {
 
   @override
   String toString() {
-    return 'AddReservationState.success()';
+    return 'EditReservationState.success()';
   }
 
   @override
@@ -1021,6 +1044,6 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements AddReservationState {
+abstract class _Success implements EditReservationState {
   const factory _Success() = _$SuccessImpl;
 }
