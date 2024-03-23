@@ -64,7 +64,7 @@ class ReservationRemoteDatasource {
     String status,
     String tableNumber,
   ) async {
-    final url = Uri.parse('${Variables.baseUrl}/api/updateReservation/{$id}');
+    final url = Uri.parse('${Variables.baseUrl}/api/updateReservation/$id');
     final authData = await AuthLocalDataSource().getAuthData();
     final response = await http.post(url, headers: {
       'Authorization': 'Bearer ${authData.token}',
