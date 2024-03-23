@@ -33,129 +33,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final searchController = TextEditingController();
 
-  // List<ProductModel> searchResults = [];
-  // final List<ProductModel> products = [
-  //   ProductModel(
-  //       image: Assets.images.menu1.path,
-  //       name: 'Express Bowl Ayam Rica',
-  //       category: ProductCategory.food,
-  //       price: 32000,
-  //       stock: 10),
-  //   ProductModel(
-  //       image: Assets.images.menu2.path,
-  //       name: 'Crispy Black Pepper Sauce',
-  //       category: ProductCategory.food,
-  //       price: 36000,
-  //       stock: 10),
-  //   ProductModel(
-  //       image: Assets.images.menu3.path,
-  //       name: 'Mie Ayam Teriyaki',
-  //       category: ProductCategory.food,
-  //       price: 33000,
-  //       stock: 10),
-  //   ProductModel(
-  //       image: Assets.images.menu4.path,
-  //       name: 'Nasi Ayam Teriyaki',
-  //       category: ProductCategory.food,
-  //       price: 21000,
-  //       stock: 10),
-  //   ProductModel(
-  //       image: Assets.images.menu5.path,
-  //       name: ' Katsu Teriyaki Saos',
-  //       category: ProductCategory.food,
-  //       price: 40000,
-  //       stock: 10),
-  //   ProductModel(
-  //       image: Assets.images.menu6.path,
-  //       name: 'Sapo Tahu Ayam',
-  //       category: ProductCategory.food,
-  //       price: 41000,
-  //       stock: 10),
-  //   ProductModel(
-  //       image: Assets.images.menu7.path,
-  //       name: ' Sapo Tahu Sapi',
-  //       category: ProductCategory.food,
-  //       price: 44000,
-  //       stock: 10),
-  //   ProductModel(
-  //       image: Assets.images.menu8.path,
-  //       name: 'Chicken Cordon Bleu',
-  //       category: ProductCategory.food,
-  //       price: 45000,
-  //       stock: 10),
-  //   ProductModel(
-  //       image: Assets.images.menu10.path,
-  //       name: 'Fish & Chips ',
-  //       category: ProductCategory.food,
-  //       price: 35000,
-  //       stock: 10),
-  //   ProductModel(
-  //       image: Assets.images.menu11.path,
-  //       name: 'Bihun Ayam',
-  //       category: ProductCategory.food,
-  //       price: 39000,
-  //       stock: 10),
-  //   ProductModel(
-  //       image: Assets.images.menu12.path,
-  //       name: 'Bihun Goreng Ayam',
-  //       category: ProductCategory.food,
-  //       price: 38000,
-  //       stock: 10),
-  //   ProductModel(
-  //       image: Assets.images.menu13.path,
-  //       name: 'Nasi Goreng Special',
-  //       category: ProductCategory.food,
-  //       price: 35000,
-  //       stock: 10),
-  //   ProductModel(
-  //       image: Assets.images.menu14.path,
-  //       name: 'Nasi Cap Cay',
-  //       category: ProductCategory.food,
-  //       price: 40000,
-  //       stock: 10),
-  //   ProductModel(
-  //       image: Assets.images.drink1.path,
-  //       name: 'Teh Tarik',
-  //       category: ProductCategory.drink,
-  //       price: 20000,
-  //       stock: 10),
-  //   ProductModel(
-  //       image: Assets.images.drink2.path,
-  //       name: 'Thai Tea',
-  //       category: ProductCategory.drink,
-  //       price: 22000,
-  //       stock: 10),
-  //   ProductModel(
-  //       image: Assets.images.drink3.path,
-  //       name: 'Jus Melon',
-  //       category: ProductCategory.drink,
-  //       price: 25000,
-  //       stock: 10),
-  //   ProductModel(
-  //       image: Assets.images.drink4.path,
-  //       name: 'Jus Stawberry',
-  //       category: ProductCategory.drink,
-  //       price: 24000,
-  //       stock: 10),
-  //   ProductModel(
-  //       image: Assets.images.drink5.path,
-  //       name: 'Air Mineral Botol',
-  //       category: ProductCategory.drink,
-  //       price: 6000,
-  //       stock: 10),
-  //   ProductModel(
-  //       image: Assets.images.drink6.path,
-  //       name: 'Jus Alpukat',
-  //       category: ProductCategory.drink,
-  //       price: 25000,
-  //       stock: 10),
-  //   ProductModel(
-  //       image: Assets.images.menu14.path,
-  //       name: 'Caramel Candy Blend',
-  //       category: ProductCategory.drink,
-  //       price: 30000,
-  //       stock: 10),
-  // ];
+  bool isDineInSelected = false;
+  bool isBookingSelected = false;
 
   @override
   void initState() {
@@ -439,18 +318,71 @@ class _HomePageState extends State<HomePage> {
                           const SpaceHeight(8.0),
                           Row(
                             children: [
-                              Button.filled(
-                                width: 120.0,
-                                height: 40,
-                                onPressed: () {},
-                                label: 'Dine In',
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color:
+                                        isDineInSelected ? AppColors.primary : null,
+                                    borderRadius: BorderRadius.circular(16.0),
+                                    border: Border.all(
+                                      color: isDineInSelected
+                                          ? Colors.transparent
+                                          : Colors.grey,
+                                    ),
+                                  ),
+                                  child: TextButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        isDineInSelected = !isDineInSelected;
+                                        if (isDineInSelected) {
+                                          isBookingSelected = false;
+                                        }
+                                      });
+                                    },
+                                    child: Text(
+                                      'Dine In',
+                                      style: TextStyle(
+                                        color: isDineInSelected
+                                            ? Colors.white
+                                            : Colors.grey
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
-                              const SpaceWidth(8.0),
-                              Button.outlined(
-                                width: 100.0,
-                                height: 40,
-                                onPressed: () {},
-                                label: 'To Go',
+                              const SizedBox(width: 8.0),
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: isBookingSelected
+                                        ? AppColors.primary
+                                        : null,
+                                    borderRadius: BorderRadius.circular(16.0),
+                                    border: Border.all(
+                                      color: isBookingSelected
+                                          ? Colors.transparent
+                                          : Colors.grey,
+                                    ),
+                                  ),
+                                  child: TextButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        isBookingSelected = !isBookingSelected;
+                                        if (isBookingSelected) {
+                                          isDineInSelected = false;
+                                        }
+                                      });
+                                    },
+                                    child: Text(
+                                      'Booking',
+                                      style: TextStyle(
+                                        color: isBookingSelected
+                                            ? Colors.white
+                                            : Colors.grey
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -527,7 +459,7 @@ class _HomePageState extends State<HomePage> {
                                               alignment: Alignment.centerRight,
                                               color: Colors
                                                   .red, // Warna latar belakang saat digeser
-                                              child: Icon(Icons.delete,
+                                              child: const Icon(Icons.delete,
                                                   color: Colors.white),
                                             ),
                                             child: OrderMenu(
