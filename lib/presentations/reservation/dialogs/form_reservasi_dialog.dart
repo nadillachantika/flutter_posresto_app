@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_restopos/core/components/components.dart';
 import 'package:flutter_restopos/core/components/custom_date_picker.dart';
 import 'package:flutter_restopos/core/components/custom_text_field.dart';
+import 'package:flutter_restopos/core/components/custom_time_picker.dart';
 import 'package:flutter_restopos/core/extensions/build_context_ext.dart';
+import 'package:flutter_restopos/core/extensions/date_time_ext.dart';
+import 'package:flutter_restopos/presentations/reservation/bloc/add_reservation/add_reservation_bloc.dart';
+import 'package:flutter_restopos/presentations/reservation/bloc/reservation/reservation_bloc.dart';
 import 'package:flutter_restopos/presentations/reservation/models/reservation_model.dart';
 import 'package:flutter_restopos/presentations/reservation/models/reservation_response_model.dart';
 import 'package:flutter_restopos/presentations/setting/bloc/discount/discount_bloc.dart';
@@ -40,6 +45,7 @@ class _FormDiscountDialogState extends State<FormReservasiDialog> {
         TextEditingController(text: widget.data?.customerPhone ?? '');
 
     DateTime date = DateTime.now().add(const Duration(days: 2));
+    TimeOfDay time = const TimeOfDay(hour: 12, minute: 0);
 
     return AlertDialog(
       title: Row(
@@ -94,16 +100,32 @@ class _FormDiscountDialogState extends State<FormReservasiDialog> {
                 },
               ),
               const SpaceHeight(16.0),
-              CustomTextField(
-                controller: resTimeController,
-                label: 'Waktu Reservasi',
-                onChanged: (value) {},
+              CustomTimePicker(
+                prefix: const Text('Jam '),
+                initialTime: time,
+                onTimeSelected: (selectedTime) {
+                  time = selectedTime;
+                  setState(() {
+                    time = selectedTime;
+                  });
+                },
               ),
               const SpaceHeight(16.0),
-              CustomTextField(
-                controller: statusController,
+              CustomDropdown(
+                value: 'pending',
+                items: const [
+                  'pending',
+                  'confirmed',
+                  'cancelled',
+                  'seated',
+                  'completed'
+                ],
                 label: 'Status',
-                onChanged: (value) {},
+                onChanged: (newValue) {
+                  setState(() {
+                    statusController.text = newValue ?? 'pending';
+                  });
+                },
               ),
               const SpaceHeight(16.0),
               CustomTextField(
@@ -113,7 +135,41 @@ class _FormDiscountDialogState extends State<FormReservasiDialog> {
               ),
               const SpaceHeight(16.0),
               Button.filled(
-                onPressed: () {},
+                onPressed: () {
+                  if (widget.data == null) {
+                    // Tambahkan reservasi baru
+                    context.read<AddReservationBloc>().add(
+                          const AddReservationEvent.addReservation(
+                            customerName: 'nadilla',
+                            customerPhone: '082131841',
+                            reservationDate: '2024-03-21',
+                            reservationTime: '12:00',
+                            notes: 'nfjfnnf',
+                            status: 'pending',
+                            tableNumber: '1',
+                          ),
+                        );
+                  } else {
+                    // Perbarui reservasi
+                    // context.read<AddReservationBloc>().add(
+                    //   AddReservationEvent.updateReservation(
+                    //     id: widget.data!.id, // Gunakan ID reservasi yang sudah ada
+                    //     customerName: nameController.text,
+                    //     customerPhone: phoneController.text,
+                    //     notes: notesController.text,
+                    //     status: statusController.text,
+                    //     reservationDate: date.toFormattedDate(), // Ubah format tanggal sesuai kebutuhan
+                    //     reservationTime: time.format(context), // Ubah format waktu sesuai kebutuhan
+                    //     tableNumber: tableController.text,
+                    //   ),
+                    // );
+                  }
+
+                  // Jangan lupa tambahkan logika lainnya, seperti menutup dialog, memperbarui daftar reservasi, dll.
+
+                  context
+                      .pop(); // Tutup dialog setelah berhasil menyimpan/perbarui reservasi.
+                },
                 label: widget.data == null
                     ? 'Simpan Reservasi'
                     : 'Perbarui Reservasi',

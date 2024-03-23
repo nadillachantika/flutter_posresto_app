@@ -3,7 +3,6 @@ import 'package:flutter_restopos/core/constants/colors.dart';
 import 'package:flutter_restopos/core/extensions/date_time_ext.dart';
 import 'package:flutter_restopos/gen/assets.gen.dart';
 
-
 class CustomDatePicker extends StatefulWidget {
   final void Function(DateTime selectedDate)? onDateSelected;
   final DateTime initialDate;
@@ -74,12 +73,17 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                       ),
                       prefix: widget.prefix,
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(6.0),
-                        borderSide: const BorderSide(color: AppColors.stroke),
+                        borderRadius: BorderRadius.circular(16.0),
+                        borderSide: const BorderSide(color: Colors.grey),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(6.0),
-                        borderSide: const BorderSide(color: AppColors.stroke),
+                        borderRadius: BorderRadius.circular(16.0),
+                        borderSide: const BorderSide(color: Colors.grey),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16.0),
+                        borderSide: const BorderSide(color: AppColors.primary),
+                        // Ubah warna border saat aktif
                       ),
                     ),
                   ),

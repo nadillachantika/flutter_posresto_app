@@ -16,6 +16,7 @@ import 'package:flutter_restopos/presentations/home/bloc/local_product/local_pro
 import 'package:flutter_restopos/presentations/home/bloc/order/order_bloc.dart';
 import 'package:flutter_restopos/presentations/home/pages/dashboard_page.dart';
 import 'package:flutter_restopos/presentations/report/bloc/bloc/transaction_report_bloc.dart';
+import 'package:flutter_restopos/presentations/reservation/bloc/add_reservation/add_reservation_bloc.dart';
 import 'package:flutter_restopos/presentations/reservation/bloc/reservation/reservation_bloc.dart';
 import 'package:flutter_restopos/presentations/setting/bloc/add_discount/add_discount_bloc.dart';
 import 'package:flutter_restopos/presentations/setting/bloc/discount/discount_bloc.dart';
@@ -64,19 +65,24 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => AddDiscountBloc(DiscountRemoteDatasource()),
         ),
-         BlocProvider(
-          create: (context) => TransactionReportBloc(ProductLocalDatasource.instance),
+        BlocProvider(
+          create: (context) =>
+              TransactionReportBloc(ProductLocalDatasource.instance),
         ),
-        BlocProvider(create: (context) => ReservationBloc(ReservationRemoteDatasource())
-        ),
-         BlocProvider(
+        BlocProvider(
+            create: (context) =>
+                ReservationBloc(ReservationRemoteDatasource())),
+        BlocProvider(
           create: (context) => EditDiscountBloc(DiscountRemoteDatasource()),
         ),
-        
+        BlocProvider(
+          create: (context) => AddReservationBloc(
+            ReservationRemoteDatasource(),
+          ),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-    
         title: 'Nadilla resto POS',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),

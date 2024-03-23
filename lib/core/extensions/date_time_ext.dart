@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 const List<String> _dayNames = [
   'Senin',
   'Selasa',
@@ -40,11 +42,18 @@ extension DateTimeExt on DateTime {
     return '$dayName, $day $month $year';
   }
 
-   String toFormattedDate2() {
+  String toFormattedDate2() {
     String day = this.day.toString();
     String month = _monthNames[this.month - 1];
     String year = this.year.toString();
 
     return '$day $month $year';
+  }
+
+  String toFormattedTime2() {
+    String hour = this.hour.toString().padLeft(2, '0');
+    String minute = this.minute.toString().padLeft(2, '0');
+
+    return '$hour:$minute';
   }
 }

@@ -19,7 +19,7 @@ import 'package:flutter_restopos/presentations/reservation/widgets/reservation_t
 import 'package:flutter_restopos/presentations/setting/widgets/add_data.dart';
 
 class ReservationPage extends StatefulWidget {
-  const ReservationPage({super.key});
+  const ReservationPage({Key? key}) : super(key: key);
 
   @override
   State<ReservationPage> createState() => _ReservationPageState();
@@ -94,22 +94,10 @@ class _ReservationPageState extends State<ReservationPage> {
                             fontSize: 16,
                           ),
                         ),
-                        // const SpaceHeight(16.0),
-                        // ListTile(
-                        //   leading: Assets.icons.calendar.svg(),
-                        //   title: const Text('Kelola Reservasi'),
-                        //   subtitle: const Text('Tambah Data Reservasi'),
-                        //   textColor: AppColors.charchoal,
-                        //   tileColor: currentIndex == 3
-                        //       ? AppColors.blueLight
-                        //       : Colors.transparent,
-                        //   onTap: () => indexValue(3),
-                        // ),
                       ],
                     ),
                   ),
                 ),
-
                 // RIGHT CONTENT
                 Expanded(
                   flex: 4,
@@ -124,7 +112,6 @@ class _ReservationPageState extends State<ReservationPage> {
                             prefix: const Text('From: '),
                             initialDate: fromDate,
                             onDateSelected: (selectedDate) {
-                              // fromDate = selectedDate;
                               setState(() {
                                 fromDate = selectedDate;
                               });
@@ -137,7 +124,6 @@ class _ReservationPageState extends State<ReservationPage> {
                             prefix: const Text('To: '),
                             initialDate: toDate,
                             onDateSelected: (selectedDate) {
-                              // toDate = selectedDate;
                               setState(() {
                                 toDate = selectedDate;
                               });
@@ -151,10 +137,6 @@ class _ReservationPageState extends State<ReservationPage> {
               ],
             ),
           ),
-          // const Padding(
-          //   padding: EdgeInsets.symmetric(horizontal: 16.0),
-          //   child: Divider(),
-          // ),
           Expanded(
             flex: 5,
             child: Padding(
@@ -163,14 +145,12 @@ class _ReservationPageState extends State<ReservationPage> {
                 child: BlocBuilder<ReservationBloc, ReservationState>(
                   builder: (context, state) {
                     return state.maybeWhen(orElse: () {
-                      print(state);
                       return const Center(
                         child: CircularProgressIndicator(
                           color: AppColors.primary,
                         ),
                       );
                     }, loaded: (reservations) {
-                      print(state);
                       return GridView.builder(
                         shrinkWrap: true,
                         itemCount: reservations.length + 1,

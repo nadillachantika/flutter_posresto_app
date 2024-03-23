@@ -1,44 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_restopos/core/constants/colors.dart';
-import 'package:flutter_restopos/core/extensions/date_time_ext.dart';
-import 'package:flutter_restopos/gen/assets.gen.dart';
 
-
-class CustomDatePicker extends StatefulWidget {
-  final void Function(DateTime selectedDate)? onDateSelected;
-  final DateTime initialDate;
+class CustomTimePicker extends StatefulWidget {
+  final void Function(TimeOfDay selectedTime)? onTimeSelected;
+  final TimeOfDay initialTime;
   final Widget? prefix;
 
-  const CustomDatePicker({
-    super.key,
-    required this.initialDate,
-    this.onDateSelected,
+  const CustomTimePicker({
+    Key? key,
+    required this.initialTime,
+    this.onTimeSelected,
     this.prefix,
-  });
+  }) : super(key: key);
 
   @override
-  State<CustomDatePicker> createState() => _CustomDatePickerState();
+  State<CustomTimePicker> createState() => _CustomTimePickerState();
 }
 
-class _CustomDatePickerState extends State<CustomDatePicker> {
-  late DateTime selectedDate;
+class _CustomTimePickerState extends State<CustomTimePicker> {
+  late TimeOfDay selectedTime;
 
   @override
   void initState() {
-    selectedDate = widget.initialDate;
+    selectedTime = widget.initialTime;
     super.initState();
   }
 
-  Future<void> _selectDate(BuildContext context) async {
+  Future<void> _selectTime(BuildContext context) async {
     final TimeOfDay? picked = await showTimePicker(
-    
+      context: context,
+      initialTime: selectedTime,
     );
-    if (picked != null && picked != selectedDate) {
+    if (picked != null && picked != selectedTime) {
       setState(() {
-        selectedDate = picked;
+        selectedTime = picked;
       });
-      if (widget.onDateSelected != null) {
-        widget.onDateSelected!(picked);
+      if (widget.onTimeSelected != null) {
+        widget.onTimeSelected!(picked);
       }
     }
   }
@@ -53,30 +51,27 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
           children: [
             Flexible(
               child: GestureDetector(
-                onTap: () => _selectDate(context),
+                onTap: () => _selectTime(context),
                 child: AbsorbPointer(
                   child: TextFormField(
                     style: const TextStyle(
-                      color: AppColors.black,
+                      color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
                     readOnly: true,
                     controller: TextEditingController(
-                      text: selectedDate.toFormattedDate2(),
+                      text: selectedTime.format(context),
                     ),
                     decoration: InputDecoration(
-                      suffixIcon: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Assets.icons.calendar.svg(),
-                      ),
+                      suffixIcon: const Icon(Icons.access_time, color: AppColors.primary,),
                       prefix: widget.prefix,
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(6.0),
-                        borderSide: const BorderSide(color: AppColors.stroke),
+                        borderRadius: BorderRadius.circular(16.0),
+                        borderSide: const BorderSide(color: Colors.grey),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(6.0),
-                        borderSide: const BorderSide(color: AppColors.stroke),
+                        borderRadius: BorderRadius.circular(16.0),
+                        borderSide: const BorderSide(color: Colors.grey),
                       ),
                     ),
                   ),
