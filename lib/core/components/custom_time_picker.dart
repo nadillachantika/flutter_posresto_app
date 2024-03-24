@@ -64,7 +64,6 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
                     ),
                     decoration: InputDecoration(
                       suffixIcon: const Icon(Icons.access_time, color: AppColors.primary,),
-                      prefix: widget.prefix,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16.0),
                         borderSide: const BorderSide(color: Colors.grey),

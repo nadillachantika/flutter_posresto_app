@@ -3,6 +3,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restopos/core/components/buttons.dart';
+import 'package:flutter_restopos/core/components/custom_date_picker.dart';
+import 'package:flutter_restopos/core/components/custom_dropdown.dart';
+import 'package:flutter_restopos/core/components/custom_text_field.dart';
+import 'package:flutter_restopos/core/components/custom_time_picker.dart';
 import 'package:flutter_restopos/core/components/spaces.dart';
 import 'package:flutter_restopos/core/constants/colors.dart';
 import 'package:flutter_restopos/core/extensions/build_context_ext.dart';
@@ -11,12 +15,14 @@ import 'package:flutter_restopos/core/extensions/string_ext.dart';
 import 'package:flutter_restopos/gen/assets.gen.dart';
 import 'package:flutter_restopos/presentations/home/bloc/checkout/checkout_bloc.dart';
 import 'package:flutter_restopos/presentations/home/bloc/local_product/local_product_bloc.dart';
+import 'package:flutter_restopos/presentations/home/bloc/reservation_data/reservation_data_bloc.dart';
 import 'package:flutter_restopos/presentations/home/dialog/discount_dialog.dart';
 import 'package:flutter_restopos/presentations/home/dialog/service_dialog.dart';
 import 'package:flutter_restopos/presentations/home/dialog/tax_dialog.dart';
 import 'package:flutter_restopos/presentations/home/models/product_category.dart';
 import 'package:flutter_restopos/presentations/home/models/product_model.dart';
 import 'package:flutter_restopos/presentations/home/pages/confirm_payment_page.dart';
+import 'package:flutter_restopos/presentations/home/pages/reservation_data_page.dart';
 import 'package:flutter_restopos/presentations/home/widgets/column_button.dart';
 import 'package:flutter_restopos/presentations/home/widgets/custom_tab_bar.dart';
 import 'package:flutter_restopos/presentations/home/widgets/home_title.dart';
@@ -32,6 +38,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final searchController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController dateController = TextEditingController();
+  final TextEditingController timeController = TextEditingController();
+  final TextEditingController tableNumberController = TextEditingController();
+  TextEditingController statusController = TextEditingController();
+  final TextEditingController notesController = TextEditingController();
 
   bool isDineInSelected = false;
   bool isBookingSelected = false;
@@ -42,6 +55,8 @@ class _HomePageState extends State<HomePage> {
     context
         .read<LocalProductBloc>()
         .add(const LocalProductEvent.getLocalProduct());
+            statusController = TextEditingController(text: 'pending');
+
 
     super.initState();
   }
@@ -61,9 +76,16 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // if (products.isEmpty) {
-    //   return const _IsEmpty();
-    // }
+    DateTime date = DateTime.now().add(const Duration(days: 2));
+    TimeOfDay time = TimeOfDay.now();
+
+    TimeOfDay stringToTimeOfDay(String? timeString) {
+      List<String> parts = timeString!.split(':');
+      int hour = int.parse(parts[0]);
+      int minute = int.parse(parts[1]);
+      return TimeOfDay(hour: hour, minute: minute);
+    }
+
     return Hero(
       tag: 'confirmation_screen',
       child: Scaffold(
@@ -321,8 +343,9 @@ class _HomePageState extends State<HomePage> {
                               Expanded(
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color:
-                                        isDineInSelected ? AppColors.primary : null,
+                                    color: isDineInSelected
+                                        ? AppColors.primary
+                                        : null,
                                     borderRadius: BorderRadius.circular(16.0),
                                     border: Border.all(
                                       color: isDineInSelected
@@ -342,10 +365,9 @@ class _HomePageState extends State<HomePage> {
                                     child: Text(
                                       'Dine In',
                                       style: TextStyle(
-                                        color: isDineInSelected
-                                            ? Colors.white
-                                            : Colors.grey
-                                      ),
+                                          color: isDineInSelected
+                                              ? Colors.white
+                                              : Colors.grey),
                                     ),
                                   ),
                                 ),
@@ -376,16 +398,116 @@ class _HomePageState extends State<HomePage> {
                                     child: Text(
                                       'Booking',
                                       style: TextStyle(
-                                        color: isBookingSelected
-                                            ? Colors.white
-                                            : Colors.grey
-                                      ),
+                                          color: isBookingSelected
+                                              ? Colors.white
+                                              : Colors.grey),
                                     ),
                                   ),
                                 ),
                               ),
                             ],
                           ),
+                          isBookingSelected == true
+                              ? Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    CustomTextField(
+                                      controller: nameController,
+                                      label: 'Customer Name',
+                                    ),
+                                    CustomTextField(
+                                      controller: phoneController,
+                                      label: 'Customer Phone',
+                                    ),
+                                    const SpaceHeight(8.0),
+
+                                    const Text(
+                                      'Tanggal',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                    const SpaceHeight(8.0),
+
+                                    CustomDatePicker(
+                                        initialDate: date,
+                                        onDateSelected: (selectedDate) {
+                                          setState(() {
+                                            date = selectedDate;
+                                          });
+                                        }),
+                                    const SpaceHeight(8.0),
+
+                                    const Text(
+                                      'Jam',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+
+                                    const SpaceHeight(8.0),
+
+                                    CustomTimePicker(
+                                      prefix: const Text('Jam '),
+                                      initialTime: time,
+                                      onTimeSelected: (selectedTime) {
+                                        time = selectedTime;
+                                        setState(() {
+                                          time = selectedTime;
+                                        });
+                                      },
+                                    ),
+                                    CustomDropdown(
+                                      value: statusController.text,
+                                      items: const [
+                                        'pending',
+                                        'confirmed',
+                                        'cancelled',
+                                        'seated',
+                                        'completed'
+                                      ],
+                                      label: 'Status',
+                                      onChanged: (newValue) {
+                                        setState(() {
+                                          statusController.text =
+                                              newValue ?? 'pending';
+                                        });
+                                      },
+                                    ),
+                                    CustomTextField(
+                                      controller: tableNumberController,
+                                      label: 'Table Number',
+                                    ),
+                                    CustomTextField(
+                                      controller: notesController,
+                                      label: 'Catatan',
+                                      onChanged: (value) {},
+                                    ),
+                                    // Tombol untuk submit reservasi
+                                    // ElevatedButton(
+                                    //   onPressed: () {
+                                    //     // Mengirimkan data reservasi ke Bloc untuk diproses
+                                    //     BlocProvider.of<ReservationDataBloc>(context).add(
+                                    //       ReservationDataEvent.addOrUpdateReservation(
+                                    //         Reservation(
+                                    //           customerName: nameController.text,
+                                    //           customerPhone: phoneController.text,
+                                    //           reservationDate: dateController.text,
+                                    //           reservationTime: timeController.text,
+                                    //           tableNumber: tableNumberController.text,
+                                    //           // Tambahkan data reservasi lainnya sesuai kebutuhan
+                                    //         ),
+                                    //       ),
+                                    //     );
+                                    //   },
+                                    //   child: Text('Submit Reservation'),
+                                    // ),
+                                  ],
+                                )
+                              : SizedBox(),
                           const SpaceHeight(16.0),
                           const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -621,7 +743,10 @@ class _HomePageState extends State<HomePage> {
                               horizontal: 24.0, vertical: 16.0),
                           child: Button.filled(
                             onPressed: () {
+                              // context.read<ReservationDataBloc>().add(ReservationDataEvent.addOrUpdateReservation(reservation))
+                              
                               context.push(const ConfirmPaymentPage());
+                              
                             },
                             label: 'Lanjutkan Pembayaran',
                           ),

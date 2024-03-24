@@ -18,6 +18,8 @@ class OrderModel {
   final String transactionTime;
   final int isSync;
   final List<ProductQuantity> orderItems;
+  final String? orderType;
+  final int? idReservasi;
 
   OrderModel({
     this.id,
@@ -34,6 +36,8 @@ class OrderModel {
     required this.transactionTime,
     required this.isSync,
     required this.orderItems,
+    this.orderType,
+    this.idReservasi,
   });
 
 //  $request->validate([
@@ -65,7 +69,9 @@ class OrderModel {
       'id_kasir': idKasir,
       'nama_kasir': namaKasir,
       'transaction_time': transactionTime,
-      'order_items': orderItems.map((e) => e.toLocalMap(id!)).toList()
+      'order_items': orderItems.map((e) => e.toLocalMap(id!)).toList(),
+      'order_type': orderType,
+      'id_reservasi': idReservasi
     };
   }
 
@@ -84,6 +90,9 @@ class OrderModel {
       'nama_kasir': namaKasir,
       'transaction_time': transactionTime,
       'is_sync': isSync,
+      'order_type': orderType,
+      'id_reservasi': idReservasi
+      
     };
   }
 
@@ -103,6 +112,8 @@ class OrderModel {
       transactionTime: map['transaction_time'] as String,
       isSync: map['is_sync'] as int,
       orderItems: [],
+      orderType: map['order_type'] as String,
+      idReservasi: map['id_reservasi'] as int
     );
   }
 
@@ -126,6 +137,8 @@ class OrderModel {
     String? transactionTime,
     int? isSync,
     List<ProductQuantity>? orderItems,
+    String? orderType,
+    int? idReservasi
   }) {
     return OrderModel(
       id: id ?? this.id,
@@ -142,6 +155,8 @@ class OrderModel {
       transactionTime: transactionTime ?? this.transactionTime,
       isSync: isSync ?? this.isSync,
       orderItems: orderItems ?? this.orderItems,
+      orderType: orderType ?? this.orderType,
+      idReservasi: idReservasi ?? this.idReservasi
     );
   }
 }

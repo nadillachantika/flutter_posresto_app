@@ -5,6 +5,7 @@ import 'package:flutter_restopos/gen/assets.gen.dart';
 class DateTextInputField extends StatefulWidget {
   final TextEditingController controller;
   final String labelText;
+    final bool showLabel;
   final void Function(DateTime selectedDate)? onDateSelected;
 
   const DateTextInputField({
@@ -12,6 +13,8 @@ class DateTextInputField extends StatefulWidget {
     required this.controller,
     required this.labelText,
     this.onDateSelected,
+        this.showLabel = true,
+
   }) : super(key: key);
 
   @override
@@ -61,12 +64,17 @@ class _DateTextInputFieldState extends State<DateTextInputField> {
 
   @override
   Widget build(BuildContext context) {
+      
     return GestureDetector(
       onTap: () {
         _focusNode.requestFocus(); // Fokus pada text field saat di tap
         _selectDate(context); // Tampilkan date picker
       },
-      child: AbsorbPointer(
+      child: 
+      
+      
+      AbsorbPointer(
+        
         child: TextFormField(
           controller: widget.controller,
           focusNode: _focusNode,

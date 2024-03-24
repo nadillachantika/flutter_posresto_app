@@ -1,6 +1,7 @@
 import 'package:flutter_restopos/data/models/response/product_response_model.dart';
 import 'package:flutter_restopos/presentations/home/models/order_model.dart';
 import 'package:flutter_restopos/presentations/home/models/product_quantity.dart';
+import 'package:flutter_restopos/presentations/reservation/models/reservation_response_model.dart';
 import 'package:intl/intl.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -12,6 +13,7 @@ class ProductLocalDatasource {
   final String tableProduct = 'products';
   final String tableOrder = 'orders';
   final String tableOrderItem = 'order_items';
+  final String tableReservation = 'reservations';
 
   static Database? _database;
 
@@ -72,6 +74,33 @@ class ProductLocalDatasource {
         price INTEGER
       )
     ''');
+
+/*    "id": 13,
+            "reservation_code": "RSV-bqOGda",
+            "reservation_date": "2024-03-21",
+            "reservation_time": "21:31:00",
+            "status": "pending",
+            "notes": "nfjfnnf",
+            "table_number": "1",
+            "created_at": "2024-03-23T06:49:54.000000Z",
+            "updated_at": "2024-03-23T14:31:12.000000Z",
+            "customer_name": "nadillahhh",
+            "customer_phone": "082131841" */
+    await db.execute('''
+      CREATE TABLE $tableReservation(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        reservation_code TEXT,
+        customer_name TEXT,
+        customer_phone TEXT,
+        reservation_date TEXT,
+        reservation_time TEXT,
+        status TEXT,
+        notes TEXT,
+        table_number TEXT,
+        created_at TEXT,
+        updated_at TEXT
+      )
+    ''');
   }
 
   Future<Database> _initDB(String filePath) async {
@@ -96,6 +125,13 @@ class ProductLocalDatasource {
       await db.insert(tableOrderItem, item.toLocalMap(id),
           conflictAlgorithm: ConflictAlgorithm.replace);
     }
+  }
+
+  // save reservation
+  Future<void> saveReservation(Reservation reservation) async {
+    final db = await instance.database;
+    await db.insert(tableReservation, reservation.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
 // insert data product
@@ -175,7 +211,4 @@ class ProductLocalDatasource {
       return OrderModel.fromMap(maps[i]);
     });
   }
-
-
-  
 }
