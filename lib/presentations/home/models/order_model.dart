@@ -18,8 +18,8 @@ class OrderModel {
   final String transactionTime;
   final int isSync;
   final List<ProductQuantity> orderItems;
-  final String? orderType;
   final int? idReservasi;
+  final String? orderType;
 
   OrderModel({
     this.id,
@@ -70,8 +70,8 @@ class OrderModel {
       'nama_kasir': namaKasir,
       'transaction_time': transactionTime,
       'order_items': orderItems.map((e) => e.toLocalMap(id!)).toList(),
-      'order_type': orderType,
-      'id_reservasi': idReservasi
+      'id_reservasi': idReservasi,
+      'order_type': orderType
     };
   }
 
@@ -90,9 +90,8 @@ class OrderModel {
       'nama_kasir': namaKasir,
       'transaction_time': transactionTime,
       'is_sync': isSync,
-      'order_type': orderType,
-      'id_reservasi': idReservasi
-      
+      'id_reservasi': idReservasi,
+      'order_type': orderType
     };
   }
 
@@ -112,8 +111,8 @@ class OrderModel {
       transactionTime: map['transaction_time'] as String,
       isSync: map['is_sync'] as int,
       orderItems: [],
-      orderType: map['order_type'] as String,
-      idReservasi: map['id_reservasi'] as int
+      idReservasi: map['id_reservasi'] as int?,
+      orderType: map['order_type'] as String?,
     );
   }
 
@@ -122,41 +121,39 @@ class OrderModel {
   factory OrderModel.fromJson(String source) =>
       OrderModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
-  OrderModel copyWith({
-    int? id,
-    int? paymentAmount,
-    int? subTotal,
-    int? tax,
-    int? discount,
-    int? serviceCharge,
-    int? total,
-    String? paymentMethod,
-    int? totalItem,
-    int? idKasir,
-    String? namaKasir,
-    String? transactionTime,
-    int? isSync,
-    List<ProductQuantity>? orderItems,
-    String? orderType,
-    int? idReservasi
-  }) {
+  OrderModel copyWith(
+      {int? id,
+      int? paymentAmount,
+      int? subTotal,
+      int? tax,
+      int? discount,
+      int? serviceCharge,
+      int? total,
+      String? paymentMethod,
+      int? totalItem,
+      int? idKasir,
+      String? namaKasir,
+      String? transactionTime,
+      int? isSync,
+      List<ProductQuantity>? orderItems,
+      int? idReservasi,
+      String? orderType}) {
     return OrderModel(
-      id: id ?? this.id,
-      paymentAmount: paymentAmount ?? this.paymentAmount,
-      subTotal: subTotal ?? this.subTotal,
-      tax: tax ?? this.tax,
-      discount: discount ?? this.discount,
-      serviceCharge: serviceCharge ?? this.serviceCharge,
-      total: total ?? this.total,
-      paymentMethod: paymentMethod ?? this.paymentMethod,
-      totalItem: totalItem ?? this.totalItem,
-      idKasir: idKasir ?? this.idKasir,
-      namaKasir: namaKasir ?? this.namaKasir,
-      transactionTime: transactionTime ?? this.transactionTime,
-      isSync: isSync ?? this.isSync,
-      orderItems: orderItems ?? this.orderItems,
-      orderType: orderType ?? this.orderType,
-      idReservasi: idReservasi ?? this.idReservasi
-    );
+        id: id ?? this.id,
+        paymentAmount: paymentAmount ?? this.paymentAmount,
+        subTotal: subTotal ?? this.subTotal,
+        tax: tax ?? this.tax,
+        discount: discount ?? this.discount,
+        serviceCharge: serviceCharge ?? this.serviceCharge,
+        total: total ?? this.total,
+        paymentMethod: paymentMethod ?? this.paymentMethod,
+        totalItem: totalItem ?? this.totalItem,
+        idKasir: idKasir ?? this.idKasir,
+        namaKasir: namaKasir ?? this.namaKasir,
+        transactionTime: transactionTime ?? this.transactionTime,
+        isSync: isSync ?? this.isSync,
+        orderItems: orderItems ?? this.orderItems,
+        idReservasi: idReservasi ?? this.idReservasi,
+        orderType: orderType ?? this.orderType);
   }
 }

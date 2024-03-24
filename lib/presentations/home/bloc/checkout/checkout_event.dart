@@ -19,4 +19,14 @@ class CheckoutEvent with _$CheckoutEvent {
   // add service charge
   const factory CheckoutEvent.addServiceCharge(int serviceCharge) = _AddServiceCharge;
   const factory CheckoutEvent.removeServiceCharge(int serviceCharge) = _RemoveServiceCharge;
+
+  // add reservasi
+  const factory CheckoutEvent.addReservation(Reservation reservation) = _AddReservation;
+  const factory CheckoutEvent.removeReservation(Reservation reservation) = _RemoveReservation;
+
+  // order type
+  const factory CheckoutEvent.setOrderType(String orderType) = _SetOrderType;
+
+  const factory CheckoutEvent.addIdReservasi(int idReservasi) = _AddIdReservasi;
+  
 }

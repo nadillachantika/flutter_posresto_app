@@ -7,5 +7,7 @@ class OrderEvent with _$OrderEvent {
   int discount,
   int tax,
   int serviceCharge,
-  int paymemtAmount) = _Order;
+  int paymemtAmount,
+  int? idReservasi,
+  String orderType) = _Order;
 }

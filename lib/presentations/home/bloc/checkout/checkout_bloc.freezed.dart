@@ -27,6 +27,10 @@ mixin _$CheckoutEvent {
     required TResult Function(int tax) removeTax,
     required TResult Function(int serviceCharge) addServiceCharge,
     required TResult Function(int serviceCharge) removeServiceCharge,
+    required TResult Function(Reservation reservation) addReservation,
+    required TResult Function(Reservation reservation) removeReservation,
+    required TResult Function(String orderType) setOrderType,
+    required TResult Function(int idReservasi) addIdReservasi,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,6 +44,10 @@ mixin _$CheckoutEvent {
     TResult? Function(int tax)? removeTax,
     TResult? Function(int serviceCharge)? addServiceCharge,
     TResult? Function(int serviceCharge)? removeServiceCharge,
+    TResult? Function(Reservation reservation)? addReservation,
+    TResult? Function(Reservation reservation)? removeReservation,
+    TResult? Function(String orderType)? setOrderType,
+    TResult? Function(int idReservasi)? addIdReservasi,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,6 +61,10 @@ mixin _$CheckoutEvent {
     TResult Function(int tax)? removeTax,
     TResult Function(int serviceCharge)? addServiceCharge,
     TResult Function(int serviceCharge)? removeServiceCharge,
+    TResult Function(Reservation reservation)? addReservation,
+    TResult Function(Reservation reservation)? removeReservation,
+    TResult Function(String orderType)? setOrderType,
+    TResult Function(int idReservasi)? addIdReservasi,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -67,6 +79,10 @@ mixin _$CheckoutEvent {
     required TResult Function(_RemoveTax value) removeTax,
     required TResult Function(_AddServiceCharge value) addServiceCharge,
     required TResult Function(_RemoveServiceCharge value) removeServiceCharge,
+    required TResult Function(_AddReservation value) addReservation,
+    required TResult Function(_RemoveReservation value) removeReservation,
+    required TResult Function(_SetOrderType value) setOrderType,
+    required TResult Function(_AddIdReservasi value) addIdReservasi,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -80,6 +96,10 @@ mixin _$CheckoutEvent {
     TResult? Function(_RemoveTax value)? removeTax,
     TResult? Function(_AddServiceCharge value)? addServiceCharge,
     TResult? Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult? Function(_AddReservation value)? addReservation,
+    TResult? Function(_RemoveReservation value)? removeReservation,
+    TResult? Function(_SetOrderType value)? setOrderType,
+    TResult? Function(_AddIdReservasi value)? addIdReservasi,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -93,6 +113,10 @@ mixin _$CheckoutEvent {
     TResult Function(_RemoveTax value)? removeTax,
     TResult Function(_AddServiceCharge value)? addServiceCharge,
     TResult Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult Function(_AddReservation value)? addReservation,
+    TResult Function(_RemoveReservation value)? removeReservation,
+    TResult Function(_SetOrderType value)? setOrderType,
+    TResult Function(_AddIdReservasi value)? addIdReservasi,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -169,6 +193,10 @@ class _$StartedImpl with DiagnosticableTreeMixin implements _Started {
     required TResult Function(int tax) removeTax,
     required TResult Function(int serviceCharge) addServiceCharge,
     required TResult Function(int serviceCharge) removeServiceCharge,
+    required TResult Function(Reservation reservation) addReservation,
+    required TResult Function(Reservation reservation) removeReservation,
+    required TResult Function(String orderType) setOrderType,
+    required TResult Function(int idReservasi) addIdReservasi,
   }) {
     return started();
   }
@@ -185,6 +213,10 @@ class _$StartedImpl with DiagnosticableTreeMixin implements _Started {
     TResult? Function(int tax)? removeTax,
     TResult? Function(int serviceCharge)? addServiceCharge,
     TResult? Function(int serviceCharge)? removeServiceCharge,
+    TResult? Function(Reservation reservation)? addReservation,
+    TResult? Function(Reservation reservation)? removeReservation,
+    TResult? Function(String orderType)? setOrderType,
+    TResult? Function(int idReservasi)? addIdReservasi,
   }) {
     return started?.call();
   }
@@ -201,6 +233,10 @@ class _$StartedImpl with DiagnosticableTreeMixin implements _Started {
     TResult Function(int tax)? removeTax,
     TResult Function(int serviceCharge)? addServiceCharge,
     TResult Function(int serviceCharge)? removeServiceCharge,
+    TResult Function(Reservation reservation)? addReservation,
+    TResult Function(Reservation reservation)? removeReservation,
+    TResult Function(String orderType)? setOrderType,
+    TResult Function(int idReservasi)? addIdReservasi,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -221,6 +257,10 @@ class _$StartedImpl with DiagnosticableTreeMixin implements _Started {
     required TResult Function(_RemoveTax value) removeTax,
     required TResult Function(_AddServiceCharge value) addServiceCharge,
     required TResult Function(_RemoveServiceCharge value) removeServiceCharge,
+    required TResult Function(_AddReservation value) addReservation,
+    required TResult Function(_RemoveReservation value) removeReservation,
+    required TResult Function(_SetOrderType value) setOrderType,
+    required TResult Function(_AddIdReservasi value) addIdReservasi,
   }) {
     return started(this);
   }
@@ -237,6 +277,10 @@ class _$StartedImpl with DiagnosticableTreeMixin implements _Started {
     TResult? Function(_RemoveTax value)? removeTax,
     TResult? Function(_AddServiceCharge value)? addServiceCharge,
     TResult? Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult? Function(_AddReservation value)? addReservation,
+    TResult? Function(_RemoveReservation value)? removeReservation,
+    TResult? Function(_SetOrderType value)? setOrderType,
+    TResult? Function(_AddIdReservasi value)? addIdReservasi,
   }) {
     return started?.call(this);
   }
@@ -253,6 +297,10 @@ class _$StartedImpl with DiagnosticableTreeMixin implements _Started {
     TResult Function(_RemoveTax value)? removeTax,
     TResult Function(_AddServiceCharge value)? addServiceCharge,
     TResult Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult Function(_AddReservation value)? addReservation,
+    TResult Function(_RemoveReservation value)? removeReservation,
+    TResult Function(_SetOrderType value)? setOrderType,
+    TResult Function(_AddIdReservasi value)? addIdReservasi,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -347,6 +395,10 @@ class _$AddItemImpl with DiagnosticableTreeMixin implements _AddItem {
     required TResult Function(int tax) removeTax,
     required TResult Function(int serviceCharge) addServiceCharge,
     required TResult Function(int serviceCharge) removeServiceCharge,
+    required TResult Function(Reservation reservation) addReservation,
+    required TResult Function(Reservation reservation) removeReservation,
+    required TResult Function(String orderType) setOrderType,
+    required TResult Function(int idReservasi) addIdReservasi,
   }) {
     return addItem(product);
   }
@@ -363,6 +415,10 @@ class _$AddItemImpl with DiagnosticableTreeMixin implements _AddItem {
     TResult? Function(int tax)? removeTax,
     TResult? Function(int serviceCharge)? addServiceCharge,
     TResult? Function(int serviceCharge)? removeServiceCharge,
+    TResult? Function(Reservation reservation)? addReservation,
+    TResult? Function(Reservation reservation)? removeReservation,
+    TResult? Function(String orderType)? setOrderType,
+    TResult? Function(int idReservasi)? addIdReservasi,
   }) {
     return addItem?.call(product);
   }
@@ -379,6 +435,10 @@ class _$AddItemImpl with DiagnosticableTreeMixin implements _AddItem {
     TResult Function(int tax)? removeTax,
     TResult Function(int serviceCharge)? addServiceCharge,
     TResult Function(int serviceCharge)? removeServiceCharge,
+    TResult Function(Reservation reservation)? addReservation,
+    TResult Function(Reservation reservation)? removeReservation,
+    TResult Function(String orderType)? setOrderType,
+    TResult Function(int idReservasi)? addIdReservasi,
     required TResult orElse(),
   }) {
     if (addItem != null) {
@@ -399,6 +459,10 @@ class _$AddItemImpl with DiagnosticableTreeMixin implements _AddItem {
     required TResult Function(_RemoveTax value) removeTax,
     required TResult Function(_AddServiceCharge value) addServiceCharge,
     required TResult Function(_RemoveServiceCharge value) removeServiceCharge,
+    required TResult Function(_AddReservation value) addReservation,
+    required TResult Function(_RemoveReservation value) removeReservation,
+    required TResult Function(_SetOrderType value) setOrderType,
+    required TResult Function(_AddIdReservasi value) addIdReservasi,
   }) {
     return addItem(this);
   }
@@ -415,6 +479,10 @@ class _$AddItemImpl with DiagnosticableTreeMixin implements _AddItem {
     TResult? Function(_RemoveTax value)? removeTax,
     TResult? Function(_AddServiceCharge value)? addServiceCharge,
     TResult? Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult? Function(_AddReservation value)? addReservation,
+    TResult? Function(_RemoveReservation value)? removeReservation,
+    TResult? Function(_SetOrderType value)? setOrderType,
+    TResult? Function(_AddIdReservasi value)? addIdReservasi,
   }) {
     return addItem?.call(this);
   }
@@ -431,6 +499,10 @@ class _$AddItemImpl with DiagnosticableTreeMixin implements _AddItem {
     TResult Function(_RemoveTax value)? removeTax,
     TResult Function(_AddServiceCharge value)? addServiceCharge,
     TResult Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult Function(_AddReservation value)? addReservation,
+    TResult Function(_RemoveReservation value)? removeReservation,
+    TResult Function(_SetOrderType value)? setOrderType,
+    TResult Function(_AddIdReservasi value)? addIdReservasi,
     required TResult orElse(),
   }) {
     if (addItem != null) {
@@ -530,6 +602,10 @@ class _$RemoveItemImpl with DiagnosticableTreeMixin implements _RemoveItem {
     required TResult Function(int tax) removeTax,
     required TResult Function(int serviceCharge) addServiceCharge,
     required TResult Function(int serviceCharge) removeServiceCharge,
+    required TResult Function(Reservation reservation) addReservation,
+    required TResult Function(Reservation reservation) removeReservation,
+    required TResult Function(String orderType) setOrderType,
+    required TResult Function(int idReservasi) addIdReservasi,
   }) {
     return removeItem(product);
   }
@@ -546,6 +622,10 @@ class _$RemoveItemImpl with DiagnosticableTreeMixin implements _RemoveItem {
     TResult? Function(int tax)? removeTax,
     TResult? Function(int serviceCharge)? addServiceCharge,
     TResult? Function(int serviceCharge)? removeServiceCharge,
+    TResult? Function(Reservation reservation)? addReservation,
+    TResult? Function(Reservation reservation)? removeReservation,
+    TResult? Function(String orderType)? setOrderType,
+    TResult? Function(int idReservasi)? addIdReservasi,
   }) {
     return removeItem?.call(product);
   }
@@ -562,6 +642,10 @@ class _$RemoveItemImpl with DiagnosticableTreeMixin implements _RemoveItem {
     TResult Function(int tax)? removeTax,
     TResult Function(int serviceCharge)? addServiceCharge,
     TResult Function(int serviceCharge)? removeServiceCharge,
+    TResult Function(Reservation reservation)? addReservation,
+    TResult Function(Reservation reservation)? removeReservation,
+    TResult Function(String orderType)? setOrderType,
+    TResult Function(int idReservasi)? addIdReservasi,
     required TResult orElse(),
   }) {
     if (removeItem != null) {
@@ -582,6 +666,10 @@ class _$RemoveItemImpl with DiagnosticableTreeMixin implements _RemoveItem {
     required TResult Function(_RemoveTax value) removeTax,
     required TResult Function(_AddServiceCharge value) addServiceCharge,
     required TResult Function(_RemoveServiceCharge value) removeServiceCharge,
+    required TResult Function(_AddReservation value) addReservation,
+    required TResult Function(_RemoveReservation value) removeReservation,
+    required TResult Function(_SetOrderType value) setOrderType,
+    required TResult Function(_AddIdReservasi value) addIdReservasi,
   }) {
     return removeItem(this);
   }
@@ -598,6 +686,10 @@ class _$RemoveItemImpl with DiagnosticableTreeMixin implements _RemoveItem {
     TResult? Function(_RemoveTax value)? removeTax,
     TResult? Function(_AddServiceCharge value)? addServiceCharge,
     TResult? Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult? Function(_AddReservation value)? addReservation,
+    TResult? Function(_RemoveReservation value)? removeReservation,
+    TResult? Function(_SetOrderType value)? setOrderType,
+    TResult? Function(_AddIdReservasi value)? addIdReservasi,
   }) {
     return removeItem?.call(this);
   }
@@ -614,6 +706,10 @@ class _$RemoveItemImpl with DiagnosticableTreeMixin implements _RemoveItem {
     TResult Function(_RemoveTax value)? removeTax,
     TResult Function(_AddServiceCharge value)? addServiceCharge,
     TResult Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult Function(_AddReservation value)? addReservation,
+    TResult Function(_RemoveReservation value)? removeReservation,
+    TResult Function(_SetOrderType value)? setOrderType,
+    TResult Function(_AddIdReservasi value)? addIdReservasi,
     required TResult orElse(),
   }) {
     if (removeItem != null) {
@@ -714,6 +810,10 @@ class _$AddDiscountImpl with DiagnosticableTreeMixin implements _AddDiscount {
     required TResult Function(int tax) removeTax,
     required TResult Function(int serviceCharge) addServiceCharge,
     required TResult Function(int serviceCharge) removeServiceCharge,
+    required TResult Function(Reservation reservation) addReservation,
+    required TResult Function(Reservation reservation) removeReservation,
+    required TResult Function(String orderType) setOrderType,
+    required TResult Function(int idReservasi) addIdReservasi,
   }) {
     return addDiscount(discount);
   }
@@ -730,6 +830,10 @@ class _$AddDiscountImpl with DiagnosticableTreeMixin implements _AddDiscount {
     TResult? Function(int tax)? removeTax,
     TResult? Function(int serviceCharge)? addServiceCharge,
     TResult? Function(int serviceCharge)? removeServiceCharge,
+    TResult? Function(Reservation reservation)? addReservation,
+    TResult? Function(Reservation reservation)? removeReservation,
+    TResult? Function(String orderType)? setOrderType,
+    TResult? Function(int idReservasi)? addIdReservasi,
   }) {
     return addDiscount?.call(discount);
   }
@@ -746,6 +850,10 @@ class _$AddDiscountImpl with DiagnosticableTreeMixin implements _AddDiscount {
     TResult Function(int tax)? removeTax,
     TResult Function(int serviceCharge)? addServiceCharge,
     TResult Function(int serviceCharge)? removeServiceCharge,
+    TResult Function(Reservation reservation)? addReservation,
+    TResult Function(Reservation reservation)? removeReservation,
+    TResult Function(String orderType)? setOrderType,
+    TResult Function(int idReservasi)? addIdReservasi,
     required TResult orElse(),
   }) {
     if (addDiscount != null) {
@@ -766,6 +874,10 @@ class _$AddDiscountImpl with DiagnosticableTreeMixin implements _AddDiscount {
     required TResult Function(_RemoveTax value) removeTax,
     required TResult Function(_AddServiceCharge value) addServiceCharge,
     required TResult Function(_RemoveServiceCharge value) removeServiceCharge,
+    required TResult Function(_AddReservation value) addReservation,
+    required TResult Function(_RemoveReservation value) removeReservation,
+    required TResult Function(_SetOrderType value) setOrderType,
+    required TResult Function(_AddIdReservasi value) addIdReservasi,
   }) {
     return addDiscount(this);
   }
@@ -782,6 +894,10 @@ class _$AddDiscountImpl with DiagnosticableTreeMixin implements _AddDiscount {
     TResult? Function(_RemoveTax value)? removeTax,
     TResult? Function(_AddServiceCharge value)? addServiceCharge,
     TResult? Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult? Function(_AddReservation value)? addReservation,
+    TResult? Function(_RemoveReservation value)? removeReservation,
+    TResult? Function(_SetOrderType value)? setOrderType,
+    TResult? Function(_AddIdReservasi value)? addIdReservasi,
   }) {
     return addDiscount?.call(this);
   }
@@ -798,6 +914,10 @@ class _$AddDiscountImpl with DiagnosticableTreeMixin implements _AddDiscount {
     TResult Function(_RemoveTax value)? removeTax,
     TResult Function(_AddServiceCharge value)? addServiceCharge,
     TResult Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult Function(_AddReservation value)? addReservation,
+    TResult Function(_RemoveReservation value)? removeReservation,
+    TResult Function(_SetOrderType value)? setOrderType,
+    TResult Function(_AddIdReservasi value)? addIdReservasi,
     required TResult orElse(),
   }) {
     if (addDiscount != null) {
@@ -901,6 +1021,10 @@ class _$RemoveDiscountImpl
     required TResult Function(int tax) removeTax,
     required TResult Function(int serviceCharge) addServiceCharge,
     required TResult Function(int serviceCharge) removeServiceCharge,
+    required TResult Function(Reservation reservation) addReservation,
+    required TResult Function(Reservation reservation) removeReservation,
+    required TResult Function(String orderType) setOrderType,
+    required TResult Function(int idReservasi) addIdReservasi,
   }) {
     return removeDiscount(discount);
   }
@@ -917,6 +1041,10 @@ class _$RemoveDiscountImpl
     TResult? Function(int tax)? removeTax,
     TResult? Function(int serviceCharge)? addServiceCharge,
     TResult? Function(int serviceCharge)? removeServiceCharge,
+    TResult? Function(Reservation reservation)? addReservation,
+    TResult? Function(Reservation reservation)? removeReservation,
+    TResult? Function(String orderType)? setOrderType,
+    TResult? Function(int idReservasi)? addIdReservasi,
   }) {
     return removeDiscount?.call(discount);
   }
@@ -933,6 +1061,10 @@ class _$RemoveDiscountImpl
     TResult Function(int tax)? removeTax,
     TResult Function(int serviceCharge)? addServiceCharge,
     TResult Function(int serviceCharge)? removeServiceCharge,
+    TResult Function(Reservation reservation)? addReservation,
+    TResult Function(Reservation reservation)? removeReservation,
+    TResult Function(String orderType)? setOrderType,
+    TResult Function(int idReservasi)? addIdReservasi,
     required TResult orElse(),
   }) {
     if (removeDiscount != null) {
@@ -953,6 +1085,10 @@ class _$RemoveDiscountImpl
     required TResult Function(_RemoveTax value) removeTax,
     required TResult Function(_AddServiceCharge value) addServiceCharge,
     required TResult Function(_RemoveServiceCharge value) removeServiceCharge,
+    required TResult Function(_AddReservation value) addReservation,
+    required TResult Function(_RemoveReservation value) removeReservation,
+    required TResult Function(_SetOrderType value) setOrderType,
+    required TResult Function(_AddIdReservasi value) addIdReservasi,
   }) {
     return removeDiscount(this);
   }
@@ -969,6 +1105,10 @@ class _$RemoveDiscountImpl
     TResult? Function(_RemoveTax value)? removeTax,
     TResult? Function(_AddServiceCharge value)? addServiceCharge,
     TResult? Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult? Function(_AddReservation value)? addReservation,
+    TResult? Function(_RemoveReservation value)? removeReservation,
+    TResult? Function(_SetOrderType value)? setOrderType,
+    TResult? Function(_AddIdReservasi value)? addIdReservasi,
   }) {
     return removeDiscount?.call(this);
   }
@@ -985,6 +1125,10 @@ class _$RemoveDiscountImpl
     TResult Function(_RemoveTax value)? removeTax,
     TResult Function(_AddServiceCharge value)? addServiceCharge,
     TResult Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult Function(_AddReservation value)? addReservation,
+    TResult Function(_RemoveReservation value)? removeReservation,
+    TResult Function(_SetOrderType value)? setOrderType,
+    TResult Function(_AddIdReservasi value)? addIdReservasi,
     required TResult orElse(),
   }) {
     if (removeDiscount != null) {
@@ -1084,6 +1228,10 @@ class _$AddTaxImpl with DiagnosticableTreeMixin implements _AddTax {
     required TResult Function(int tax) removeTax,
     required TResult Function(int serviceCharge) addServiceCharge,
     required TResult Function(int serviceCharge) removeServiceCharge,
+    required TResult Function(Reservation reservation) addReservation,
+    required TResult Function(Reservation reservation) removeReservation,
+    required TResult Function(String orderType) setOrderType,
+    required TResult Function(int idReservasi) addIdReservasi,
   }) {
     return addTax(tax);
   }
@@ -1100,6 +1248,10 @@ class _$AddTaxImpl with DiagnosticableTreeMixin implements _AddTax {
     TResult? Function(int tax)? removeTax,
     TResult? Function(int serviceCharge)? addServiceCharge,
     TResult? Function(int serviceCharge)? removeServiceCharge,
+    TResult? Function(Reservation reservation)? addReservation,
+    TResult? Function(Reservation reservation)? removeReservation,
+    TResult? Function(String orderType)? setOrderType,
+    TResult? Function(int idReservasi)? addIdReservasi,
   }) {
     return addTax?.call(tax);
   }
@@ -1116,6 +1268,10 @@ class _$AddTaxImpl with DiagnosticableTreeMixin implements _AddTax {
     TResult Function(int tax)? removeTax,
     TResult Function(int serviceCharge)? addServiceCharge,
     TResult Function(int serviceCharge)? removeServiceCharge,
+    TResult Function(Reservation reservation)? addReservation,
+    TResult Function(Reservation reservation)? removeReservation,
+    TResult Function(String orderType)? setOrderType,
+    TResult Function(int idReservasi)? addIdReservasi,
     required TResult orElse(),
   }) {
     if (addTax != null) {
@@ -1136,6 +1292,10 @@ class _$AddTaxImpl with DiagnosticableTreeMixin implements _AddTax {
     required TResult Function(_RemoveTax value) removeTax,
     required TResult Function(_AddServiceCharge value) addServiceCharge,
     required TResult Function(_RemoveServiceCharge value) removeServiceCharge,
+    required TResult Function(_AddReservation value) addReservation,
+    required TResult Function(_RemoveReservation value) removeReservation,
+    required TResult Function(_SetOrderType value) setOrderType,
+    required TResult Function(_AddIdReservasi value) addIdReservasi,
   }) {
     return addTax(this);
   }
@@ -1152,6 +1312,10 @@ class _$AddTaxImpl with DiagnosticableTreeMixin implements _AddTax {
     TResult? Function(_RemoveTax value)? removeTax,
     TResult? Function(_AddServiceCharge value)? addServiceCharge,
     TResult? Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult? Function(_AddReservation value)? addReservation,
+    TResult? Function(_RemoveReservation value)? removeReservation,
+    TResult? Function(_SetOrderType value)? setOrderType,
+    TResult? Function(_AddIdReservasi value)? addIdReservasi,
   }) {
     return addTax?.call(this);
   }
@@ -1168,6 +1332,10 @@ class _$AddTaxImpl with DiagnosticableTreeMixin implements _AddTax {
     TResult Function(_RemoveTax value)? removeTax,
     TResult Function(_AddServiceCharge value)? addServiceCharge,
     TResult Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult Function(_AddReservation value)? addReservation,
+    TResult Function(_RemoveReservation value)? removeReservation,
+    TResult Function(_SetOrderType value)? setOrderType,
+    TResult Function(_AddIdReservasi value)? addIdReservasi,
     required TResult orElse(),
   }) {
     if (addTax != null) {
@@ -1267,6 +1435,10 @@ class _$RemoveTaxImpl with DiagnosticableTreeMixin implements _RemoveTax {
     required TResult Function(int tax) removeTax,
     required TResult Function(int serviceCharge) addServiceCharge,
     required TResult Function(int serviceCharge) removeServiceCharge,
+    required TResult Function(Reservation reservation) addReservation,
+    required TResult Function(Reservation reservation) removeReservation,
+    required TResult Function(String orderType) setOrderType,
+    required TResult Function(int idReservasi) addIdReservasi,
   }) {
     return removeTax(tax);
   }
@@ -1283,6 +1455,10 @@ class _$RemoveTaxImpl with DiagnosticableTreeMixin implements _RemoveTax {
     TResult? Function(int tax)? removeTax,
     TResult? Function(int serviceCharge)? addServiceCharge,
     TResult? Function(int serviceCharge)? removeServiceCharge,
+    TResult? Function(Reservation reservation)? addReservation,
+    TResult? Function(Reservation reservation)? removeReservation,
+    TResult? Function(String orderType)? setOrderType,
+    TResult? Function(int idReservasi)? addIdReservasi,
   }) {
     return removeTax?.call(tax);
   }
@@ -1299,6 +1475,10 @@ class _$RemoveTaxImpl with DiagnosticableTreeMixin implements _RemoveTax {
     TResult Function(int tax)? removeTax,
     TResult Function(int serviceCharge)? addServiceCharge,
     TResult Function(int serviceCharge)? removeServiceCharge,
+    TResult Function(Reservation reservation)? addReservation,
+    TResult Function(Reservation reservation)? removeReservation,
+    TResult Function(String orderType)? setOrderType,
+    TResult Function(int idReservasi)? addIdReservasi,
     required TResult orElse(),
   }) {
     if (removeTax != null) {
@@ -1319,6 +1499,10 @@ class _$RemoveTaxImpl with DiagnosticableTreeMixin implements _RemoveTax {
     required TResult Function(_RemoveTax value) removeTax,
     required TResult Function(_AddServiceCharge value) addServiceCharge,
     required TResult Function(_RemoveServiceCharge value) removeServiceCharge,
+    required TResult Function(_AddReservation value) addReservation,
+    required TResult Function(_RemoveReservation value) removeReservation,
+    required TResult Function(_SetOrderType value) setOrderType,
+    required TResult Function(_AddIdReservasi value) addIdReservasi,
   }) {
     return removeTax(this);
   }
@@ -1335,6 +1519,10 @@ class _$RemoveTaxImpl with DiagnosticableTreeMixin implements _RemoveTax {
     TResult? Function(_RemoveTax value)? removeTax,
     TResult? Function(_AddServiceCharge value)? addServiceCharge,
     TResult? Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult? Function(_AddReservation value)? addReservation,
+    TResult? Function(_RemoveReservation value)? removeReservation,
+    TResult? Function(_SetOrderType value)? setOrderType,
+    TResult? Function(_AddIdReservasi value)? addIdReservasi,
   }) {
     return removeTax?.call(this);
   }
@@ -1351,6 +1539,10 @@ class _$RemoveTaxImpl with DiagnosticableTreeMixin implements _RemoveTax {
     TResult Function(_RemoveTax value)? removeTax,
     TResult Function(_AddServiceCharge value)? addServiceCharge,
     TResult Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult Function(_AddReservation value)? addReservation,
+    TResult Function(_RemoveReservation value)? removeReservation,
+    TResult Function(_SetOrderType value)? setOrderType,
+    TResult Function(_AddIdReservasi value)? addIdReservasi,
     required TResult orElse(),
   }) {
     if (removeTax != null) {
@@ -1454,6 +1646,10 @@ class _$AddServiceChargeImpl
     required TResult Function(int tax) removeTax,
     required TResult Function(int serviceCharge) addServiceCharge,
     required TResult Function(int serviceCharge) removeServiceCharge,
+    required TResult Function(Reservation reservation) addReservation,
+    required TResult Function(Reservation reservation) removeReservation,
+    required TResult Function(String orderType) setOrderType,
+    required TResult Function(int idReservasi) addIdReservasi,
   }) {
     return addServiceCharge(serviceCharge);
   }
@@ -1470,6 +1666,10 @@ class _$AddServiceChargeImpl
     TResult? Function(int tax)? removeTax,
     TResult? Function(int serviceCharge)? addServiceCharge,
     TResult? Function(int serviceCharge)? removeServiceCharge,
+    TResult? Function(Reservation reservation)? addReservation,
+    TResult? Function(Reservation reservation)? removeReservation,
+    TResult? Function(String orderType)? setOrderType,
+    TResult? Function(int idReservasi)? addIdReservasi,
   }) {
     return addServiceCharge?.call(serviceCharge);
   }
@@ -1486,6 +1686,10 @@ class _$AddServiceChargeImpl
     TResult Function(int tax)? removeTax,
     TResult Function(int serviceCharge)? addServiceCharge,
     TResult Function(int serviceCharge)? removeServiceCharge,
+    TResult Function(Reservation reservation)? addReservation,
+    TResult Function(Reservation reservation)? removeReservation,
+    TResult Function(String orderType)? setOrderType,
+    TResult Function(int idReservasi)? addIdReservasi,
     required TResult orElse(),
   }) {
     if (addServiceCharge != null) {
@@ -1506,6 +1710,10 @@ class _$AddServiceChargeImpl
     required TResult Function(_RemoveTax value) removeTax,
     required TResult Function(_AddServiceCharge value) addServiceCharge,
     required TResult Function(_RemoveServiceCharge value) removeServiceCharge,
+    required TResult Function(_AddReservation value) addReservation,
+    required TResult Function(_RemoveReservation value) removeReservation,
+    required TResult Function(_SetOrderType value) setOrderType,
+    required TResult Function(_AddIdReservasi value) addIdReservasi,
   }) {
     return addServiceCharge(this);
   }
@@ -1522,6 +1730,10 @@ class _$AddServiceChargeImpl
     TResult? Function(_RemoveTax value)? removeTax,
     TResult? Function(_AddServiceCharge value)? addServiceCharge,
     TResult? Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult? Function(_AddReservation value)? addReservation,
+    TResult? Function(_RemoveReservation value)? removeReservation,
+    TResult? Function(_SetOrderType value)? setOrderType,
+    TResult? Function(_AddIdReservasi value)? addIdReservasi,
   }) {
     return addServiceCharge?.call(this);
   }
@@ -1538,6 +1750,10 @@ class _$AddServiceChargeImpl
     TResult Function(_RemoveTax value)? removeTax,
     TResult Function(_AddServiceCharge value)? addServiceCharge,
     TResult Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult Function(_AddReservation value)? addReservation,
+    TResult Function(_RemoveReservation value)? removeReservation,
+    TResult Function(_SetOrderType value)? setOrderType,
+    TResult Function(_AddIdReservasi value)? addIdReservasi,
     required TResult orElse(),
   }) {
     if (addServiceCharge != null) {
@@ -1642,6 +1858,10 @@ class _$RemoveServiceChargeImpl
     required TResult Function(int tax) removeTax,
     required TResult Function(int serviceCharge) addServiceCharge,
     required TResult Function(int serviceCharge) removeServiceCharge,
+    required TResult Function(Reservation reservation) addReservation,
+    required TResult Function(Reservation reservation) removeReservation,
+    required TResult Function(String orderType) setOrderType,
+    required TResult Function(int idReservasi) addIdReservasi,
   }) {
     return removeServiceCharge(serviceCharge);
   }
@@ -1658,6 +1878,10 @@ class _$RemoveServiceChargeImpl
     TResult? Function(int tax)? removeTax,
     TResult? Function(int serviceCharge)? addServiceCharge,
     TResult? Function(int serviceCharge)? removeServiceCharge,
+    TResult? Function(Reservation reservation)? addReservation,
+    TResult? Function(Reservation reservation)? removeReservation,
+    TResult? Function(String orderType)? setOrderType,
+    TResult? Function(int idReservasi)? addIdReservasi,
   }) {
     return removeServiceCharge?.call(serviceCharge);
   }
@@ -1674,6 +1898,10 @@ class _$RemoveServiceChargeImpl
     TResult Function(int tax)? removeTax,
     TResult Function(int serviceCharge)? addServiceCharge,
     TResult Function(int serviceCharge)? removeServiceCharge,
+    TResult Function(Reservation reservation)? addReservation,
+    TResult Function(Reservation reservation)? removeReservation,
+    TResult Function(String orderType)? setOrderType,
+    TResult Function(int idReservasi)? addIdReservasi,
     required TResult orElse(),
   }) {
     if (removeServiceCharge != null) {
@@ -1694,6 +1922,10 @@ class _$RemoveServiceChargeImpl
     required TResult Function(_RemoveTax value) removeTax,
     required TResult Function(_AddServiceCharge value) addServiceCharge,
     required TResult Function(_RemoveServiceCharge value) removeServiceCharge,
+    required TResult Function(_AddReservation value) addReservation,
+    required TResult Function(_RemoveReservation value) removeReservation,
+    required TResult Function(_SetOrderType value) setOrderType,
+    required TResult Function(_AddIdReservasi value) addIdReservasi,
   }) {
     return removeServiceCharge(this);
   }
@@ -1710,6 +1942,10 @@ class _$RemoveServiceChargeImpl
     TResult? Function(_RemoveTax value)? removeTax,
     TResult? Function(_AddServiceCharge value)? addServiceCharge,
     TResult? Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult? Function(_AddReservation value)? addReservation,
+    TResult? Function(_RemoveReservation value)? removeReservation,
+    TResult? Function(_SetOrderType value)? setOrderType,
+    TResult? Function(_AddIdReservasi value)? addIdReservasi,
   }) {
     return removeServiceCharge?.call(this);
   }
@@ -1726,6 +1962,10 @@ class _$RemoveServiceChargeImpl
     TResult Function(_RemoveTax value)? removeTax,
     TResult Function(_AddServiceCharge value)? addServiceCharge,
     TResult Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult Function(_AddReservation value)? addReservation,
+    TResult Function(_RemoveReservation value)? removeReservation,
+    TResult Function(_SetOrderType value)? setOrderType,
+    TResult Function(_AddIdReservasi value)? addIdReservasi,
     required TResult orElse(),
   }) {
     if (removeServiceCharge != null) {
@@ -1746,13 +1986,862 @@ abstract class _RemoveServiceCharge implements CheckoutEvent {
 }
 
 /// @nodoc
+abstract class _$$AddReservationImplCopyWith<$Res> {
+  factory _$$AddReservationImplCopyWith(_$AddReservationImpl value,
+          $Res Function(_$AddReservationImpl) then) =
+      __$$AddReservationImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Reservation reservation});
+}
+
+/// @nodoc
+class __$$AddReservationImplCopyWithImpl<$Res>
+    extends _$CheckoutEventCopyWithImpl<$Res, _$AddReservationImpl>
+    implements _$$AddReservationImplCopyWith<$Res> {
+  __$$AddReservationImplCopyWithImpl(
+      _$AddReservationImpl _value, $Res Function(_$AddReservationImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? reservation = null,
+  }) {
+    return _then(_$AddReservationImpl(
+      null == reservation
+          ? _value.reservation
+          : reservation // ignore: cast_nullable_to_non_nullable
+              as Reservation,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddReservationImpl
+    with DiagnosticableTreeMixin
+    implements _AddReservation {
+  const _$AddReservationImpl(this.reservation);
+
+  @override
+  final Reservation reservation;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'CheckoutEvent.addReservation(reservation: $reservation)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CheckoutEvent.addReservation'))
+      ..add(DiagnosticsProperty('reservation', reservation));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddReservationImpl &&
+            (identical(other.reservation, reservation) ||
+                other.reservation == reservation));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, reservation);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddReservationImplCopyWith<_$AddReservationImpl> get copyWith =>
+      __$$AddReservationImplCopyWithImpl<_$AddReservationImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(Product product) addItem,
+    required TResult Function(Product product) removeItem,
+    required TResult Function(Discount discount) addDiscount,
+    required TResult Function(Discount discount) removeDiscount,
+    required TResult Function(int tax) addTax,
+    required TResult Function(int tax) removeTax,
+    required TResult Function(int serviceCharge) addServiceCharge,
+    required TResult Function(int serviceCharge) removeServiceCharge,
+    required TResult Function(Reservation reservation) addReservation,
+    required TResult Function(Reservation reservation) removeReservation,
+    required TResult Function(String orderType) setOrderType,
+    required TResult Function(int idReservasi) addIdReservasi,
+  }) {
+    return addReservation(reservation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(Product product)? addItem,
+    TResult? Function(Product product)? removeItem,
+    TResult? Function(Discount discount)? addDiscount,
+    TResult? Function(Discount discount)? removeDiscount,
+    TResult? Function(int tax)? addTax,
+    TResult? Function(int tax)? removeTax,
+    TResult? Function(int serviceCharge)? addServiceCharge,
+    TResult? Function(int serviceCharge)? removeServiceCharge,
+    TResult? Function(Reservation reservation)? addReservation,
+    TResult? Function(Reservation reservation)? removeReservation,
+    TResult? Function(String orderType)? setOrderType,
+    TResult? Function(int idReservasi)? addIdReservasi,
+  }) {
+    return addReservation?.call(reservation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Product product)? addItem,
+    TResult Function(Product product)? removeItem,
+    TResult Function(Discount discount)? addDiscount,
+    TResult Function(Discount discount)? removeDiscount,
+    TResult Function(int tax)? addTax,
+    TResult Function(int tax)? removeTax,
+    TResult Function(int serviceCharge)? addServiceCharge,
+    TResult Function(int serviceCharge)? removeServiceCharge,
+    TResult Function(Reservation reservation)? addReservation,
+    TResult Function(Reservation reservation)? removeReservation,
+    TResult Function(String orderType)? setOrderType,
+    TResult Function(int idReservasi)? addIdReservasi,
+    required TResult orElse(),
+  }) {
+    if (addReservation != null) {
+      return addReservation(reservation);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_AddItem value) addItem,
+    required TResult Function(_RemoveItem value) removeItem,
+    required TResult Function(_AddDiscount value) addDiscount,
+    required TResult Function(_RemoveDiscount value) removeDiscount,
+    required TResult Function(_AddTax value) addTax,
+    required TResult Function(_RemoveTax value) removeTax,
+    required TResult Function(_AddServiceCharge value) addServiceCharge,
+    required TResult Function(_RemoveServiceCharge value) removeServiceCharge,
+    required TResult Function(_AddReservation value) addReservation,
+    required TResult Function(_RemoveReservation value) removeReservation,
+    required TResult Function(_SetOrderType value) setOrderType,
+    required TResult Function(_AddIdReservasi value) addIdReservasi,
+  }) {
+    return addReservation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_AddItem value)? addItem,
+    TResult? Function(_RemoveItem value)? removeItem,
+    TResult? Function(_AddDiscount value)? addDiscount,
+    TResult? Function(_RemoveDiscount value)? removeDiscount,
+    TResult? Function(_AddTax value)? addTax,
+    TResult? Function(_RemoveTax value)? removeTax,
+    TResult? Function(_AddServiceCharge value)? addServiceCharge,
+    TResult? Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult? Function(_AddReservation value)? addReservation,
+    TResult? Function(_RemoveReservation value)? removeReservation,
+    TResult? Function(_SetOrderType value)? setOrderType,
+    TResult? Function(_AddIdReservasi value)? addIdReservasi,
+  }) {
+    return addReservation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_AddItem value)? addItem,
+    TResult Function(_RemoveItem value)? removeItem,
+    TResult Function(_AddDiscount value)? addDiscount,
+    TResult Function(_RemoveDiscount value)? removeDiscount,
+    TResult Function(_AddTax value)? addTax,
+    TResult Function(_RemoveTax value)? removeTax,
+    TResult Function(_AddServiceCharge value)? addServiceCharge,
+    TResult Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult Function(_AddReservation value)? addReservation,
+    TResult Function(_RemoveReservation value)? removeReservation,
+    TResult Function(_SetOrderType value)? setOrderType,
+    TResult Function(_AddIdReservasi value)? addIdReservasi,
+    required TResult orElse(),
+  }) {
+    if (addReservation != null) {
+      return addReservation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddReservation implements CheckoutEvent {
+  const factory _AddReservation(final Reservation reservation) =
+      _$AddReservationImpl;
+
+  Reservation get reservation;
+  @JsonKey(ignore: true)
+  _$$AddReservationImplCopyWith<_$AddReservationImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RemoveReservationImplCopyWith<$Res> {
+  factory _$$RemoveReservationImplCopyWith(_$RemoveReservationImpl value,
+          $Res Function(_$RemoveReservationImpl) then) =
+      __$$RemoveReservationImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Reservation reservation});
+}
+
+/// @nodoc
+class __$$RemoveReservationImplCopyWithImpl<$Res>
+    extends _$CheckoutEventCopyWithImpl<$Res, _$RemoveReservationImpl>
+    implements _$$RemoveReservationImplCopyWith<$Res> {
+  __$$RemoveReservationImplCopyWithImpl(_$RemoveReservationImpl _value,
+      $Res Function(_$RemoveReservationImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? reservation = null,
+  }) {
+    return _then(_$RemoveReservationImpl(
+      null == reservation
+          ? _value.reservation
+          : reservation // ignore: cast_nullable_to_non_nullable
+              as Reservation,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RemoveReservationImpl
+    with DiagnosticableTreeMixin
+    implements _RemoveReservation {
+  const _$RemoveReservationImpl(this.reservation);
+
+  @override
+  final Reservation reservation;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'CheckoutEvent.removeReservation(reservation: $reservation)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CheckoutEvent.removeReservation'))
+      ..add(DiagnosticsProperty('reservation', reservation));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RemoveReservationImpl &&
+            (identical(other.reservation, reservation) ||
+                other.reservation == reservation));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, reservation);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RemoveReservationImplCopyWith<_$RemoveReservationImpl> get copyWith =>
+      __$$RemoveReservationImplCopyWithImpl<_$RemoveReservationImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(Product product) addItem,
+    required TResult Function(Product product) removeItem,
+    required TResult Function(Discount discount) addDiscount,
+    required TResult Function(Discount discount) removeDiscount,
+    required TResult Function(int tax) addTax,
+    required TResult Function(int tax) removeTax,
+    required TResult Function(int serviceCharge) addServiceCharge,
+    required TResult Function(int serviceCharge) removeServiceCharge,
+    required TResult Function(Reservation reservation) addReservation,
+    required TResult Function(Reservation reservation) removeReservation,
+    required TResult Function(String orderType) setOrderType,
+    required TResult Function(int idReservasi) addIdReservasi,
+  }) {
+    return removeReservation(reservation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(Product product)? addItem,
+    TResult? Function(Product product)? removeItem,
+    TResult? Function(Discount discount)? addDiscount,
+    TResult? Function(Discount discount)? removeDiscount,
+    TResult? Function(int tax)? addTax,
+    TResult? Function(int tax)? removeTax,
+    TResult? Function(int serviceCharge)? addServiceCharge,
+    TResult? Function(int serviceCharge)? removeServiceCharge,
+    TResult? Function(Reservation reservation)? addReservation,
+    TResult? Function(Reservation reservation)? removeReservation,
+    TResult? Function(String orderType)? setOrderType,
+    TResult? Function(int idReservasi)? addIdReservasi,
+  }) {
+    return removeReservation?.call(reservation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Product product)? addItem,
+    TResult Function(Product product)? removeItem,
+    TResult Function(Discount discount)? addDiscount,
+    TResult Function(Discount discount)? removeDiscount,
+    TResult Function(int tax)? addTax,
+    TResult Function(int tax)? removeTax,
+    TResult Function(int serviceCharge)? addServiceCharge,
+    TResult Function(int serviceCharge)? removeServiceCharge,
+    TResult Function(Reservation reservation)? addReservation,
+    TResult Function(Reservation reservation)? removeReservation,
+    TResult Function(String orderType)? setOrderType,
+    TResult Function(int idReservasi)? addIdReservasi,
+    required TResult orElse(),
+  }) {
+    if (removeReservation != null) {
+      return removeReservation(reservation);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_AddItem value) addItem,
+    required TResult Function(_RemoveItem value) removeItem,
+    required TResult Function(_AddDiscount value) addDiscount,
+    required TResult Function(_RemoveDiscount value) removeDiscount,
+    required TResult Function(_AddTax value) addTax,
+    required TResult Function(_RemoveTax value) removeTax,
+    required TResult Function(_AddServiceCharge value) addServiceCharge,
+    required TResult Function(_RemoveServiceCharge value) removeServiceCharge,
+    required TResult Function(_AddReservation value) addReservation,
+    required TResult Function(_RemoveReservation value) removeReservation,
+    required TResult Function(_SetOrderType value) setOrderType,
+    required TResult Function(_AddIdReservasi value) addIdReservasi,
+  }) {
+    return removeReservation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_AddItem value)? addItem,
+    TResult? Function(_RemoveItem value)? removeItem,
+    TResult? Function(_AddDiscount value)? addDiscount,
+    TResult? Function(_RemoveDiscount value)? removeDiscount,
+    TResult? Function(_AddTax value)? addTax,
+    TResult? Function(_RemoveTax value)? removeTax,
+    TResult? Function(_AddServiceCharge value)? addServiceCharge,
+    TResult? Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult? Function(_AddReservation value)? addReservation,
+    TResult? Function(_RemoveReservation value)? removeReservation,
+    TResult? Function(_SetOrderType value)? setOrderType,
+    TResult? Function(_AddIdReservasi value)? addIdReservasi,
+  }) {
+    return removeReservation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_AddItem value)? addItem,
+    TResult Function(_RemoveItem value)? removeItem,
+    TResult Function(_AddDiscount value)? addDiscount,
+    TResult Function(_RemoveDiscount value)? removeDiscount,
+    TResult Function(_AddTax value)? addTax,
+    TResult Function(_RemoveTax value)? removeTax,
+    TResult Function(_AddServiceCharge value)? addServiceCharge,
+    TResult Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult Function(_AddReservation value)? addReservation,
+    TResult Function(_RemoveReservation value)? removeReservation,
+    TResult Function(_SetOrderType value)? setOrderType,
+    TResult Function(_AddIdReservasi value)? addIdReservasi,
+    required TResult orElse(),
+  }) {
+    if (removeReservation != null) {
+      return removeReservation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveReservation implements CheckoutEvent {
+  const factory _RemoveReservation(final Reservation reservation) =
+      _$RemoveReservationImpl;
+
+  Reservation get reservation;
+  @JsonKey(ignore: true)
+  _$$RemoveReservationImplCopyWith<_$RemoveReservationImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetOrderTypeImplCopyWith<$Res> {
+  factory _$$SetOrderTypeImplCopyWith(
+          _$SetOrderTypeImpl value, $Res Function(_$SetOrderTypeImpl) then) =
+      __$$SetOrderTypeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String orderType});
+}
+
+/// @nodoc
+class __$$SetOrderTypeImplCopyWithImpl<$Res>
+    extends _$CheckoutEventCopyWithImpl<$Res, _$SetOrderTypeImpl>
+    implements _$$SetOrderTypeImplCopyWith<$Res> {
+  __$$SetOrderTypeImplCopyWithImpl(
+      _$SetOrderTypeImpl _value, $Res Function(_$SetOrderTypeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? orderType = null,
+  }) {
+    return _then(_$SetOrderTypeImpl(
+      null == orderType
+          ? _value.orderType
+          : orderType // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetOrderTypeImpl with DiagnosticableTreeMixin implements _SetOrderType {
+  const _$SetOrderTypeImpl(this.orderType);
+
+  @override
+  final String orderType;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'CheckoutEvent.setOrderType(orderType: $orderType)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CheckoutEvent.setOrderType'))
+      ..add(DiagnosticsProperty('orderType', orderType));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetOrderTypeImpl &&
+            (identical(other.orderType, orderType) ||
+                other.orderType == orderType));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, orderType);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetOrderTypeImplCopyWith<_$SetOrderTypeImpl> get copyWith =>
+      __$$SetOrderTypeImplCopyWithImpl<_$SetOrderTypeImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(Product product) addItem,
+    required TResult Function(Product product) removeItem,
+    required TResult Function(Discount discount) addDiscount,
+    required TResult Function(Discount discount) removeDiscount,
+    required TResult Function(int tax) addTax,
+    required TResult Function(int tax) removeTax,
+    required TResult Function(int serviceCharge) addServiceCharge,
+    required TResult Function(int serviceCharge) removeServiceCharge,
+    required TResult Function(Reservation reservation) addReservation,
+    required TResult Function(Reservation reservation) removeReservation,
+    required TResult Function(String orderType) setOrderType,
+    required TResult Function(int idReservasi) addIdReservasi,
+  }) {
+    return setOrderType(orderType);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(Product product)? addItem,
+    TResult? Function(Product product)? removeItem,
+    TResult? Function(Discount discount)? addDiscount,
+    TResult? Function(Discount discount)? removeDiscount,
+    TResult? Function(int tax)? addTax,
+    TResult? Function(int tax)? removeTax,
+    TResult? Function(int serviceCharge)? addServiceCharge,
+    TResult? Function(int serviceCharge)? removeServiceCharge,
+    TResult? Function(Reservation reservation)? addReservation,
+    TResult? Function(Reservation reservation)? removeReservation,
+    TResult? Function(String orderType)? setOrderType,
+    TResult? Function(int idReservasi)? addIdReservasi,
+  }) {
+    return setOrderType?.call(orderType);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Product product)? addItem,
+    TResult Function(Product product)? removeItem,
+    TResult Function(Discount discount)? addDiscount,
+    TResult Function(Discount discount)? removeDiscount,
+    TResult Function(int tax)? addTax,
+    TResult Function(int tax)? removeTax,
+    TResult Function(int serviceCharge)? addServiceCharge,
+    TResult Function(int serviceCharge)? removeServiceCharge,
+    TResult Function(Reservation reservation)? addReservation,
+    TResult Function(Reservation reservation)? removeReservation,
+    TResult Function(String orderType)? setOrderType,
+    TResult Function(int idReservasi)? addIdReservasi,
+    required TResult orElse(),
+  }) {
+    if (setOrderType != null) {
+      return setOrderType(orderType);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_AddItem value) addItem,
+    required TResult Function(_RemoveItem value) removeItem,
+    required TResult Function(_AddDiscount value) addDiscount,
+    required TResult Function(_RemoveDiscount value) removeDiscount,
+    required TResult Function(_AddTax value) addTax,
+    required TResult Function(_RemoveTax value) removeTax,
+    required TResult Function(_AddServiceCharge value) addServiceCharge,
+    required TResult Function(_RemoveServiceCharge value) removeServiceCharge,
+    required TResult Function(_AddReservation value) addReservation,
+    required TResult Function(_RemoveReservation value) removeReservation,
+    required TResult Function(_SetOrderType value) setOrderType,
+    required TResult Function(_AddIdReservasi value) addIdReservasi,
+  }) {
+    return setOrderType(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_AddItem value)? addItem,
+    TResult? Function(_RemoveItem value)? removeItem,
+    TResult? Function(_AddDiscount value)? addDiscount,
+    TResult? Function(_RemoveDiscount value)? removeDiscount,
+    TResult? Function(_AddTax value)? addTax,
+    TResult? Function(_RemoveTax value)? removeTax,
+    TResult? Function(_AddServiceCharge value)? addServiceCharge,
+    TResult? Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult? Function(_AddReservation value)? addReservation,
+    TResult? Function(_RemoveReservation value)? removeReservation,
+    TResult? Function(_SetOrderType value)? setOrderType,
+    TResult? Function(_AddIdReservasi value)? addIdReservasi,
+  }) {
+    return setOrderType?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_AddItem value)? addItem,
+    TResult Function(_RemoveItem value)? removeItem,
+    TResult Function(_AddDiscount value)? addDiscount,
+    TResult Function(_RemoveDiscount value)? removeDiscount,
+    TResult Function(_AddTax value)? addTax,
+    TResult Function(_RemoveTax value)? removeTax,
+    TResult Function(_AddServiceCharge value)? addServiceCharge,
+    TResult Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult Function(_AddReservation value)? addReservation,
+    TResult Function(_RemoveReservation value)? removeReservation,
+    TResult Function(_SetOrderType value)? setOrderType,
+    TResult Function(_AddIdReservasi value)? addIdReservasi,
+    required TResult orElse(),
+  }) {
+    if (setOrderType != null) {
+      return setOrderType(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetOrderType implements CheckoutEvent {
+  const factory _SetOrderType(final String orderType) = _$SetOrderTypeImpl;
+
+  String get orderType;
+  @JsonKey(ignore: true)
+  _$$SetOrderTypeImplCopyWith<_$SetOrderTypeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AddIdReservasiImplCopyWith<$Res> {
+  factory _$$AddIdReservasiImplCopyWith(_$AddIdReservasiImpl value,
+          $Res Function(_$AddIdReservasiImpl) then) =
+      __$$AddIdReservasiImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int idReservasi});
+}
+
+/// @nodoc
+class __$$AddIdReservasiImplCopyWithImpl<$Res>
+    extends _$CheckoutEventCopyWithImpl<$Res, _$AddIdReservasiImpl>
+    implements _$$AddIdReservasiImplCopyWith<$Res> {
+  __$$AddIdReservasiImplCopyWithImpl(
+      _$AddIdReservasiImpl _value, $Res Function(_$AddIdReservasiImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? idReservasi = null,
+  }) {
+    return _then(_$AddIdReservasiImpl(
+      null == idReservasi
+          ? _value.idReservasi
+          : idReservasi // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddIdReservasiImpl
+    with DiagnosticableTreeMixin
+    implements _AddIdReservasi {
+  const _$AddIdReservasiImpl(this.idReservasi);
+
+  @override
+  final int idReservasi;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'CheckoutEvent.addIdReservasi(idReservasi: $idReservasi)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CheckoutEvent.addIdReservasi'))
+      ..add(DiagnosticsProperty('idReservasi', idReservasi));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddIdReservasiImpl &&
+            (identical(other.idReservasi, idReservasi) ||
+                other.idReservasi == idReservasi));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, idReservasi);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddIdReservasiImplCopyWith<_$AddIdReservasiImpl> get copyWith =>
+      __$$AddIdReservasiImplCopyWithImpl<_$AddIdReservasiImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(Product product) addItem,
+    required TResult Function(Product product) removeItem,
+    required TResult Function(Discount discount) addDiscount,
+    required TResult Function(Discount discount) removeDiscount,
+    required TResult Function(int tax) addTax,
+    required TResult Function(int tax) removeTax,
+    required TResult Function(int serviceCharge) addServiceCharge,
+    required TResult Function(int serviceCharge) removeServiceCharge,
+    required TResult Function(Reservation reservation) addReservation,
+    required TResult Function(Reservation reservation) removeReservation,
+    required TResult Function(String orderType) setOrderType,
+    required TResult Function(int idReservasi) addIdReservasi,
+  }) {
+    return addIdReservasi(idReservasi);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(Product product)? addItem,
+    TResult? Function(Product product)? removeItem,
+    TResult? Function(Discount discount)? addDiscount,
+    TResult? Function(Discount discount)? removeDiscount,
+    TResult? Function(int tax)? addTax,
+    TResult? Function(int tax)? removeTax,
+    TResult? Function(int serviceCharge)? addServiceCharge,
+    TResult? Function(int serviceCharge)? removeServiceCharge,
+    TResult? Function(Reservation reservation)? addReservation,
+    TResult? Function(Reservation reservation)? removeReservation,
+    TResult? Function(String orderType)? setOrderType,
+    TResult? Function(int idReservasi)? addIdReservasi,
+  }) {
+    return addIdReservasi?.call(idReservasi);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Product product)? addItem,
+    TResult Function(Product product)? removeItem,
+    TResult Function(Discount discount)? addDiscount,
+    TResult Function(Discount discount)? removeDiscount,
+    TResult Function(int tax)? addTax,
+    TResult Function(int tax)? removeTax,
+    TResult Function(int serviceCharge)? addServiceCharge,
+    TResult Function(int serviceCharge)? removeServiceCharge,
+    TResult Function(Reservation reservation)? addReservation,
+    TResult Function(Reservation reservation)? removeReservation,
+    TResult Function(String orderType)? setOrderType,
+    TResult Function(int idReservasi)? addIdReservasi,
+    required TResult orElse(),
+  }) {
+    if (addIdReservasi != null) {
+      return addIdReservasi(idReservasi);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_AddItem value) addItem,
+    required TResult Function(_RemoveItem value) removeItem,
+    required TResult Function(_AddDiscount value) addDiscount,
+    required TResult Function(_RemoveDiscount value) removeDiscount,
+    required TResult Function(_AddTax value) addTax,
+    required TResult Function(_RemoveTax value) removeTax,
+    required TResult Function(_AddServiceCharge value) addServiceCharge,
+    required TResult Function(_RemoveServiceCharge value) removeServiceCharge,
+    required TResult Function(_AddReservation value) addReservation,
+    required TResult Function(_RemoveReservation value) removeReservation,
+    required TResult Function(_SetOrderType value) setOrderType,
+    required TResult Function(_AddIdReservasi value) addIdReservasi,
+  }) {
+    return addIdReservasi(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_AddItem value)? addItem,
+    TResult? Function(_RemoveItem value)? removeItem,
+    TResult? Function(_AddDiscount value)? addDiscount,
+    TResult? Function(_RemoveDiscount value)? removeDiscount,
+    TResult? Function(_AddTax value)? addTax,
+    TResult? Function(_RemoveTax value)? removeTax,
+    TResult? Function(_AddServiceCharge value)? addServiceCharge,
+    TResult? Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult? Function(_AddReservation value)? addReservation,
+    TResult? Function(_RemoveReservation value)? removeReservation,
+    TResult? Function(_SetOrderType value)? setOrderType,
+    TResult? Function(_AddIdReservasi value)? addIdReservasi,
+  }) {
+    return addIdReservasi?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_AddItem value)? addItem,
+    TResult Function(_RemoveItem value)? removeItem,
+    TResult Function(_AddDiscount value)? addDiscount,
+    TResult Function(_RemoveDiscount value)? removeDiscount,
+    TResult Function(_AddTax value)? addTax,
+    TResult Function(_RemoveTax value)? removeTax,
+    TResult Function(_AddServiceCharge value)? addServiceCharge,
+    TResult Function(_RemoveServiceCharge value)? removeServiceCharge,
+    TResult Function(_AddReservation value)? addReservation,
+    TResult Function(_RemoveReservation value)? removeReservation,
+    TResult Function(_SetOrderType value)? setOrderType,
+    TResult Function(_AddIdReservasi value)? addIdReservasi,
+    required TResult orElse(),
+  }) {
+    if (addIdReservasi != null) {
+      return addIdReservasi(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddIdReservasi implements CheckoutEvent {
+  const factory _AddIdReservasi(final int idReservasi) = _$AddIdReservasiImpl;
+
+  int get idReservasi;
+  @JsonKey(ignore: true)
+  _$$AddIdReservasiImplCopyWith<_$AddIdReservasiImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$CheckoutState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ProductQuantity> items, Discount? discount,
-            int tax, int serviceCharge)
+    required TResult Function(
+            List<ProductQuantity> items,
+            Discount? discount,
+            Reservation? reservation,
+            int? idReservasi,
+            String orderType,
+            int tax,
+            int serviceCharge)
         loaded,
     required TResult Function(String message) error,
   }) =>
@@ -1761,7 +2850,13 @@ mixin _$CheckoutState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ProductQuantity> items, Discount? discount, int tax,
+    TResult? Function(
+            List<ProductQuantity> items,
+            Discount? discount,
+            Reservation? reservation,
+            int? idReservasi,
+            String orderType,
+            int tax,
             int serviceCharge)?
         loaded,
     TResult? Function(String message)? error,
@@ -1771,7 +2866,13 @@ mixin _$CheckoutState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ProductQuantity> items, Discount? discount, int tax,
+    TResult Function(
+            List<ProductQuantity> items,
+            Discount? discount,
+            Reservation? reservation,
+            int? idReservasi,
+            String orderType,
+            int tax,
             int serviceCharge)?
         loaded,
     TResult Function(String message)? error,
@@ -1869,8 +2970,14 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ProductQuantity> items, Discount? discount,
-            int tax, int serviceCharge)
+    required TResult Function(
+            List<ProductQuantity> items,
+            Discount? discount,
+            Reservation? reservation,
+            int? idReservasi,
+            String orderType,
+            int tax,
+            int serviceCharge)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -1882,7 +2989,13 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ProductQuantity> items, Discount? discount, int tax,
+    TResult? Function(
+            List<ProductQuantity> items,
+            Discount? discount,
+            Reservation? reservation,
+            int? idReservasi,
+            String orderType,
+            int tax,
             int serviceCharge)?
         loaded,
     TResult? Function(String message)? error,
@@ -1895,7 +3008,13 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ProductQuantity> items, Discount? discount, int tax,
+    TResult Function(
+            List<ProductQuantity> items,
+            Discount? discount,
+            Reservation? reservation,
+            int? idReservasi,
+            String orderType,
+            int tax,
             int serviceCharge)?
         loaded,
     TResult Function(String message)? error,
@@ -1995,8 +3114,14 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ProductQuantity> items, Discount? discount,
-            int tax, int serviceCharge)
+    required TResult Function(
+            List<ProductQuantity> items,
+            Discount? discount,
+            Reservation? reservation,
+            int? idReservasi,
+            String orderType,
+            int tax,
+            int serviceCharge)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -2008,7 +3133,13 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ProductQuantity> items, Discount? discount, int tax,
+    TResult? Function(
+            List<ProductQuantity> items,
+            Discount? discount,
+            Reservation? reservation,
+            int? idReservasi,
+            String orderType,
+            int tax,
             int serviceCharge)?
         loaded,
     TResult? Function(String message)? error,
@@ -2021,7 +3152,13 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ProductQuantity> items, Discount? discount, int tax,
+    TResult Function(
+            List<ProductQuantity> items,
+            Discount? discount,
+            Reservation? reservation,
+            int? idReservasi,
+            String orderType,
+            int tax,
             int serviceCharge)?
         loaded,
     TResult Function(String message)? error,
@@ -2084,6 +3221,9 @@ abstract class _$$LoadedImplCopyWith<$Res> {
   $Res call(
       {List<ProductQuantity> items,
       Discount? discount,
+      Reservation? reservation,
+      int? idReservasi,
+      String orderType,
       int tax,
       int serviceCharge});
 }
@@ -2101,6 +3241,9 @@ class __$$LoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? items = null,
     Object? discount = freezed,
+    Object? reservation = freezed,
+    Object? idReservasi = freezed,
+    Object? orderType = null,
     Object? tax = null,
     Object? serviceCharge = null,
   }) {
@@ -2113,6 +3256,18 @@ class __$$LoadedImplCopyWithImpl<$Res>
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
               as Discount?,
+      freezed == reservation
+          ? _value.reservation
+          : reservation // ignore: cast_nullable_to_non_nullable
+              as Reservation?,
+      freezed == idReservasi
+          ? _value.idReservasi
+          : idReservasi // ignore: cast_nullable_to_non_nullable
+              as int?,
+      null == orderType
+          ? _value.orderType
+          : orderType // ignore: cast_nullable_to_non_nullable
+              as String,
       null == tax
           ? _value.tax
           : tax // ignore: cast_nullable_to_non_nullable
@@ -2128,7 +3283,13 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
-  const _$LoadedImpl(final List<ProductQuantity> items, this.discount, this.tax,
+  const _$LoadedImpl(
+      final List<ProductQuantity> items,
+      this.discount,
+      this.reservation,
+      this.idReservasi,
+      this.orderType,
+      this.tax,
       this.serviceCharge)
       : _items = items;
 
@@ -2143,13 +3304,19 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
   @override
   final Discount? discount;
   @override
+  final Reservation? reservation;
+  @override
+  final int? idReservasi;
+  @override
+  final String orderType;
+  @override
   final int tax;
   @override
   final int serviceCharge;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CheckoutState.loaded(items: $items, discount: $discount, tax: $tax, serviceCharge: $serviceCharge)';
+    return 'CheckoutState.loaded(items: $items, discount: $discount, reservation: $reservation, idReservasi: $idReservasi, orderType: $orderType, tax: $tax, serviceCharge: $serviceCharge)';
   }
 
   @override
@@ -2159,6 +3326,9 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
       ..add(DiagnosticsProperty('type', 'CheckoutState.loaded'))
       ..add(DiagnosticsProperty('items', items))
       ..add(DiagnosticsProperty('discount', discount))
+      ..add(DiagnosticsProperty('reservation', reservation))
+      ..add(DiagnosticsProperty('idReservasi', idReservasi))
+      ..add(DiagnosticsProperty('orderType', orderType))
       ..add(DiagnosticsProperty('tax', tax))
       ..add(DiagnosticsProperty('serviceCharge', serviceCharge));
   }
@@ -2171,6 +3341,12 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
             const DeepCollectionEquality().equals(other._items, _items) &&
             (identical(other.discount, discount) ||
                 other.discount == discount) &&
+            (identical(other.reservation, reservation) ||
+                other.reservation == reservation) &&
+            (identical(other.idReservasi, idReservasi) ||
+                other.idReservasi == idReservasi) &&
+            (identical(other.orderType, orderType) ||
+                other.orderType == orderType) &&
             (identical(other.tax, tax) || other.tax == tax) &&
             (identical(other.serviceCharge, serviceCharge) ||
                 other.serviceCharge == serviceCharge));
@@ -2181,6 +3357,9 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
       runtimeType,
       const DeepCollectionEquality().hash(_items),
       discount,
+      reservation,
+      idReservasi,
+      orderType,
       tax,
       serviceCharge);
 
@@ -2195,12 +3374,19 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ProductQuantity> items, Discount? discount,
-            int tax, int serviceCharge)
+    required TResult Function(
+            List<ProductQuantity> items,
+            Discount? discount,
+            Reservation? reservation,
+            int? idReservasi,
+            String orderType,
+            int tax,
+            int serviceCharge)
         loaded,
     required TResult Function(String message) error,
   }) {
-    return loaded(items, discount, tax, serviceCharge);
+    return loaded(items, discount, reservation, idReservasi, orderType, tax,
+        serviceCharge);
   }
 
   @override
@@ -2208,12 +3394,19 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ProductQuantity> items, Discount? discount, int tax,
+    TResult? Function(
+            List<ProductQuantity> items,
+            Discount? discount,
+            Reservation? reservation,
+            int? idReservasi,
+            String orderType,
+            int tax,
             int serviceCharge)?
         loaded,
     TResult? Function(String message)? error,
   }) {
-    return loaded?.call(items, discount, tax, serviceCharge);
+    return loaded?.call(items, discount, reservation, idReservasi, orderType,
+        tax, serviceCharge);
   }
 
   @override
@@ -2221,14 +3414,21 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ProductQuantity> items, Discount? discount, int tax,
+    TResult Function(
+            List<ProductQuantity> items,
+            Discount? discount,
+            Reservation? reservation,
+            int? idReservasi,
+            String orderType,
+            int tax,
             int serviceCharge)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(items, discount, tax, serviceCharge);
+      return loaded(items, discount, reservation, idReservasi, orderType, tax,
+          serviceCharge);
     }
     return orElse();
   }
@@ -2275,11 +3475,17 @@ abstract class _Loaded implements CheckoutState {
   const factory _Loaded(
       final List<ProductQuantity> items,
       final Discount? discount,
+      final Reservation? reservation,
+      final int? idReservasi,
+      final String orderType,
       final int tax,
       final int serviceCharge) = _$LoadedImpl;
 
   List<ProductQuantity> get items;
   Discount? get discount;
+  Reservation? get reservation;
+  int? get idReservasi;
+  String get orderType;
   int get tax;
   int get serviceCharge;
   @JsonKey(ignore: true)
@@ -2361,8 +3567,14 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ProductQuantity> items, Discount? discount,
-            int tax, int serviceCharge)
+    required TResult Function(
+            List<ProductQuantity> items,
+            Discount? discount,
+            Reservation? reservation,
+            int? idReservasi,
+            String orderType,
+            int tax,
+            int serviceCharge)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -2374,7 +3586,13 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ProductQuantity> items, Discount? discount, int tax,
+    TResult? Function(
+            List<ProductQuantity> items,
+            Discount? discount,
+            Reservation? reservation,
+            int? idReservasi,
+            String orderType,
+            int tax,
             int serviceCharge)?
         loaded,
     TResult? Function(String message)? error,
@@ -2387,7 +3605,13 @@ class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ProductQuantity> items, Discount? discount, int tax,
+    TResult Function(
+            List<ProductQuantity> items,
+            Discount? discount,
+            Reservation? reservation,
+            int? idReservasi,
+            String orderType,
+            int tax,
             int serviceCharge)?
         loaded,
     TResult Function(String message)? error,

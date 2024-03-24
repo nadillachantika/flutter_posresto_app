@@ -61,7 +61,9 @@ class ProductLocalDatasource {
       id_kasir INTEGER,
       nama_kasir TEXT,
       transaction_time TEXT,
-      is_sync INTEGER DEFAULT 0
+      is_sync INTEGER DEFAULT 0,
+      id_reservasi INTEGER,
+      order_type TEXT
     )
     ''');
 
@@ -156,7 +158,7 @@ class ProductLocalDatasource {
     final db = await instance.database;
     final List<Map<String, dynamic>> maps = await db
         .query(tableOrderItem, where: 'id_order = ?', whereArgs: [orderId]);
-    return List.generate(maps.length, (i) {
+    return List.generate(maps.length, (i) { 
       return ProductQuantity.fromLocalMap(maps[i]);
     });
   }

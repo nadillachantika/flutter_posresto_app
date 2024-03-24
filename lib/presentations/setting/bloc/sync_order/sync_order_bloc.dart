@@ -16,6 +16,8 @@ class SyncOrderBloc extends Bloc<SyncOrderEvent, SyncOrderState> {
 
       final dataOrderNotSynced =
           await ProductLocalDatasource.instance.getOrderByIsNotSync();
+
+          print('Order Not Synced: ${dataOrderNotSynced.length}');
       
 
       for (var order in dataOrderNotSynced) {

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_restopos/core/components/buttons.dart';
 import 'package:flutter_restopos/core/components/custom_date_picker.dart';
+import 'package:flutter_restopos/core/components/custom_date_picker2.dart';
 import 'package:flutter_restopos/core/components/custom_dropdown.dart';
 import 'package:flutter_restopos/core/components/custom_text_field.dart';
 import 'package:flutter_restopos/core/components/custom_time_picker.dart';
@@ -15,7 +16,6 @@ import 'package:flutter_restopos/core/extensions/string_ext.dart';
 import 'package:flutter_restopos/gen/assets.gen.dart';
 import 'package:flutter_restopos/presentations/home/bloc/checkout/checkout_bloc.dart';
 import 'package:flutter_restopos/presentations/home/bloc/local_product/local_product_bloc.dart';
-import 'package:flutter_restopos/presentations/home/bloc/reservation_data/reservation_data_bloc.dart';
 import 'package:flutter_restopos/presentations/home/dialog/discount_dialog.dart';
 import 'package:flutter_restopos/presentations/home/dialog/service_dialog.dart';
 import 'package:flutter_restopos/presentations/home/dialog/tax_dialog.dart';
@@ -28,6 +28,7 @@ import 'package:flutter_restopos/presentations/home/widgets/custom_tab_bar.dart'
 import 'package:flutter_restopos/presentations/home/widgets/home_title.dart';
 import 'package:flutter_restopos/presentations/home/widgets/order_menu.dart';
 import 'package:flutter_restopos/presentations/home/widgets/product_card.dart';
+import 'package:flutter_restopos/presentations/reservation/models/reservation_response_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -38,10 +39,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final searchController = TextEditingController();
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController dateController = TextEditingController();
-  final TextEditingController timeController = TextEditingController();
+  final TextEditingController customerNameController = TextEditingController();
+  final TextEditingController customerPhoneController = TextEditingController();
+  final TextEditingController resDateController = TextEditingController();
   final TextEditingController tableNumberController = TextEditingController();
   TextEditingController statusController = TextEditingController();
   final TextEditingController notesController = TextEditingController();
@@ -55,8 +55,7 @@ class _HomePageState extends State<HomePage> {
     context
         .read<LocalProductBloc>()
         .add(const LocalProductEvent.getLocalProduct());
-            statusController = TextEditingController(text: 'pending');
-
+    statusController = TextEditingController(text: 'pending');
 
     super.initState();
   }
@@ -356,53 +355,74 @@ class _HomePageState extends State<HomePage> {
                                   child: TextButton(
                                     onPressed: () {
                                       setState(() {
-                                        isDineInSelected = !isDineInSelected;
-                                        if (isDineInSelected) {
-                                          isBookingSelected = false;
-                                        }
+                                        isDineInSelected = true;
+                                        isBookingSelected = false;
+
+                                        Reservation reservation = Reservation(
+                                            customerName:
+                                                customerNameController.text,
+                                            customerPhone:
+                                                customerPhoneController.text,
+                                            reservationDate: date,
+                                            reservationTime: time.toString(),
+                                            tableNumber:
+                                                tableNumberController.text,
+                                            status: statusController.text,
+                                            notes: notesController.text);
+
+                                           context.read<CheckoutBloc>().add(
+                                    CheckoutEvent.removeReservation(reservation));
+                           
                                       });
                                     },
                                     child: Text(
                                       'Dine In',
                                       style: TextStyle(
-                                          color: isDineInSelected
-                                              ? Colors.white
-                                              : Colors.grey),
+                                        color: isDineInSelected
+                                            ? Colors.white
+                                            : Colors.grey,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                               const SizedBox(width: 8.0),
                               Expanded(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: isBookingSelected
-                                        ? AppColors.primary
-                                        : null,
-                                    borderRadius: BorderRadius.circular(16.0),
-                                    border: Border.all(
-                                      color: isBookingSelected
-                                          ? Colors.transparent
-                                          : Colors.grey,
-                                    ),
-                                  ),
-                                  child: TextButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        isBookingSelected = !isBookingSelected;
-                                        if (isBookingSelected) {
-                                          isDineInSelected = false;
-                                        }
-                                      });
-                                    },
-                                    child: Text(
-                                      'Booking',
-                                      style: TextStyle(
+                                child: BlocBuilder<CheckoutBloc, CheckoutState>(
+                                  builder: (context, state) {
+                                    return Container(
+                                      decoration: BoxDecoration(
+                                        color: isBookingSelected
+                                            ? AppColors.primary
+                                            : null,
+                                        borderRadius:
+                                            BorderRadius.circular(16.0),
+                                        border: Border.all(
                                           color: isBookingSelected
-                                              ? Colors.white
-                                              : Colors.grey),
-                                    ),
-                                  ),
+                                              ? Colors.transparent
+                                              : Colors.grey,
+                                        ),
+                                      ),
+                                      child: TextButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            isBookingSelected = true;
+                                            isDineInSelected = false;
+                                          });
+                                          // Kirim event ke Bloc jika perlu
+// Misalnya, tambahkan event addReservation ke Bloc
+                                        },
+                                        child: Text(
+                                          'Booking',
+                                          style: TextStyle(
+                                            color: isBookingSelected
+                                                ? Colors.white
+                                                : Colors.grey,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
                               ),
                             ],
@@ -413,11 +433,11 @@ class _HomePageState extends State<HomePage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     CustomTextField(
-                                      controller: nameController,
+                                      controller: customerNameController,
                                       label: 'Customer Name',
                                     ),
                                     CustomTextField(
-                                      controller: phoneController,
+                                      controller: customerPhoneController,
                                       label: 'Customer Phone',
                                     ),
                                     const SpaceHeight(8.0),
@@ -493,10 +513,10 @@ class _HomePageState extends State<HomePage> {
                                     //     BlocProvider.of<ReservationDataBloc>(context).add(
                                     //       ReservationDataEvent.addOrUpdateReservation(
                                     //         Reservation(
-                                    //           customerName: nameController.text,
-                                    //           customerPhone: phoneController.text,
-                                    //           reservationDate: dateController.text,
-                                    //           reservationTime: timeController.text,
+                                    //           customerName: customerNameController.text,
+                                    //           customerPhone: customerPhoneController.text,
+                                    //           reservationDate: resDateController.text,
+                                    //           reservationTime: resTimeController.text,
                                     //           tableNumber: tableNumberController.text,
                                     //           // Tambahkan data reservasi lainnya sesuai kebutuhan
                                     //         ),
@@ -555,8 +575,13 @@ class _HomePageState extends State<HomePage> {
                                 orElse: () => const Center(
                                   child: Text('No Items'),
                                 ),
-                                loaded:
-                                    (products, discount, tax, serviceCharge) {
+                                loaded: (products,
+                                    discount,
+                                    reservation,
+                                    idReservasi,
+                                    orderType,
+                                    tax,
+                                    serviceCharge) {
                                   if (products.isEmpty) {
                                     return const Center(
                                       child: Text('No Items'),
@@ -644,7 +669,12 @@ class _HomePageState extends State<HomePage> {
                                 builder: (context, state) {
                                   final tax = state.maybeWhen(
                                       orElse: () => 0,
-                                      loaded: (products, discount, tax,
+                                      loaded: (products,
+                                          discount,
+                                          reservation,
+                                          idReservasi,
+                                          orderType,
+                                          tax,
                                           serviceCharge) {
                                         if (products.isEmpty) {
                                           return 0;
@@ -675,7 +705,12 @@ class _HomePageState extends State<HomePage> {
                                 builder: (context, state) {
                                   final discount = state.maybeWhen(
                                       orElse: () => 0,
-                                      loaded: (products, discount, tax,
+                                      loaded: (products,
+                                          discount,
+                                          reservation,
+                                          idReservasi,
+                                          orderType,
+                                          tax,
                                           serviceCharge) {
                                         if (discount == null) {
                                           return 0;
@@ -707,7 +742,12 @@ class _HomePageState extends State<HomePage> {
                                 builder: (context, state) {
                                   final price = state.maybeWhen(
                                     orElse: () => 0,
-                                    loaded: (products, discount, tax,
+                                    loaded: (products,
+                                        discount,
+                                        reservation,
+                                        idReservasi,
+                                        orderType,
+                                        tax,
                                         serviceCharge) {
                                       if (products.isNotEmpty) {
                                         return products
@@ -743,10 +783,31 @@ class _HomePageState extends State<HomePage> {
                               horizontal: 24.0, vertical: 16.0),
                           child: Button.filled(
                             onPressed: () {
-                              // context.read<ReservationDataBloc>().add(ReservationDataEvent.addOrUpdateReservation(reservation))
-                              
+                              // Mengambil nilai dari controller untuk membuat objek Reservation
+
+                              if (isBookingSelected == true) {
+                                context.read<CheckoutBloc>().add(
+                                    const CheckoutEvent.setOrderType(
+                                        'reservation'));
+
+                                Reservation reservation = Reservation(
+                                    customerName: customerNameController.text,
+                                    customerPhone: customerPhoneController.text,
+                                    reservationDate: date,
+                                    reservationTime: time.toString(),
+                                    tableNumber: tableNumberController.text,
+                                    status: statusController.text,
+                                    notes: notesController.text);
+
+                                context.read<CheckoutBloc>().add(
+                                    CheckoutEvent.addReservation(reservation));
+                              } else {
+                                context.read<CheckoutBloc>().add(
+                                    const CheckoutEvent.setOrderType('dinein'));
+                              }
+                              context.read<CheckoutBloc>().add(
+                                  const CheckoutEvent.setOrderType('dinein'));
                               context.push(const ConfirmPaymentPage());
-                              
                             },
                             label: 'Lanjutkan Pembayaran',
                           ),

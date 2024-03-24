@@ -12,6 +12,7 @@ import 'package:flutter_restopos/presentations/home/bloc/checkout/checkout_bloc.
 import 'package:flutter_restopos/presentations/home/bloc/order/order_bloc.dart';
 import 'package:flutter_restopos/presentations/home/models/product_quantity.dart';
 import 'package:flutter_restopos/presentations/home/widgets/success_payment_dialog.dart';
+import 'package:flutter_restopos/presentations/reservation/bloc/add_reservation/add_reservation_bloc.dart';
 
 import '../models/product_category.dart';
 import '../models/product_model.dart';
@@ -35,7 +36,9 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
     final state = context.read<CheckoutBloc>().state;
     final price = state.maybeWhen(
       orElse: () => 0,
-      loaded: (products, discount, tax, serviceCharge) => products.fold<int>(
+      loaded: (products, discount, reservation, idReservasi, orderType, tax,
+              serviceCharge) =>
+          products.fold<int>(
         0,
         (previousValue, element) =>
             previousValue + (element.product.price! * element.quantity),
@@ -155,7 +158,8 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                               orElse: () => const Center(
                                 child: Text('No Items'),
                               ),
-                              loaded: (products, discount, tax, serviceCharge) {
+                              loaded: (products, discount, reservation,
+                                  idReservasi, orderType, tax, serviceCharge) {
                                 if (products.isEmpty) {
                                   return const Center(
                                     child: Text('No Items'),
@@ -219,12 +223,22 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                               builder: (context, state) {
                                 final tax = state.maybeWhen(
                                     orElse: () => 0,
-                                    loaded: (products, discount, tax,
+                                    loaded: (products,
+                                            discount,
+                                            reservation,
+                                            idReservasi,
+                                            orderType,
+                                            tax,
                                             serviceCharge) =>
                                         tax);
                                 final price = state.maybeWhen(
                                   orElse: () => 0,
-                                  loaded: (products, discount, tax,
+                                  loaded: (products,
+                                          discount,
+                                          reservation,
+                                          idReservasi,
+                                          orderType,
+                                          tax,
                                           serviceCharge) =>
                                       products.fold<int>(
                                     0,
@@ -237,7 +251,12 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
 
                                 final discount = state.maybeWhen(
                                     orElse: () => 0,
-                                    loaded: (products, discount, tax,
+                                    loaded: (products,
+                                        discount,
+                                        reservation,
+                                        idReservasi,
+                                        orderType,
+                                        tax,
                                         serviceCharge) {
                                       if (discount == null) {
                                         return 0;
@@ -274,7 +293,12 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                               builder: (context, state) {
                                 final discount = state.maybeWhen(
                                     orElse: () => 0,
-                                    loaded: (products, discount, tax,
+                                    loaded: (products,
+                                        discount,
+                                        reservation,
+                                        idReservasi,
+                                        orderType,
+                                        tax,
                                         serviceCharge) {
                                       if (discount == null) {
                                         return 0;
@@ -286,8 +310,13 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
 
                                 final subTotal = state.maybeWhen(
                                   orElse: () => 0,
-                                  loaded:
-                                      (products, discount, tax, serviceCharge) {
+                                  loaded: (products,
+                                      discount,
+                                      reservation,
+                                      idReservasi,
+                                      orderType,
+                                      tax,
+                                      serviceCharge) {
                                     if (products.isNotEmpty) {
                                       return products.fold(
                                         0,
@@ -326,8 +355,13 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                               builder: (context, state) {
                                 final price = state.maybeWhen(
                                   orElse: () => 0,
-                                  loaded:
-                                      (products, discount, tax, serviceCharge) {
+                                  loaded: (products,
+                                      discount,
+                                      reservation,
+                                      idReservasi,
+                                      orderType,
+                                      tax,
+                                      serviceCharge) {
                                     if (products.isNotEmpty) {
                                       return products.fold(
                                         0,
@@ -369,7 +403,12 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                               builder: (context, state) {
                                 final price = state.maybeWhen(
                                   orElse: () => 0,
-                                  loaded: (products, discount, tax,
+                                  loaded: (products,
+                                          discount,
+                                          reservation,
+                                          idReservasi,
+                                          orderType,
+                                          tax,
                                           serviceCharge) =>
                                       products.fold<int>(
                                     0,
@@ -382,7 +421,12 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
 
                                 final discount = state.maybeWhen(
                                     orElse: () => 0,
-                                    loaded: (products, discount, tax,
+                                    loaded: (products,
+                                        discount,
+                                        reservaation,
+                                        idReservasi,
+                                        orderType,
+                                        tax,
                                         serviceCharge) {
                                       if (discount == null) {
                                         return 0;
@@ -435,6 +479,53 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            BlocBuilder<CheckoutBloc, CheckoutState>(
+                              builder: (context, state) {
+                                return state.maybeWhen(
+                                  loaded: (products,
+                                      discount,
+                                      reservation,
+                                      idReservasi,
+                                      orderType,
+                                      tax,
+                                      serviceCharge) {
+                                    return reservation != null
+                                        ? Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              const Text(
+                                                'Data Customer Reservasi',
+                                                style: TextStyle(
+                                                  color: AppColors.primary,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              Text(
+                                                  'Nama Pelanggan: ${reservation.customerName}'),
+                                              Text(
+                                                  'Nomor Telepon: ${reservation.customerPhone}'),
+                                              Text(
+                                                  'Tanggal: ${reservation.reservationDate}'),
+                                              Text(
+                                                  'Waktu: ${reservation.reservationTime}'),
+                                              Text(
+                                                  'Catatan: ${reservation.notes}'),
+                                              Text(
+                                                  'Nomor Meja: ${reservation.tableNumber}'),
+                                              Text(
+                                                  'Status: ${reservation.status}'),
+                                              // Tambahkan bagian lain dari data reservasi yang ingin ditampilkan
+                                            ],
+                                          )
+                                        : const SizedBox(); // Mengembalikan widget kosong jika reservation null
+                                  },
+                                  orElse: () =>
+                                      const SizedBox(), // Mengembalikan widget kosong jika state tidak sesuai
+                                );
+                              },
+                            ),
                             const Text(
                               'Pembayaran',
                               style: TextStyle(
@@ -548,7 +639,12 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                   listener: (context, state) {
                                     final price = state.maybeWhen(
                                       orElse: () => 0,
-                                      loaded: (products, discount, tax,
+                                      loaded: (products,
+                                              discount,
+                                              reservation,
+                                              idReservasi,
+                                              orderType,
+                                              tax,
                                               serviceCharge) =>
                                           products.fold<int>(
                                         0,
@@ -560,7 +656,12 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                     );
                                     final discount = state.maybeWhen(
                                         orElse: () => 0,
-                                        loaded: (products, discount, tax,
+                                        loaded: (products,
+                                            discount,
+                                            reservation,
+                                            idReservasi,
+                                            orderType,
+                                            tax,
                                             serviceCharge) {
                                           if (discount == null) {
                                             return 0;
@@ -581,9 +682,29 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                   child:
                                       BlocBuilder<CheckoutBloc, CheckoutState>(
                                     builder: (context, state) {
+                                      final reservation = state.maybeWhen(
+                                          orElse: () => null,
+                                          loaded: (products,
+                                                  discount,
+                                                  reservation,
+                                                  idReservasi,
+                                                  orderType,
+                                                  tax,
+                                                  serviceCharge) =>
+                                              reservation);
+                                      String formattedDate = reservation!
+                                          .reservationDate!
+                                          .toString()
+                                          .split(' ')[0];
+
                                       final price = state.maybeWhen(
                                         orElse: () => 0,
-                                        loaded: (products, discount, tax,
+                                        loaded: (products,
+                                                discount,
+                                                reservation,
+                                                idReservasi,
+                                                orderType,
+                                                tax,
                                                 serviceCharge) =>
                                             products.fold<int>(
                                           0,
@@ -596,7 +717,12 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
 
                                       final discount = state.maybeWhen(
                                           orElse: () => 0,
-                                          loaded: (products, discount, tax,
+                                          loaded: (products,
+                                              discount,
+                                              reservation,
+                                              idReservasi,
+                                              orderType,
+                                              tax,
                                               serviceCharge) {
                                             if (discount == null) {
                                               return 0;
@@ -605,6 +731,27 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                                 .replaceAll('.00', '')
                                                 .toIntegerFromText;
                                           });
+                                      final idReservasi = state.maybeWhen(
+                                          orElse: () => null,
+                                          loaded: (products,
+                                                  discount,
+                                                  reservation,
+                                                  idReservasi,
+                                                  orderType,
+                                                  tax,
+                                                  serviceCharge) =>
+                                              idReservasi);
+
+                                      final orderType = state.maybeWhen(
+                                          orElse: () => '',
+                                          loaded: (products,
+                                                  discount,
+                                                  reservation,
+                                                  idReservasi,
+                                                  orderType,
+                                                  tax,
+                                                  serviceCharge) =>
+                                              orderType);
 
                                       final subTotal =
                                           price - (discount / 100 * price);
@@ -619,7 +766,12 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                       List<ProductQuantity> items =
                                           state.maybeWhen(
                                         orElse: () => [],
-                                        loaded: (products, discount, tax,
+                                        loaded: (products,
+                                                discount,
+                                                reservation,
+                                                idReservasi,
+                                                orderType,
+                                                tax,
                                                 service) =>
                                             products,
                                       );
@@ -635,14 +787,38 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                       return Flexible(
                                         child: Button.filled(
                                           onPressed: () async {
+                                            
+                                            context
+                                                .read<AddReservationBloc>()
+                                                .add(AddReservationEvent
+                                                    .addReservation(
+                                                  customerName:
+                                                      reservation.customerName!,
+                                                  customerPhone: reservation
+                                                      .customerPhone!,
+                                                  reservationDate:
+                                                      formattedDate,
+                                                  reservationTime: reservation
+                                                      .reservationTime!,
+                                                  status: reservation.status!,
+                                                  notes: reservation.notes!,
+                                                  tableNumber:
+                                                      reservation.tableNumber!,
+                                                ));
+
                                             context.read<OrderBloc>().add(
                                                 OrderEvent.order(
                                                     items,
                                                     discount,
                                                     tax.toInt(),
                                                     0,
-                                                    totalPriceController.text
-                                                        .toIntegerFromText));
+                                                    totalPriceController
+                                                        .text.toIntegerFromText,
+                                                    idReservasi,
+                                                    orderType));
+
+                                            print('total id: $idReservasi');
+                                            print('orderType: $orderType');
 
                                             await showDialog(
                                               context: context,

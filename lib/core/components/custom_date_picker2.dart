@@ -9,13 +9,13 @@ class DateTextInputField extends StatefulWidget {
   final void Function(DateTime selectedDate)? onDateSelected;
 
   const DateTextInputField({
-    Key? key,
+    super.key,
     required this.controller,
     required this.labelText,
     this.onDateSelected,
         this.showLabel = true,
 
-  }) : super(key: key);
+  });
 
   @override
   _DateTextInputFieldState createState() => _DateTextInputFieldState();

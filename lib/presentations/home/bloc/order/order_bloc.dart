@@ -12,6 +12,9 @@ part 'order_bloc.freezed.dart';
 
 class OrderBloc extends Bloc<OrderEvent, OrderState> {
   OrderBloc() : super(_Initial()) {
+   
+   
+   
     on<_Order>((event, emit) async {
       // TODO: implement event handler
 
@@ -61,6 +64,11 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         isSync: 0,
         orderItems: event.items,
         total: total,
+        idReservasi:event.idReservasi,
+        orderType: event.orderType
+
+
+        
       );
 
       await ProductLocalDatasource.instance.saveOrder(dataInput);
