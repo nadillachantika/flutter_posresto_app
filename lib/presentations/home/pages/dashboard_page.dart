@@ -6,6 +6,7 @@ import 'package:flutter_restopos/data/datasources/auth_local_datasource.dart';
 import 'package:flutter_restopos/gen/assets.gen.dart';
 import 'package:flutter_restopos/presentations/auth/bloc/login_page.dart';
 import 'package:flutter_restopos/presentations/auth/bloc/logout/logout_bloc.dart';
+import 'package:flutter_restopos/presentations/history/pages/history_page.dart';
 import 'package:flutter_restopos/presentations/home/pages/home_pages.dart';
 import 'package:flutter_restopos/presentations/home/widgets/nav_item.dart';
 import 'package:flutter_restopos/presentations/report/pages/report_page.dart';
@@ -26,8 +27,8 @@ class _DashboardPageState extends State<DashboardPage> {
   final List<Widget> _pages = [
     const HomePage(),
     // const Center(child: Text('This is page 2')),
+    const HistoryPage(),
     const ReportPage(),
-    const ReservationPage(),
     // const Center(child: Text('This is page 4')),
     const SettingsPage(),
     const Center(child: Text('This is page 3')),
@@ -59,16 +60,22 @@ class _DashboardPageState extends State<DashboardPage> {
                           isActive: _selectedIndex == 0,
                           onTap: () => _onItemTapped(0),
                         ),
-                        NavItem(
-                          iconPath: Assets.icons.discount.path,
+                         NavItem(
+                          iconPath: Assets.icons.history.path,
                           isActive: _selectedIndex == 1,
                           onTap: () => _onItemTapped(1),
                         ),
                         NavItem(
-                          iconPath: Assets.icons.calendar.path,
+                          iconPath: Assets.icons.discount.path,
                           isActive: _selectedIndex == 2,
                           onTap: () => _onItemTapped(2),
                         ),
+                        // NavItem(
+                        //   iconPath: Assets.icons.calendar.path,
+                        //   isActive: _selectedIndex == 2,
+                        //   onTap: () => _onItemTapped(2),
+                        // ),
+                         
                         NavItem(
                           iconPath: Assets.icons.setting.path,
                           isActive: _selectedIndex == 3,

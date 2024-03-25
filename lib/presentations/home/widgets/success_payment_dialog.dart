@@ -88,12 +88,11 @@ class _SuccessPaymentDialogState extends State<SuccessPaymentDialog> {
                 final price = state.maybeWhen(
                     orElse: () => 0, loaded: (model) => model.subTotal);
 
-                final totalDiscount = discount / 100 * price;
               
 
              
 
-                var subTotal= price - totalDiscount;
+                var subTotal= price - discount;
 
                 final tax = subTotal *0.11;
                 final totalTagihan = subTotal + tax;
@@ -135,15 +134,13 @@ class _SuccessPaymentDialogState extends State<SuccessPaymentDialog> {
                   loaded: (model) => model.paymentAmount,
                 );
             
-
                  final discount = state.maybeWhen(
                     orElse: () => 0, loaded: (model) => model.discount);
                 final price = state.maybeWhen(
                     orElse: () => 0, loaded: (model) => model.subTotal);
 
-                final totalDiscount = discount / 100 * price;
               
-                var subTotal= price - totalDiscount;
+                var subTotal= price - discount;
 
                 final tax = subTotal *0.11;
                 final totalTagihan = subTotal + tax;

@@ -605,9 +605,10 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                                 .replaceAll('.00', '')
                                                 .toIntegerFromText;
                                           });
+                                      final finalDiscount =
+                                          discount / 100 * price;
 
-                                      final subTotal =
-                                          price - (discount / 100 * price);
+                                      final subTotal = price - finalDiscount;
                                       final totalDiscount =
                                           discount / 100 * price;
 
@@ -638,7 +639,7 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                             context.read<OrderBloc>().add(
                                                 OrderEvent.order(
                                                     items,
-                                                    discount,
+                                                    finalDiscount.toInt(),
                                                     tax.toInt(),
                                                     0,
                                                     totalPriceController.text
