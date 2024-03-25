@@ -370,9 +370,9 @@ class _HomePageState extends State<HomePage> {
                                             status: statusController.text,
                                             notes: notesController.text);
 
-                                           context.read<CheckoutBloc>().add(
-                                    CheckoutEvent.removeReservation(reservation));
-                           
+                                        context.read<CheckoutBloc>().add(
+                                            CheckoutEvent.removeReservation(
+                                                reservation));
                                       });
                                     },
                                     child: Text(
@@ -410,7 +410,10 @@ class _HomePageState extends State<HomePage> {
                                             isDineInSelected = false;
                                           });
                                           // Kirim event ke Bloc jika perlu
-// Misalnya, tambahkan event addReservation ke Bloc
+
+                                          context.read<CheckoutBloc>().add(
+                                              const CheckoutEvent.setOrderType(
+                                                  'reservation'));
                                         },
                                         child: Text(
                                           'Booking',
@@ -801,13 +804,15 @@ class _HomePageState extends State<HomePage> {
 
                                 context.read<CheckoutBloc>().add(
                                     CheckoutEvent.addReservation(reservation));
+                                context.read<CheckoutBloc>().add(
+                                    const CheckoutEvent.setOrderType(
+                                        'reservation'));
+                                context.push(const ConfirmPaymentPage());
                               } else {
                                 context.read<CheckoutBloc>().add(
                                     const CheckoutEvent.setOrderType('dinein'));
+                                context.push(const ConfirmPaymentPage());
                               }
-                              context.read<CheckoutBloc>().add(
-                                  const CheckoutEvent.setOrderType('dinein'));
-                              context.push(const ConfirmPaymentPage());
                             },
                             label: 'Lanjutkan Pembayaran',
                           ),

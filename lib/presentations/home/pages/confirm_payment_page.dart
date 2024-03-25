@@ -423,7 +423,7 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                     orElse: () => 0,
                                     loaded: (products,
                                         discount,
-                                        reservaation,
+                                        reservation,
                                         idReservasi,
                                         orderType,
                                         tax,
@@ -692,10 +692,10 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                                   tax,
                                                   serviceCharge) =>
                                               reservation);
-                                      String formattedDate = reservation!
-                                          .reservationDate!
-                                          .toString()
-                                          .split(' ')[0];
+                                      // String? formattedDate = reservation!
+                                      //     .reservationDate!
+                                      //     .toString()
+                                      //     .split(' ')[0];
 
                                       final price = state.maybeWhen(
                                         orElse: () => 0,
@@ -753,6 +753,7 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                                   serviceCharge) =>
                                               orderType);
 
+                                      print(orderType);
                                       final subTotal =
                                           price - (discount / 100 * price);
                                       final totalDiscount =
@@ -787,40 +788,20 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                       return Flexible(
                                         child: Button.filled(
                                           onPressed: () async {
-                                            
-                                            context
-                                                .read<AddReservationBloc>()
-                                                .add(AddReservationEvent
-                                                    .addReservation(
-                                                  customerName:
-                                                      reservation.customerName!,
-                                                  customerPhone: reservation
-                                                      .customerPhone!,
-                                                  reservationDate:
-                                                      formattedDate,
-                                                  reservationTime: reservation
-                                                      .reservationTime!,
-                                                  status: reservation.status!,
-                                                  notes: reservation.notes!,
-                                                  tableNumber:
-                                                      reservation.tableNumber!,
-                                                ));
+                                                      print('Order type on button press: $orderType');
 
-                                            context.read<OrderBloc>().add(
-                                                OrderEvent.order(
-                                                    items,
-                                                    discount,
-                                                    tax.toInt(),
-                                                    0,
-                                                    totalPriceController
-                                                        .text.toIntegerFromText,
-                                                    idReservasi,
-                                                    orderType));
-
-                                            print('total id: $idReservasi');
-                                            print('orderType: $orderType');
-
-                                            await showDialog(
+                                            if (orderType == 'dinein') {
+                                              context.read<OrderBloc>().add(
+                                                  OrderEvent.order(
+                                                      items,
+                                                      discount,
+                                                      tax.toInt(),
+                                                      0,
+                                                      totalPriceController.text
+                                                          .toIntegerFromText,
+                                                      idReservasi,
+                                                      orderType));
+                                                         await showDialog(
                                               context: context,
                                               barrierDismissible: false,
                                               builder: (context) =>
@@ -835,6 +816,27 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                                                 normalPrice: price,
                                               ),
                                             );
+                                            }
+
+                                            if (orderType == 'reservation') {
+                                              context.read<OrderBloc>().add(
+                                                  OrderEvent
+                                                      .saveOrderWithReservation(
+                                                          items,
+                                                          discount,
+                                                          tax.toInt(),
+                                                          0,
+                                                          totalPriceController
+                                                              .text
+                                                              .toIntegerFromText,
+                                                          idReservasi,
+                                                          orderType,
+                                                          reservation));
+
+                                                           
+                                            }
+
+                                         
                                           },
                                           label: 'Bayar',
                                         ),

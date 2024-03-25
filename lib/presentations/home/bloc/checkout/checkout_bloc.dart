@@ -159,6 +159,8 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
         );
         emit(updatedState);
       }
+        print('Event _SetOrderType dipicu dengan orderType: ${event.orderType}');
+
     });
   }
 }

@@ -77,17 +77,6 @@ class ProductLocalDatasource {
       )
     ''');
 
-/*    "id": 13,
-            "reservation_code": "RSV-bqOGda",
-            "reservation_date": "2024-03-21",
-            "reservation_time": "21:31:00",
-            "status": "pending",
-            "notes": "nfjfnnf",
-            "table_number": "1",
-            "created_at": "2024-03-23T06:49:54.000000Z",
-            "updated_at": "2024-03-23T14:31:12.000000Z",
-            "customer_name": "nadillahhh",
-            "customer_phone": "082131841" */
     await db.execute('''
       CREATE TABLE $tableReservation(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -129,12 +118,6 @@ class ProductLocalDatasource {
     }
   }
 
-  // save reservation
-  Future<void> saveReservation(Reservation reservation) async {
-    final db = await instance.database;
-    await db.insert(tableReservation, reservation.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace);
-  }
 
 // insert data product
   Future<void> insertProduct(Product product) async {

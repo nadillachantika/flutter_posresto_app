@@ -28,6 +28,16 @@ mixin _$OrderEvent {
             int? idReservasi,
             String orderType)
         order,
+    required TResult Function(
+            List<ProductQuantity> items,
+            int discount,
+            int tax,
+            int serviceCharge,
+            int paymemtAmount,
+            int? idReservasi,
+            String orderType,
+            Reservation? reservation)
+        saveOrderWithReservation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,6 +52,16 @@ mixin _$OrderEvent {
             int? idReservasi,
             String orderType)?
         order,
+    TResult? Function(
+            List<ProductQuantity> items,
+            int discount,
+            int tax,
+            int serviceCharge,
+            int paymemtAmount,
+            int? idReservasi,
+            String orderType,
+            Reservation? reservation)?
+        saveOrderWithReservation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +76,16 @@ mixin _$OrderEvent {
             int? idReservasi,
             String orderType)?
         order,
+    TResult Function(
+            List<ProductQuantity> items,
+            int discount,
+            int tax,
+            int serviceCharge,
+            int paymemtAmount,
+            int? idReservasi,
+            String orderType,
+            Reservation? reservation)?
+        saveOrderWithReservation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,18 +93,22 @@ mixin _$OrderEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Order value) order,
+    required TResult Function(_OrderWithReservation value)
+        saveOrderWithReservation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_Order value)? order,
+    TResult? Function(_OrderWithReservation value)? saveOrderWithReservation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Order value)? order,
+    TResult Function(_OrderWithReservation value)? saveOrderWithReservation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -146,6 +180,16 @@ class _$StartedImpl implements _Started {
             int? idReservasi,
             String orderType)
         order,
+    required TResult Function(
+            List<ProductQuantity> items,
+            int discount,
+            int tax,
+            int serviceCharge,
+            int paymemtAmount,
+            int? idReservasi,
+            String orderType,
+            Reservation? reservation)
+        saveOrderWithReservation,
   }) {
     return started();
   }
@@ -163,6 +207,16 @@ class _$StartedImpl implements _Started {
             int? idReservasi,
             String orderType)?
         order,
+    TResult? Function(
+            List<ProductQuantity> items,
+            int discount,
+            int tax,
+            int serviceCharge,
+            int paymemtAmount,
+            int? idReservasi,
+            String orderType,
+            Reservation? reservation)?
+        saveOrderWithReservation,
   }) {
     return started?.call();
   }
@@ -180,6 +234,16 @@ class _$StartedImpl implements _Started {
             int? idReservasi,
             String orderType)?
         order,
+    TResult Function(
+            List<ProductQuantity> items,
+            int discount,
+            int tax,
+            int serviceCharge,
+            int paymemtAmount,
+            int? idReservasi,
+            String orderType,
+            Reservation? reservation)?
+        saveOrderWithReservation,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -193,6 +257,8 @@ class _$StartedImpl implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Order value) order,
+    required TResult Function(_OrderWithReservation value)
+        saveOrderWithReservation,
   }) {
     return started(this);
   }
@@ -202,6 +268,7 @@ class _$StartedImpl implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_Order value)? order,
+    TResult? Function(_OrderWithReservation value)? saveOrderWithReservation,
   }) {
     return started?.call(this);
   }
@@ -211,6 +278,7 @@ class _$StartedImpl implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Order value)? order,
+    TResult Function(_OrderWithReservation value)? saveOrderWithReservation,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -374,6 +442,16 @@ class _$OrderImpl implements _Order {
             int? idReservasi,
             String orderType)
         order,
+    required TResult Function(
+            List<ProductQuantity> items,
+            int discount,
+            int tax,
+            int serviceCharge,
+            int paymemtAmount,
+            int? idReservasi,
+            String orderType,
+            Reservation? reservation)
+        saveOrderWithReservation,
   }) {
     return order(items, discount, tax, serviceCharge, paymemtAmount,
         idReservasi, orderType);
@@ -392,6 +470,16 @@ class _$OrderImpl implements _Order {
             int? idReservasi,
             String orderType)?
         order,
+    TResult? Function(
+            List<ProductQuantity> items,
+            int discount,
+            int tax,
+            int serviceCharge,
+            int paymemtAmount,
+            int? idReservasi,
+            String orderType,
+            Reservation? reservation)?
+        saveOrderWithReservation,
   }) {
     return order?.call(items, discount, tax, serviceCharge, paymemtAmount,
         idReservasi, orderType);
@@ -410,6 +498,16 @@ class _$OrderImpl implements _Order {
             int? idReservasi,
             String orderType)?
         order,
+    TResult Function(
+            List<ProductQuantity> items,
+            int discount,
+            int tax,
+            int serviceCharge,
+            int paymemtAmount,
+            int? idReservasi,
+            String orderType,
+            Reservation? reservation)?
+        saveOrderWithReservation,
     required TResult orElse(),
   }) {
     if (order != null) {
@@ -424,6 +522,8 @@ class _$OrderImpl implements _Order {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Order value) order,
+    required TResult Function(_OrderWithReservation value)
+        saveOrderWithReservation,
   }) {
     return order(this);
   }
@@ -433,6 +533,7 @@ class _$OrderImpl implements _Order {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_Order value)? order,
+    TResult? Function(_OrderWithReservation value)? saveOrderWithReservation,
   }) {
     return order?.call(this);
   }
@@ -442,6 +543,7 @@ class _$OrderImpl implements _Order {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Order value)? order,
+    TResult Function(_OrderWithReservation value)? saveOrderWithReservation,
     required TResult orElse(),
   }) {
     if (order != null) {
@@ -471,6 +573,311 @@ abstract class _Order implements OrderEvent {
   @JsonKey(ignore: true)
   _$$OrderImplCopyWith<_$OrderImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OrderWithReservationImplCopyWith<$Res> {
+  factory _$$OrderWithReservationImplCopyWith(_$OrderWithReservationImpl value,
+          $Res Function(_$OrderWithReservationImpl) then) =
+      __$$OrderWithReservationImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {List<ProductQuantity> items,
+      int discount,
+      int tax,
+      int serviceCharge,
+      int paymemtAmount,
+      int? idReservasi,
+      String orderType,
+      Reservation? reservation});
+}
+
+/// @nodoc
+class __$$OrderWithReservationImplCopyWithImpl<$Res>
+    extends _$OrderEventCopyWithImpl<$Res, _$OrderWithReservationImpl>
+    implements _$$OrderWithReservationImplCopyWith<$Res> {
+  __$$OrderWithReservationImplCopyWithImpl(_$OrderWithReservationImpl _value,
+      $Res Function(_$OrderWithReservationImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? items = null,
+    Object? discount = null,
+    Object? tax = null,
+    Object? serviceCharge = null,
+    Object? paymemtAmount = null,
+    Object? idReservasi = freezed,
+    Object? orderType = null,
+    Object? reservation = freezed,
+  }) {
+    return _then(_$OrderWithReservationImpl(
+      null == items
+          ? _value._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<ProductQuantity>,
+      null == discount
+          ? _value.discount
+          : discount // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == tax
+          ? _value.tax
+          : tax // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == serviceCharge
+          ? _value.serviceCharge
+          : serviceCharge // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == paymemtAmount
+          ? _value.paymemtAmount
+          : paymemtAmount // ignore: cast_nullable_to_non_nullable
+              as int,
+      freezed == idReservasi
+          ? _value.idReservasi
+          : idReservasi // ignore: cast_nullable_to_non_nullable
+              as int?,
+      null == orderType
+          ? _value.orderType
+          : orderType // ignore: cast_nullable_to_non_nullable
+              as String,
+      freezed == reservation
+          ? _value.reservation
+          : reservation // ignore: cast_nullable_to_non_nullable
+              as Reservation?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OrderWithReservationImpl implements _OrderWithReservation {
+  const _$OrderWithReservationImpl(
+      final List<ProductQuantity> items,
+      this.discount,
+      this.tax,
+      this.serviceCharge,
+      this.paymemtAmount,
+      this.idReservasi,
+      this.orderType,
+      this.reservation)
+      : _items = items;
+
+  final List<ProductQuantity> _items;
+  @override
+  List<ProductQuantity> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_items);
+  }
+
+  @override
+  final int discount;
+  @override
+  final int tax;
+  @override
+  final int serviceCharge;
+  @override
+  final int paymemtAmount;
+  @override
+  final int? idReservasi;
+  @override
+  final String orderType;
+  @override
+  final Reservation? reservation;
+
+  @override
+  String toString() {
+    return 'OrderEvent.saveOrderWithReservation(items: $items, discount: $discount, tax: $tax, serviceCharge: $serviceCharge, paymemtAmount: $paymemtAmount, idReservasi: $idReservasi, orderType: $orderType, reservation: $reservation)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OrderWithReservationImpl &&
+            const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.discount, discount) ||
+                other.discount == discount) &&
+            (identical(other.tax, tax) || other.tax == tax) &&
+            (identical(other.serviceCharge, serviceCharge) ||
+                other.serviceCharge == serviceCharge) &&
+            (identical(other.paymemtAmount, paymemtAmount) ||
+                other.paymemtAmount == paymemtAmount) &&
+            (identical(other.idReservasi, idReservasi) ||
+                other.idReservasi == idReservasi) &&
+            (identical(other.orderType, orderType) ||
+                other.orderType == orderType) &&
+            (identical(other.reservation, reservation) ||
+                other.reservation == reservation));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_items),
+      discount,
+      tax,
+      serviceCharge,
+      paymemtAmount,
+      idReservasi,
+      orderType,
+      reservation);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OrderWithReservationImplCopyWith<_$OrderWithReservationImpl>
+      get copyWith =>
+          __$$OrderWithReservationImplCopyWithImpl<_$OrderWithReservationImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(
+            List<ProductQuantity> items,
+            int discount,
+            int tax,
+            int serviceCharge,
+            int paymemtAmount,
+            int? idReservasi,
+            String orderType)
+        order,
+    required TResult Function(
+            List<ProductQuantity> items,
+            int discount,
+            int tax,
+            int serviceCharge,
+            int paymemtAmount,
+            int? idReservasi,
+            String orderType,
+            Reservation? reservation)
+        saveOrderWithReservation,
+  }) {
+    return saveOrderWithReservation(items, discount, tax, serviceCharge,
+        paymemtAmount, idReservasi, orderType, reservation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(
+            List<ProductQuantity> items,
+            int discount,
+            int tax,
+            int serviceCharge,
+            int paymemtAmount,
+            int? idReservasi,
+            String orderType)?
+        order,
+    TResult? Function(
+            List<ProductQuantity> items,
+            int discount,
+            int tax,
+            int serviceCharge,
+            int paymemtAmount,
+            int? idReservasi,
+            String orderType,
+            Reservation? reservation)?
+        saveOrderWithReservation,
+  }) {
+    return saveOrderWithReservation?.call(items, discount, tax, serviceCharge,
+        paymemtAmount, idReservasi, orderType, reservation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(
+            List<ProductQuantity> items,
+            int discount,
+            int tax,
+            int serviceCharge,
+            int paymemtAmount,
+            int? idReservasi,
+            String orderType)?
+        order,
+    TResult Function(
+            List<ProductQuantity> items,
+            int discount,
+            int tax,
+            int serviceCharge,
+            int paymemtAmount,
+            int? idReservasi,
+            String orderType,
+            Reservation? reservation)?
+        saveOrderWithReservation,
+    required TResult orElse(),
+  }) {
+    if (saveOrderWithReservation != null) {
+      return saveOrderWithReservation(items, discount, tax, serviceCharge,
+          paymemtAmount, idReservasi, orderType, reservation);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Order value) order,
+    required TResult Function(_OrderWithReservation value)
+        saveOrderWithReservation,
+  }) {
+    return saveOrderWithReservation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_Order value)? order,
+    TResult? Function(_OrderWithReservation value)? saveOrderWithReservation,
+  }) {
+    return saveOrderWithReservation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Order value)? order,
+    TResult Function(_OrderWithReservation value)? saveOrderWithReservation,
+    required TResult orElse(),
+  }) {
+    if (saveOrderWithReservation != null) {
+      return saveOrderWithReservation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OrderWithReservation implements OrderEvent {
+  const factory _OrderWithReservation(
+      final List<ProductQuantity> items,
+      final int discount,
+      final int tax,
+      final int serviceCharge,
+      final int paymemtAmount,
+      final int? idReservasi,
+      final String orderType,
+      final Reservation? reservation) = _$OrderWithReservationImpl;
+
+  List<ProductQuantity> get items;
+  int get discount;
+  int get tax;
+  int get serviceCharge;
+  int get paymemtAmount;
+  int? get idReservasi;
+  String get orderType;
+  Reservation? get reservation;
+  @JsonKey(ignore: true)
+  _$$OrderWithReservationImplCopyWith<_$OrderWithReservationImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
