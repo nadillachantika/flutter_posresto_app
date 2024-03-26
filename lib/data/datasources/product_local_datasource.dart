@@ -1,4 +1,5 @@
 import 'package:flutter_restopos/data/models/response/product_response_model.dart';
+import 'package:flutter_restopos/presentations/home/models/order_item_detail.dart';
 import 'package:flutter_restopos/presentations/home/models/order_model.dart';
 import 'package:flutter_restopos/presentations/home/models/product_quantity.dart';
 import 'package:intl/intl.dart';
@@ -172,10 +173,36 @@ class ProductLocalDatasource {
       ],
     );
     return List.generate(maps.length, (i) {
+      print('data report ${maps.length}');
+
       return OrderModel.fromMap(maps[i]);
     });
   }
 
+ 
 
-  
+  Future<List<OrderItemDetail>> getAllOrderItemDetails(
+      DateTime start, DateTime end) async {
+    final db = await instance.database;
+
+    final List<Map<String, dynamic>> orderItemMaps = await db.rawQuery('''
+    SELECT $tableOrderItem.id, $tableOrderItem.id_order, $tableOrderItem.id_product,
+           $tableOrderItem.quantity, $tableOrderItem.price, $tableProduct.name as product_name,
+           $tableProduct.price as product_price, $tableOrder.transaction_time as order_transaction_time
+    FROM $tableOrderItem
+    INNER JOIN $tableProduct ON $tableOrderItem.id_product = $tableProduct.id
+    INNER JOIN $tableOrder ON $tableOrderItem.id_order = $tableOrder.id
+    WHERE $tableOrder.transaction_time BETWEEN ? AND ?
+  ''', [
+      DateFormat('yyyy-MM-ddTHH:mm:ss.SSSSSS').format(start),
+      DateFormat('yyyy-MM-ddTHH:mm:ss').format(end),
+    ]);
+
+    return List.generate(orderItemMaps.length, (i) {
+            print('data report item ${orderItemMaps.length}');
+
+      print("OKEEE");
+      return OrderItemDetail.fromMap(orderItemMaps[i]);
+    });
+  }
 }

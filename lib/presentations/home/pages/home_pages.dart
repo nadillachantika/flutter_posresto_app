@@ -213,7 +213,7 @@ class _HomePageState extends State<HomePage> {
                           },
                         ),
                         CustomTabBar(
-                          tabTitles: ['Semua', 'Makanan', 'Minuman', 'Dessert'],
+                          tabTitles: const ['Semua', 'Makanan', 'Minuman'],
                           initialTabIndex: 0,
                           tabViews: [
                             SizedBox(
@@ -424,7 +424,7 @@ class _HomePageState extends State<HomePage> {
                 child: Stack(
                   children: [
                     SingleChildScrollView(
-                      padding: const EdgeInsets.all(24.0),
+                      padding: const EdgeInsets.fromLTRB(24.0, 8.0, 24.0, 24.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

@@ -10,9 +10,12 @@ part 'transaction_report_bloc.freezed.dart';
 class TransactionReportBloc
     extends Bloc<TransactionReportEvent, TransactionReportState> {
   final ProductLocalDatasource productLocalDatasource;
+ 
   TransactionReportBloc(
     this.productLocalDatasource,
   ) : super(const _Initial()) {
+   
+   
     on<_GetReport>((event, emit) async {
       emit(const _Loading());
       final result = await productLocalDatasource.getAllOrder(

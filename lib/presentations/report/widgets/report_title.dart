@@ -20,7 +20,6 @@ class ReportTitle extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        const SpaceHeight(4.0),
         Text(
           DateTime.now().toFormattedDate(),
           style: const TextStyle(
