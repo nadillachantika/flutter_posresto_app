@@ -60,9 +60,10 @@ class _ReportPageState extends State<ReportPage> {
                                   fromDate = selectedDate;
                                 });
 
-                                 context.read<TransactionReportBloc>().add(
+                                context.read<TransactionReportBloc>().add(
                                     TransactionReportEvent.getReport(
-                                        startDate: selectedDate, endDate: toDate));
+                                        startDate: selectedDate,
+                                        endDate: toDate));
                               },
                             ),
                           ),
@@ -76,9 +77,10 @@ class _ReportPageState extends State<ReportPage> {
                                 setState(() {
                                   toDate = selectedDate;
                                 });
-                                 context.read<TransactionReportBloc>().add(
+                                context.read<TransactionReportBloc>().add(
                                     TransactionReportEvent.getReport(
-                                        startDate: fromDate, endDate: selectedDate));
+                                        startDate: fromDate,
+                                        endDate: selectedDate));
                               },
                             ),
                           ),
@@ -169,155 +171,72 @@ class _ReportPageState extends State<ReportPage> {
 
           // RIGHT CONTENT
           Expanded(
-            flex: 2,
-            child: selectedMenu == 1 || selectedMenu == 5
-                ? Align(
-                    alignment: Alignment.topCenter,
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsets.all(24.0),
-                      child: BlocBuilder<TransactionReportBloc,
-                          TransactionReportState>(
-                        builder: (context, state) {
-                          final totalRevenue = state.maybeMap(
-                            orElse: () => 0.0,
-                            loading: (_) => 0.0,
-                            loaded: (value) {
-                              return value.transactionReport.fold(
-                                  0,
-                                  (previousValue, element) =>
-                                      previousValue + element.total);
-                            },
-                          );
-
-                          final subTotal = state.maybeMap(
-                            orElse: () => 0.0,
-                            loading: (_) => 0.0,
-                            loaded: (value) {
-                              return value.transactionReport.fold(
-                                  0,
-                                  (previousValue, element) =>
-                                      previousValue + element.subTotal);
-                            },
-                          );
-
-                          final discount = state.maybeMap(
-                            orElse: () => 0.0,
-                            loading: (_) => 0.0,
-                            loaded: (value) {
-                              return value.transactionReport.fold(
-                                  0,
-                                  (previousValue, element) =>
-                                      previousValue + element.discount);
-                            },
-                          );
-
-                          final tax = state.maybeMap(
-                            orElse: () => 0.0,
-                            loading: (_) => 0.0,
-                            loaded: (value) {
-                              return value.transactionReport.fold(
-                                  0,
-                                  (previousValue, element) =>
-                                      previousValue + element.tax);
-                            },
-                          );
-
-                          return state.maybeWhen(orElse: () {
-                            return const Center(
-                              child: Text('No Data'),
+              flex: 2,
+              child: selectedMenu == 1 || selectedMenu == 5
+                  ? Align(
+                      alignment: Alignment.topCenter,
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.all(24.0),
+                        child: BlocBuilder<TransactionReportBloc,
+                            TransactionReportState>(
+                          builder: (context, state) {
+                            final totalRevenue = state.maybeMap(
+                              orElse: () => 0.0,
+                              loading: (_) => 0.0,
+                              loaded: (value) {
+                                return value.transactionReport.fold(
+                                    0,
+                                    (previousValue, element) =>
+                                        previousValue + element.total);
+                              },
                             );
-                          }, loading: () {
-                            return const Center(
-                              child: CircularProgressIndicator(),
+
+                            final subTotal = state.maybeMap(
+                              orElse: () => 0.0,
+                              loading: (_) => 0.0,
+                              loaded: (value) {
+                                return value.transactionReport.fold(
+                                    0,
+                                    (previousValue, element) =>
+                                        previousValue + element.subTotal);
+                              },
                             );
-                          }, loaded: (transactionReport) {
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Center(
-                                  child: Text(
-                                    title,
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 16.0),
-                                  ),
-                                ),
-                                Center(
-                                  child: Text(
-                                    searchDateFormatted,
-                                    style: const TextStyle(fontSize: 16.0),
-                                  ),
-                                ),
-                                const SpaceHeight(16.0),
-                                // REVENUE INFO
-                                ...[
-                                  Text('REVENUE : $totalRevenue'),
-                                  const SpaceHeight(8.0),
-                                  const DashedLine(),
-                                  const DashedLine(),
-                                  const SpaceHeight(8.0),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const Text('Subtotal'),
-                                      Text('$subTotal'),
-                                    ],
-                                  ),
-                                  const SpaceHeight(4.0),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const Text('Discount'),
-                                      Text('$discount'),
-                                    ],
-                                  ),
-                                  const SpaceHeight(4.0),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const Text('Tax'),
-                                      Text('$tax'),
-                                    ],
-                                  ),
-                                  const SpaceHeight(8.0),
-                                  const DashedLine(),
-                                  const DashedLine(),
-                                  const SpaceHeight(8.0),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const Text('TOTAL'),
-                                      Text('$totalRevenue'),
-                                    ],
-                                  ),
-                                ],
-                                const SpaceHeight(32.0),
-                              ],
+
+                            final discount = state.maybeMap(
+                              orElse: () => 0.0,
+                              loading: (_) => 0.0,
+                              loaded: (value) {
+                                return value.transactionReport.fold(
+                                    0,
+                                    (previousValue, element) =>
+                                        previousValue + element.discount);
+                              },
                             );
-                          });
-                        },
-                      ),
-                    ),
-                  )
-                : selectedMenu == 4
-                    ? BlocBuilder<ItemSalesReportBloc, ItemSalesReportState>(
-                        builder: (context, state) {
-                          return state.maybeWhen(
-                            orElse: () {
+
+                            final tax = state.maybeMap(
+                              orElse: () => 0.0,
+                              loading: (_) => 0.0,
+                              loaded: (value) {
+                                return value.transactionReport.fold(
+                                    0,
+                                    (previousValue, element) =>
+                                        previousValue + element.tax);
+                              },
+                            );
+
+                            return state.maybeWhen(orElse: () {
                               return const Center(
-                                  child: CircularProgressIndicator());
-                            },
-                            loaded: (itemReports) {
-                              return SingleChildScrollView(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                     Center(
+                                child: Text('No Data'),
+                              );
+                            }, loading: () {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }, loaded: (transactionReport) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Center(
                                     child: Text(
                                       title,
                                       style: const TextStyle(
@@ -331,56 +250,308 @@ class _ReportPageState extends State<ReportPage> {
                                       style: const TextStyle(fontSize: 16.0),
                                     ),
                                   ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 16.0),
-                                      child: SingleChildScrollView(
-                                        scrollDirection: Axis.horizontal,
-                                        child: DataTable(
-                                          dividerThickness: 0.1,
-                                          dataRowColor: MaterialStateColor
-                                              .resolveWith((states) => Colors
-                                                  .white), // Warna latar belakang baris data
-                                          headingRowColor:
-                                              MaterialStateColor.resolveWith(
-                                                  (states) => AppColors.primary
-                                                      .withOpacity(0.1)),
-                                          headingTextStyle: const TextStyle(
-                                              color: AppColors.primary,
-                                              fontWeight: FontWeight.bold),
-                                    
-                                          columns: const [
-                                            DataColumn(label: Text('Product.')),
-                                            DataColumn(label: Text('Total Item')),
-                                          ],
-                                          rows: itemReports.map((itemReport) {
-                                            return DataRow(
-                                              cells: [
-                                                DataCell(
-                                                  Text(itemReport.productName
-                                                      .toString()),
-                                                ),
-                                                DataCell(
-                                                  Text(
-                                                    itemReport.quantity.toString(),
-                                                    style: const TextStyle(
-                                                        color: AppColors.primary),
-                                                  ),
-                                                ),
-                                              ],
-                                            );
-                                          }).toList(),
-                                        ),
-                                      ),
+                                  const SpaceHeight(16.0),
+                                  // REVENUE INFO
+                                  ...[
+                                    Text('REVENUE : $totalRevenue'),
+                                    const SpaceHeight(8.0),
+                                    const DashedLine(),
+                                    const DashedLine(),
+                                    const SpaceHeight(8.0),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text('Subtotal'),
+                                        Text('$subTotal'),
+                                      ],
+                                    ),
+                                    const SpaceHeight(4.0),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text('Discount'),
+                                        Text('$discount'),
+                                      ],
+                                    ),
+                                    const SpaceHeight(4.0),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text('Tax'),
+                                        Text('$tax'),
+                                      ],
+                                    ),
+                                    const SpaceHeight(8.0),
+                                    const DashedLine(),
+                                    const DashedLine(),
+                                    const SpaceHeight(8.0),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text('TOTAL'),
+                                        Text('$totalRevenue'),
+                                      ],
                                     ),
                                   ],
-                                ),
+                                  const SpaceHeight(32.0),
+                                ],
                               );
-                            },
-                          );
-                        },
-                      )
-                    : SizedBox(),
-          ),
+                            });
+                          },
+                        ),
+                      ),
+                    )
+                  : selectedMenu == 4
+                      ? BlocBuilder<ItemSalesReportBloc, ItemSalesReportState>(
+                          builder: (context, state) {
+                            return state.maybeWhen(
+                              orElse: () {
+                                return const Center(
+                                    child: CircularProgressIndicator());
+                              },
+                              loaded: (itemReports) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(24.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Center(
+                                        child: Text(
+                                          title,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 16.0),
+                                        ),
+                                      ),
+                                      Center(
+                                        child: Text(
+                                          searchDateFormatted,
+                                          style:
+                                              const TextStyle(fontSize: 16.0),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 16.0),
+                                        child: SingleChildScrollView(
+                                          scrollDirection: Axis.horizontal,
+                                          child: DataTable(
+                                            dividerThickness: 0.1,
+                                            dataRowColor: MaterialStateColor
+                                                .resolveWith((states) => Colors
+                                                    .white), // Warna latar belakang baris data
+                                            headingRowColor:
+                                                MaterialStateColor.resolveWith(
+                                                    (states) => AppColors
+                                                        .primary
+                                                        .withOpacity(0.1)),
+                                            headingTextStyle: const TextStyle(
+                                                color: AppColors.primary,
+                                                fontWeight: FontWeight.bold),
+
+                                            columns: const [
+                                              DataColumn(
+                                                  label: Text('Product.')),
+                                              DataColumn(
+                                                  label: Text('Total Item')),
+                                            ],
+                                            rows: itemReports.map((itemReport) {
+                                              return DataRow(
+                                                cells: [
+                                                  DataCell(
+                                                    Text(itemReport.productName
+                                                        .toString()),
+                                                  ),
+                                                  DataCell(
+                                                    Text(
+                                                      itemReport.quantity
+                                                          .toString(),
+                                                      style: const TextStyle(
+                                                          color: AppColors
+                                                              .primary),
+                                                    ),
+                                                  ),
+                                                ],
+                                              );
+                                            }).toList(),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        )
+                      : BlocBuilder<ItemSalesReportBloc, ItemSalesReportState>(
+                          builder: (context, state) {
+                            return state.maybeWhen(
+                              orElse: () {
+                                return const Center(
+                                    child: CircularProgressIndicator());
+                              },
+                              loaded: (itemReports) {
+                                // Variabel untuk menyimpan total harga
+                                // Variabel untuk menyimpan total harga
+                                int totalRevenue = 0;
+
+                                // Iterasi melalui setiap item dalam itemReports
+                                for (var itemReport in itemReports) {
+                                  // Hitung total harga untuk setiap item dan tambahkan ke totalHarga
+                                  totalRevenue +=
+                                      itemReport.price! * itemReport.quantity!;
+                                }
+
+                                int totalItem = 0;
+
+                                // Iterasi melalui setiap item dalam itemReports
+                                for (var itemReport in itemReports) {
+                                  // Hitung total harga untuk setiap item dan tambahkan ke totalHarga
+                                  totalItem += itemReport.quantity!;
+                                }
+
+                                return Padding(
+                                  padding: const EdgeInsets.all(24.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Center(
+                                        child: Text(
+                                          title,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 16.0),
+                                        ),
+                                      ),
+                                      Center(
+                                        child: Text(
+                                          searchDateFormatted,
+                                          style:
+                                              const TextStyle(fontSize: 16.0),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 16.0),
+                                        child: SingleChildScrollView(
+                                          scrollDirection: Axis.horizontal,
+                                          child: DataTable(
+                                            dividerThickness: 0.1,
+                                            dataRowColor: MaterialStateColor
+                                                .resolveWith((states) => Colors
+                                                    .white), // Warna latar belakang baris data
+                                            headingRowColor:
+                                                MaterialStateColor.resolveWith(
+                                                    (states) => AppColors
+                                                        .primary
+                                                        .withOpacity(0.1)),
+                                            headingTextStyle: const TextStyle(
+                                                color: AppColors.primary,
+                                                fontWeight: FontWeight.bold),
+
+                                            columns: const [
+                                              DataColumn(
+                                                  label: Text('Product')),
+                                              DataColumn(
+                                                  label: Text('Jumlah Item')),
+                                              DataColumn(
+                                                  label: Text('Harga Satuan')),
+                                              DataColumn(
+                                                  label: Text('Total')),
+                                            ],
+                                            rows: [
+                                              // Baris untuk setiap item
+                                              ...itemReports.map((itemReport) {
+                                                int totalHargaPerItem =
+                                                    itemReport.price! *
+                                                        itemReport.quantity!;
+
+                                                return DataRow(
+                                                  cells: [
+                                                    DataCell(
+                                                      Text(itemReport
+                                                          .productName
+                                                          .toString()),
+                                                    ),
+                                                    DataCell(
+                                                      Text(
+                                                        itemReport.quantity
+                                                            .toString(),
+                                                        style: const TextStyle(
+                                                            color: AppColors
+                                                                .primary),
+                                                      ),
+                                                    ),
+                                                    DataCell(
+                                                      Text(
+                                                        itemReport.price
+                                                            .toString(),
+                                                        style: const TextStyle(
+                                                            color: AppColors
+                                                                .primary),
+                                                      ),
+                                                    ),
+                                                    DataCell(
+                                                      Text(
+                                                        totalHargaPerItem
+                                                            .toString(),
+                                                        style: const TextStyle(
+                                                            color: AppColors
+                                                                .primary),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                );
+                                              }),
+                                              // Baris untuk total
+                                              DataRow(
+                                                cells: [
+                                                  const DataCell(
+                                                    Text(
+                                                      'Total',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ),
+                                                  DataCell(
+                                                    Text(
+                                                        totalItem.toString()), // Kosongkan kolom jumlah item
+                                                  ),
+                                                  const DataCell(
+                                                    Text(
+                                                        ''), // Kosongkan kolom harga satuan
+                                                  ),
+                                                  DataCell(
+                                                    Text(
+                                                      totalRevenue.toString(), // Teks untuk total harga
+                                                      style:  const TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        )),
         ],
       ),
     );

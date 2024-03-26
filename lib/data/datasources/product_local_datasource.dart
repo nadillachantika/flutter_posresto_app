@@ -193,6 +193,8 @@ class ProductLocalDatasource {
     INNER JOIN $tableProduct ON $tableOrderItem.id_product = $tableProduct.id
     INNER JOIN $tableOrder ON $tableOrderItem.id_order = $tableOrder.id
     WHERE $tableOrder.transaction_time BETWEEN ? AND ?
+    ORDER BY 
+    $tableOrderItem.quantity DESC; 
   ''', [
       DateFormat('yyyy-MM-ddTHH:mm:ss.SSSSSS').format(start),
       DateFormat('yyyy-MM-ddTHH:mm:ss').format(end),
