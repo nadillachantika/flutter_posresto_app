@@ -59,6 +59,10 @@ class _ReportPageState extends State<ReportPage> {
                                 setState(() {
                                   fromDate = selectedDate;
                                 });
+
+                                 context.read<TransactionReportBloc>().add(
+                                    TransactionReportEvent.getReport(
+                                        startDate: selectedDate, endDate: toDate));
                               },
                             ),
                           ),
@@ -72,6 +76,9 @@ class _ReportPageState extends State<ReportPage> {
                                 setState(() {
                                   toDate = selectedDate;
                                 });
+                                 context.read<TransactionReportBloc>().add(
+                                    TransactionReportEvent.getReport(
+                                        startDate: fromDate, endDate: selectedDate));
                               },
                             ),
                           ),
@@ -89,16 +96,13 @@ class _ReportPageState extends State<ReportPage> {
                                 selectedMenu = 1;
                                 title = 'Transaction Report';
 
-                                fromDate = DateTime.now()
-                                    .subtract(const Duration(days: 30));
-                                toDate = DateTime.now();
+                                context.read<TransactionReportBloc>().add(
+                                    TransactionReportEvent.getReport(
+                                        startDate: fromDate, endDate: toDate));
 
                                 setState(() {});
 
                                 // enddate 1 month before start date
-                                context.read<TransactionReportBloc>().add(
-                                    TransactionReportEvent.getReport(
-                                        startDate: fromDate, endDate: toDate));
                               },
                               isActive: selectedMenu == 1,
                             ),
@@ -111,16 +115,13 @@ class _ReportPageState extends State<ReportPage> {
                                     .subtract(const Duration(days: 30));
                                 toDate = DateTime.now();
 
-                                    context.read<ItemSalesReportBloc>().add(
+                                context.read<ItemSalesReportBloc>().add(
                                     ItemSalesReportEvent.getItemSalesReport(
                                         startDate: fromDate, endDate: toDate));
-                          
 
-                                setState(() {
-                                      });
+                                setState(() {});
 
                                 // enddate 1 month before start date
-                              
                               },
                               isActive: selectedMenu == 4,
                             ),
@@ -311,45 +312,67 @@ class _ReportPageState extends State<ReportPage> {
                                   child: CircularProgressIndicator());
                             },
                             loaded: (itemReports) {
-                              return Padding(
-                                padding: const EdgeInsets.only(top: 16.0),
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: DataTable(
-                                    dividerThickness: 0.1,
-                                    dataRowColor: MaterialStateColor
-                                        .resolveWith((states) => Colors
-                                            .white), // Warna latar belakang baris data
-                                    headingRowColor:
-                                        MaterialStateColor.resolveWith(
-                                            (states) => AppColors.primary
-                                                .withOpacity(0.1)),
-                                    headingTextStyle: const TextStyle(
-                                        color: AppColors.primary,
-                                        fontWeight: FontWeight.bold),
-
-                                    columns: const [
-                                      DataColumn(label: Text('Product.')),
-                                      DataColumn(label: Text('Total Item')),
-                                    ],
-                                    rows: itemReports.map((itemReport) {
-                                      return DataRow(
-                                        cells: [
-                                          DataCell(
-                                            Text(itemReport.productName
-                                                .toString()),
-                                          ),
-                                          DataCell(
-                                            Text(
-                                              itemReport.quantity.toString(),
-                                              style: const TextStyle(
-                                                  color: AppColors.primary),
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    }).toList(),
+                              return SingleChildScrollView(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                     Center(
+                                    child: Text(
+                                      title,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16.0),
+                                    ),
                                   ),
+                                  Center(
+                                    child: Text(
+                                      searchDateFormatted,
+                                      style: const TextStyle(fontSize: 16.0),
+                                    ),
+                                  ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 16.0),
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.horizontal,
+                                        child: DataTable(
+                                          dividerThickness: 0.1,
+                                          dataRowColor: MaterialStateColor
+                                              .resolveWith((states) => Colors
+                                                  .white), // Warna latar belakang baris data
+                                          headingRowColor:
+                                              MaterialStateColor.resolveWith(
+                                                  (states) => AppColors.primary
+                                                      .withOpacity(0.1)),
+                                          headingTextStyle: const TextStyle(
+                                              color: AppColors.primary,
+                                              fontWeight: FontWeight.bold),
+                                    
+                                          columns: const [
+                                            DataColumn(label: Text('Product.')),
+                                            DataColumn(label: Text('Total Item')),
+                                          ],
+                                          rows: itemReports.map((itemReport) {
+                                            return DataRow(
+                                              cells: [
+                                                DataCell(
+                                                  Text(itemReport.productName
+                                                      .toString()),
+                                                ),
+                                                DataCell(
+                                                  Text(
+                                                    itemReport.quantity.toString(),
+                                                    style: const TextStyle(
+                                                        color: AppColors.primary),
+                                                  ),
+                                                ),
+                                              ],
+                                            );
+                                          }).toList(),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               );
                             },
