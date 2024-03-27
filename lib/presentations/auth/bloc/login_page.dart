@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
           // const SpaceHeight(24.0),
           const Center(
             child: Text(
-              'INNODEV POS',
+              'EASEPOS',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
           //  const SpaceHeight(8.0),
           const Center(
             child: Text(
-              'Support By Code With Bahri #FIC14',
+              'Nadilla @Code With Bahri #FIC14',
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w400,

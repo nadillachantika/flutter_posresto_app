@@ -201,9 +201,6 @@ class ProductLocalDatasource {
     ]);
 
     return List.generate(orderItemMaps.length, (i) {
-            print('data report item ${orderItemMaps.length}');
-
-      print("OKEEE");
       return OrderItemDetail.fromMap(orderItemMaps[i]);
     });
   }

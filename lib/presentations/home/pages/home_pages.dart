@@ -210,6 +210,12 @@ class _HomePageState extends State<HomePage> {
                             //         .contains(value.toLowerCase()))
                             //     .toList();
                             // setState(() {});
+                            if(value.length > 3){
+                              context.read<LocalProductBloc>().add(LocalProductEvent.searchProduct(value));
+                            }
+                            if(value.isEmpty){
+                              context.read<LocalProductBloc>().add(const LocalProductEvent.getLocalProduct());
+                            }
                           },
                         ),
                         CustomTabBar(
@@ -220,15 +226,12 @@ class _HomePageState extends State<HomePage> {
                               child: BlocBuilder<LocalProductBloc,
                                   LocalProductState>(
                                 builder: (context, state) {
-                                  print('Current State: $state');
                                   return state.maybeWhen(orElse: () {
-                                    print('State: orElse');
 
                                     return const Center(
                                       child: CircularProgressIndicator(),
                                     );
                                   }, loading: () {
-                                    print('State: Loading');
 
                                     return const Center(
                                       child: CircularProgressIndicator(
@@ -236,7 +239,6 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     );
                                   }, loaded: (products) {
-                                    print('State: loaded');
 
                                     if (products.isEmpty) {
                                       return const Center(
@@ -527,7 +529,7 @@ class _HomePageState extends State<HomePage> {
                                               alignment: Alignment.centerRight,
                                               color: Colors
                                                   .red, // Warna latar belakang saat digeser
-                                              child: Icon(Icons.delete,
+                                              child: const Icon(Icons.delete,
                                                   color: Colors.white),
                                             ),
                                             child: OrderMenu(
@@ -667,7 +669,7 @@ class _HomePageState extends State<HomePage> {
                                     },
                                   );
 
-                                  return Text(price!.currencyFormatRp,
+                                  return Text(price.currencyFormatRp,
                                       style: const TextStyle(
                                         color: AppColors.charchoal,
                                         fontWeight: FontWeight.w600,

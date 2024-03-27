@@ -26,10 +26,8 @@ class _DashboardPageState extends State<DashboardPage> {
 
   final List<Widget> _pages = [
     const HomePage(),
-    // const Center(child: Text('This is page 2')),
     const HistoryPage(),
     const ReportPage(),
-    // const Center(child: Text('This is page 4')),
     const SettingsPage(),
     const Center(child: Text('This is page 3')),
   ];

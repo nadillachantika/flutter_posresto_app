@@ -13,13 +13,30 @@ class LocalProductBloc extends Bloc<LocalProductEvent, LocalProductState> {
 
 
   LocalProductBloc(this.productLocalDatasource) : super(_Initial()) {
+
+
     on<_GetLocalProduct>((event, emit) async {
       // TODO: implement event handler
       emit(const _Loading());
       final result = await productLocalDatasource.getProducts();
 
+
       emit(_Loaded(result));
     });
+
+
+    on<_SearchProduct>((event, emit) async {
+      emit(const _Loading());
+      final allProducts = await productLocalDatasource.getProducts();
+
+      final searchProduct = allProducts
+          .where((element) =>
+              element.name!.toLowerCase().contains(event.query.toLowerCase()))
+          .toList();
+      emit(_Loaded(searchProduct));
+    });
   }
+
+  
 }
   

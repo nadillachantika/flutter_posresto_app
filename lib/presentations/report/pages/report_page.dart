@@ -316,74 +316,76 @@ class _ReportPageState extends State<ReportPage> {
                               loaded: (itemReports) {
                                 return Padding(
                                   padding: const EdgeInsets.all(24.0),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Center(
-                                        child: Text(
-                                          title,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 16.0),
-                                        ),
-                                      ),
-                                      Center(
-                                        child: Text(
-                                          searchDateFormatted,
-                                          style:
-                                              const TextStyle(fontSize: 16.0),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 16.0),
-                                        child: SingleChildScrollView(
-                                          scrollDirection: Axis.horizontal,
-                                          child: DataTable(
-                                            dividerThickness: 0.1,
-                                            dataRowColor: MaterialStateColor
-                                                .resolveWith((states) => Colors
-                                                    .white), // Warna latar belakang baris data
-                                            headingRowColor:
-                                                MaterialStateColor.resolveWith(
-                                                    (states) => AppColors
-                                                        .primary
-                                                        .withOpacity(0.1)),
-                                            headingTextStyle: const TextStyle(
-                                                color: AppColors.primary,
-                                                fontWeight: FontWeight.bold),
-
-                                            columns: const [
-                                              DataColumn(
-                                                  label: Text('Product.')),
-                                              DataColumn(
-                                                  label: Text('Total Item')),
-                                            ],
-                                            rows: itemReports.map((itemReport) {
-                                              return DataRow(
-                                                cells: [
-                                                  DataCell(
-                                                    Text(itemReport.productName
-                                                        .toString()),
-                                                  ),
-                                                  DataCell(
-                                                    Text(
-                                                      itemReport.quantity
-                                                          .toString(),
-                                                      style: const TextStyle(
-                                                          color: AppColors
-                                                              .primary),
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            }).toList(),
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Center(
+                                          child: Text(
+                                            title,
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 16.0),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                        Center(
+                                          child: Text(
+                                            searchDateFormatted,
+                                            style:
+                                                const TextStyle(fontSize: 16.0),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 16.0),
+                                          child: SingleChildScrollView(
+                                            scrollDirection: Axis.horizontal,
+                                            child: DataTable(
+                                              dividerThickness: 0.1,
+                                              dataRowColor: MaterialStateColor
+                                                  .resolveWith((states) => Colors
+                                                      .white), // Warna latar belakang baris data
+                                              headingRowColor:
+                                                  MaterialStateColor.resolveWith(
+                                                      (states) => AppColors
+                                                          .primary
+                                                          .withOpacity(0.1)),
+                                              headingTextStyle: const TextStyle(
+                                                  color: AppColors.primary,
+                                                  fontWeight: FontWeight.bold),
+                                    
+                                              columns: const [
+                                                DataColumn(
+                                                    label: Text('Product.')),
+                                                DataColumn(
+                                                    label: Text('Total Item')),
+                                              ],
+                                              rows: itemReports.map((itemReport) {
+                                                return DataRow(
+                                                  cells: [
+                                                    DataCell(
+                                                      Text(itemReport.productName
+                                                          .toString()),
+                                                    ),
+                                                    DataCell(
+                                                      Text(
+                                                        itemReport.quantity
+                                                            .toString(),
+                                                        style: const TextStyle(
+                                                            color: AppColors
+                                                                .primary),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                );
+                                              }).toList(),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 );
                               },
@@ -419,133 +421,135 @@ class _ReportPageState extends State<ReportPage> {
 
                                 return Padding(
                                   padding: const EdgeInsets.all(24.0),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Center(
-                                        child: Text(
-                                          title,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 16.0),
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Center(
+                                          child: Text(
+                                            title,
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 16.0),
+                                          ),
                                         ),
-                                      ),
-                                      Center(
-                                        child: Text(
-                                          searchDateFormatted,
-                                          style:
-                                              const TextStyle(fontSize: 16.0),
+                                        Center(
+                                          child: Text(
+                                            searchDateFormatted,
+                                            style:
+                                                const TextStyle(fontSize: 16.0),
+                                          ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 16.0),
-                                        child: SingleChildScrollView(
-                                          scrollDirection: Axis.horizontal,
-                                          child: DataTable(
-                                            dividerThickness: 0.1,
-                                            dataRowColor: MaterialStateColor
-                                                .resolveWith((states) => Colors
-                                                    .white), // Warna latar belakang baris data
-                                            headingRowColor:
-                                                MaterialStateColor.resolveWith(
-                                                    (states) => AppColors
-                                                        .primary
-                                                        .withOpacity(0.1)),
-                                            headingTextStyle: const TextStyle(
-                                                color: AppColors.primary,
-                                                fontWeight: FontWeight.bold),
-
-                                            columns: const [
-                                              DataColumn(
-                                                  label: Text('Product')),
-                                              DataColumn(
-                                                  label: Text('Jumlah Item')),
-                                              DataColumn(
-                                                  label: Text('Harga Satuan')),
-                                              DataColumn(
-                                                  label: Text('Total')),
-                                            ],
-                                            rows: [
-                                              // Baris untuk setiap item
-                                              ...itemReports.map((itemReport) {
-                                                int totalHargaPerItem =
-                                                    itemReport.price! *
-                                                        itemReport.quantity!;
-
-                                                return DataRow(
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 16.0),
+                                          child: SingleChildScrollView(
+                                            scrollDirection: Axis.horizontal,
+                                            child: DataTable(
+                                              dividerThickness: 0.1,
+                                              dataRowColor: MaterialStateColor
+                                                  .resolveWith((states) => Colors
+                                                      .white), // Warna latar belakang baris data
+                                              headingRowColor:
+                                                  MaterialStateColor.resolveWith(
+                                                      (states) => AppColors
+                                                          .primary
+                                                          .withOpacity(0.1)),
+                                              headingTextStyle: const TextStyle(
+                                                  color: AppColors.primary,
+                                                  fontWeight: FontWeight.bold),
+                                    
+                                              columns: const [
+                                                DataColumn(
+                                                    label: Text('Product')),
+                                                DataColumn(
+                                                    label: Text('Jumlah Item')),
+                                                DataColumn(
+                                                    label: Text('Harga Satuan')),
+                                                DataColumn(
+                                                    label: Text('Total')),
+                                              ],
+                                              rows: [
+                                                // Baris untuk setiap item
+                                                ...itemReports.map((itemReport) {
+                                                  int totalHargaPerItem =
+                                                      itemReport.price! *
+                                                          itemReport.quantity!;
+                                    
+                                                  return DataRow(
+                                                    cells: [
+                                                      DataCell(
+                                                        Text(itemReport
+                                                            .productName
+                                                            .toString()),
+                                                      ),
+                                                      DataCell(
+                                                        Text(
+                                                          itemReport.quantity
+                                                              .toString(),
+                                                          style: const TextStyle(
+                                                              color: AppColors
+                                                                  .primary),
+                                                        ),
+                                                      ),
+                                                      DataCell(
+                                                        Text(
+                                                          itemReport.price
+                                                              .toString(),
+                                                          style: const TextStyle(
+                                                              color: AppColors
+                                                                  .primary),
+                                                        ),
+                                                      ),
+                                                      DataCell(
+                                                        Text(
+                                                          totalHargaPerItem
+                                                              .toString(),
+                                                          style: const TextStyle(
+                                                              color: AppColors
+                                                                  .primary),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  );
+                                                }),
+                                                // Baris untuk total
+                                                DataRow(
                                                   cells: [
-                                                    DataCell(
-                                                      Text(itemReport
-                                                          .productName
-                                                          .toString()),
-                                                    ),
-                                                    DataCell(
+                                                    const DataCell(
                                                       Text(
-                                                        itemReport.quantity
-                                                            .toString(),
-                                                        style: const TextStyle(
-                                                            color: AppColors
-                                                                .primary),
+                                                        'Total',
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold),
                                                       ),
                                                     ),
                                                     DataCell(
                                                       Text(
-                                                        itemReport.price
-                                                            .toString(),
-                                                        style: const TextStyle(
-                                                            color: AppColors
-                                                                .primary),
-                                                      ),
+                                                          totalItem.toString()), // Kosongkan kolom jumlah item
+                                                    ),
+                                                    const DataCell(
+                                                      Text(
+                                                          ''), // Kosongkan kolom harga satuan
                                                     ),
                                                     DataCell(
                                                       Text(
-                                                        totalHargaPerItem
-                                                            .toString(),
-                                                        style: const TextStyle(
-                                                            color: AppColors
-                                                                .primary),
+                                                        totalRevenue.toString(), // Teks untuk total harga
+                                                        style:  const TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold),
                                                       ),
                                                     ),
                                                   ],
-                                                );
-                                              }),
-                                              // Baris untuk total
-                                              DataRow(
-                                                cells: [
-                                                  const DataCell(
-                                                    Text(
-                                                      'Total',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                  ),
-                                                  DataCell(
-                                                    Text(
-                                                        totalItem.toString()), // Kosongkan kolom jumlah item
-                                                  ),
-                                                  const DataCell(
-                                                    Text(
-                                                        ''), // Kosongkan kolom harga satuan
-                                                  ),
-                                                  DataCell(
-                                                    Text(
-                                                      totalRevenue.toString(), // Teks untuk total harga
-                                                      style:  const TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 );
                               },
