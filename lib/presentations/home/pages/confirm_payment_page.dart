@@ -539,6 +539,7 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> {
                               children: [
                                 Flexible(
                                   child: Button.outlined(
+                                    color: AppColors.white,
                                     onPressed: () => context.pop(),
                                     label: 'Batalkan',
                                   ),

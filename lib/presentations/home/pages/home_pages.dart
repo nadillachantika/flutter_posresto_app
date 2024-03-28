@@ -338,7 +338,7 @@ class _HomePageState extends State<HomePage> {
                                       shrinkWrap: true,
                                       itemCount: products
                                           .where((element) =>
-                                              element.category!.id! == 2)
+                                              element.category!.id! == 5)
                                           .toList()
                                           .length,
                                       physics:
@@ -354,7 +354,7 @@ class _HomePageState extends State<HomePage> {
                                           ProductCard(
                                         data: products
                                             .where((element) =>
-                                                element.category!.id! == 2)
+                                                element.category!.id! == 5)
                                             .toList()[index],
                                         onCartButton: () {},
                                       ),
@@ -386,7 +386,7 @@ class _HomePageState extends State<HomePage> {
                                       shrinkWrap: true,
                                       itemCount: products
                                           .where((element) =>
-                                              element.category!.id! == 3)
+                                              element.category!.id! == 5)
                                           .toList()
                                           .length,
                                       physics:
@@ -394,7 +394,7 @@ class _HomePageState extends State<HomePage> {
                                       gridDelegate:
                                           const SliverGridDelegateWithFixedCrossAxisCount(
                                         childAspectRatio: 0.85,
-                                        crossAxisCount: 3,
+                                        crossAxisCount: 5,
                                         crossAxisSpacing: 30.0,
                                         mainAxisSpacing: 30.0,
                                       ),
@@ -402,7 +402,7 @@ class _HomePageState extends State<HomePage> {
                                           ProductCard(
                                         data: products
                                             .where((element) =>
-                                                element.category!.id! == 3)
+                                                element.category!.id! == 5)
                                             .toList()[index],
                                         onCartButton: () {},
                                       ),

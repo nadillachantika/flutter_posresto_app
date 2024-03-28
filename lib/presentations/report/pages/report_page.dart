@@ -8,6 +8,7 @@ import 'package:flutter_restopos/core/extensions/date_time_ext.dart';
 import 'package:flutter_restopos/presentations/report/bloc/item_sales_report/item_sales_report_bloc.dart';
 import 'package:flutter_restopos/presentations/report/bloc/report/transaction_report_bloc.dart';
 import 'package:flutter_restopos/presentations/report/widgets/item_sales_report.dart';
+import 'package:pie_chart/pie_chart.dart';
 import 'package:sqflite/sqflite.dart';
 import '../widgets/report_menu.dart';
 import '../widgets/report_title.dart';
@@ -51,20 +52,23 @@ class _ReportPageState extends State<ReportPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Flexible(
-                            child: CustomDatePicker(
-                              prefix: const Text('From: '),
-                              initialDate: fromDate,
-                              onDateSelected: (selectedDate) {
-                                // fromDate = selectedDate;
-                                setState(() {
-                                  fromDate = selectedDate;
-                                });
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CustomDatePicker(
+                                prefix: const Text('From: '),
+                                initialDate: fromDate,
+                                onDateSelected: (selectedDate) {
+                                  // fromDate = selectedDate;
+                                  setState(() {
+                                    fromDate = selectedDate;
+                                  });
 
-                                context.read<TransactionReportBloc>().add(
-                                    TransactionReportEvent.getReport(
-                                        startDate: selectedDate,
-                                        endDate: toDate));
-                              },
+                                  context.read<TransactionReportBloc>().add(
+                                      TransactionReportEvent.getReport(
+                                          startDate: selectedDate,
+                                          endDate: toDate));
+                                },
+                              ),
                             ),
                           ),
                           const SpaceWidth(20.0),
@@ -97,12 +101,18 @@ class _ReportPageState extends State<ReportPage> {
                               onPressed: () {
                                 selectedMenu = 1;
                                 title = 'Transaction Report';
+                                 fromDate = DateTime.now()
+                                    .subtract(const Duration(days: 30));
+                                toDate = DateTime.now();
 
                                 context.read<TransactionReportBloc>().add(
                                     TransactionReportEvent.getReport(
                                         startDate: fromDate, endDate: toDate));
 
-                                setState(() {});
+                                setState(() {
+                                  searchDateFormatted =
+                                      '${fromDate.toFormattedDate2()} to ${toDate.toFormattedDate2()}';
+                                });
 
                                 // enddate 1 month before start date
                               },
@@ -314,11 +324,17 @@ class _ReportPageState extends State<ReportPage> {
                                     child: CircularProgressIndicator());
                               },
                               loaded: (itemReports) {
+                                Map<String, double> dataMap = {};
+                                for (var itemReport in itemReports) {
+                                  dataMap[itemReport.productName!] =
+                                      itemReport.quantity!.toDouble();
+                                }
                                 return Padding(
                                   padding: const EdgeInsets.all(24.0),
                                   child: SingleChildScrollView(
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
@@ -338,49 +354,58 @@ class _ReportPageState extends State<ReportPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 16.0),
-                                          child: SingleChildScrollView(
-                                            scrollDirection: Axis.horizontal,
-                                            child: DataTable(
-                                              dividerThickness: 0.1,
-                                              dataRowColor: MaterialStateColor
-                                                  .resolveWith((states) => Colors
-                                                      .white), // Warna latar belakang baris data
-                                              headingRowColor:
-                                                  MaterialStateColor.resolveWith(
-                                                      (states) => AppColors
-                                                          .primary
-                                                          .withOpacity(0.1)),
-                                              headingTextStyle: const TextStyle(
-                                                  color: AppColors.primary,
-                                                  fontWeight: FontWeight.bold),
-                                    
-                                              columns: const [
-                                                DataColumn(
-                                                    label: Text('Product.')),
-                                                DataColumn(
-                                                    label: Text('Total Item')),
-                                              ],
-                                              rows: itemReports.map((itemReport) {
-                                                return DataRow(
-                                                  cells: [
-                                                    DataCell(
-                                                      Text(itemReport.productName
-                                                          .toString()),
-                                                    ),
-                                                    DataCell(
-                                                      Text(
-                                                        itemReport.quantity
-                                                            .toString(),
-                                                        style: const TextStyle(
-                                                            color: AppColors
-                                                                .primary),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                );
-                                              }).toList(),
+                                          padding: const EdgeInsets.all(24.0),
+                                          child: SizedBox(
+                                            height:
+                                                400, // Sesuaikan tinggi pie chart sesuai kebutuhan
+                                            child: PieChart(
+                                              dataMap: dataMap,
+                                              animationDuration: const Duration(
+                                                  milliseconds: 800),
+                                              chartLegendSpacing: 32,
+                                              chartRadius:
+                                                  MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2.7,
+                                              colorList: const [
+                                                Color(0xffFF7163),
+                                                Color(0xffFF9A52),
+                                                Color(0xffFFD241),
+                                                Color(0xffC7E34E),
+                                                Color(0xff74D66D),
+                                                Color(0xff60EED8),
+                                                Color(0xff73B8E8),
+                                                Color(0xffA186D1),
+                                                Color(0xffE580D8),
+                                              ], // Sesuaikan warna sesuai kebutuhan
+                                              initialAngleInDegree: 0,
+                                              chartType: ChartType
+                                                  .disc, // Tipe chart (disc atau ring)
+                                              ringStrokeWidth:
+                                                  32, // Ketebalan ring (hanya jika chartType = ChartType.ring)
+                                              centerText:
+                                                  "Sales", // Teks di tengah pie chart
+                                              legendOptions:
+                                                  const LegendOptions(
+                                                showLegendsInRow: true,
+                                                legendPosition:
+                                                    LegendPosition.bottom,
+                                                showLegends: true,
+                                                legendTextStyle: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 8,
+                                                ),
+                                              ),
+                                              chartValuesOptions:
+                                                  const ChartValuesOptions(
+                                                showChartValueBackground: true,
+                                                showChartValues: true,
+                                                showChartValuesInPercentage:
+                                                    true,
+                                                showChartValuesOutside: false,
+                                                decimalPlaces: 1,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -423,7 +448,8 @@ class _ReportPageState extends State<ReportPage> {
                                   padding: const EdgeInsets.all(24.0),
                                   child: SingleChildScrollView(
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
@@ -453,31 +479,35 @@ class _ReportPageState extends State<ReportPage> {
                                                   .resolveWith((states) => Colors
                                                       .white), // Warna latar belakang baris data
                                               headingRowColor:
-                                                  MaterialStateColor.resolveWith(
-                                                      (states) => AppColors
-                                                          .primary
-                                                          .withOpacity(0.1)),
+                                                  MaterialStateColor
+                                                      .resolveWith((states) =>
+                                                          AppColors
+                                                              .primary
+                                                              .withOpacity(
+                                                                  0.1)),
                                               headingTextStyle: const TextStyle(
                                                   color: AppColors.primary,
                                                   fontWeight: FontWeight.bold),
-                                    
+
                                               columns: const [
                                                 DataColumn(
                                                     label: Text('Product')),
                                                 DataColumn(
                                                     label: Text('Jumlah Item')),
                                                 DataColumn(
-                                                    label: Text('Harga Satuan')),
+                                                    label:
+                                                        Text('Harga Satuan')),
                                                 DataColumn(
                                                     label: Text('Total')),
                                               ],
                                               rows: [
                                                 // Baris untuk setiap item
-                                                ...itemReports.map((itemReport) {
+                                                ...itemReports
+                                                    .map((itemReport) {
                                                   int totalHargaPerItem =
                                                       itemReport.price! *
                                                           itemReport.quantity!;
-                                    
+
                                                   return DataRow(
                                                     cells: [
                                                       DataCell(
@@ -523,12 +553,13 @@ class _ReportPageState extends State<ReportPage> {
                                                         'Total',
                                                         style: TextStyle(
                                                             fontWeight:
-                                                                FontWeight.bold),
+                                                                FontWeight
+                                                                    .bold),
                                                       ),
                                                     ),
                                                     DataCell(
-                                                      Text(
-                                                          totalItem.toString()), // Kosongkan kolom jumlah item
+                                                      Text(totalItem
+                                                          .toString()), // Kosongkan kolom jumlah item
                                                     ),
                                                     const DataCell(
                                                       Text(
@@ -536,10 +567,12 @@ class _ReportPageState extends State<ReportPage> {
                                                     ),
                                                     DataCell(
                                                       Text(
-                                                        totalRevenue.toString(), // Teks untuk total harga
-                                                        style:  const TextStyle(
+                                                        totalRevenue
+                                                            .toString(), // Teks untuk total harga
+                                                        style: const TextStyle(
                                                             fontWeight:
-                                                                FontWeight.bold),
+                                                                FontWeight
+                                                                    .bold),
                                                       ),
                                                     ),
                                                   ],
